@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffff00",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#0b0b0e",
+                        "danger": "#ff0000",
+                        "success": "#00ff41",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes pulse-neon {
+            0%, 100% { box-shadow: 0 0 5px #00ff41, inset 0 0 5px #00ff41; }
+            50% { box-shadow: 0 0 20px #00ff41, inset 0 0 10px #00ff41; }
+        }
+        .animate-pulse-neon {
+            animation: pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .glitch-border {
+            box-shadow: 2px 0 0 #ff0000, -2px 0 0 #00ffff;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,0,0.05) 50%);
+            background-size: 100% 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display antialiased overflow-hidden">
+<!-- Background Content (Blurred) -->
+<div class="fixed inset-0 z-0 opacity-40 blur-sm flex flex-col p-6">
+<div class="flex justify-between items-center mb-8">
+<div class="h-10 w-10 bg-primary/20"></div>
+<div class="h-4 w-32 bg-primary/20"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-32 bg-primary/10"></div>
+<div class="h-32 bg-primary/10"></div>
+<div class="h-32 bg-primary/10"></div>
+<div class="h-32 bg-primary/10"></div>
+</div>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+<!-- Industrial Border Container -->
+<div class="relative w-full max-w-md bg-background-dark border-4 border-primary shadow-[0_0_30px_rgba(255,255,0,0.3)] scanline">
+<!-- Technical Corner Labels -->
+<div class="absolute -top-3 -left-1 bg-primary text-black text-[10px] font-bold px-2 py-0.5 tracking-tighter">
+                BIO_DATA_FLAGGED
+            </div>
+<div class="absolute -bottom-3 -right-1 bg-danger text-white text-[10px] font-bold px-2 py-0.5 tracking-tighter">
+                ERROR_POSTURE_DETECTED
+            </div>
+<!-- BottomSheetHandle (Stylized as tech detail) -->
+<div class="flex h-6 w-full items-center justify-center border-b border-primary/30">
+<div class="flex gap-1">
+<div class="h-1 w-8 bg-primary/40"></div>
+<div class="h-1 w-2 bg-primary"></div>
+<div class="h-1 w-8 bg-primary/40"></div>
+</div>
+</div>
+<!-- SectionHeader: Glitchy Header -->
+<div class="relative overflow-hidden group">
+<h4 class="text-primary text-sm font-bold leading-normal tracking-[0.2em] px-4 py-4 text-center uppercase">
+                    生存现状评估报告 <span class="text-white">(CRITICAL)</span>
+</h4>
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+</div>
+<!-- HeadlineText: Spine Health Score -->
+<div class="py-8 px-6 text-center border-b border-primary/20">
+<p class="text-primary/60 text-[10px] tracking-[0.3em] mb-2 uppercase">Spine Health Integrity</p>
+<h1 class="text-danger tracking-tighter text-[56px] font-bold leading-none drop-shadow-[0_0_10px_rgba(255,0,0,0.5)]">
+                    24<span class="text-2xl text-danger/60 font-light">/100</span>
+</h1>
+<!-- MetaText: Error Code -->
+<p class="text-danger text-xs font-medium leading-normal mt-4 tracking-[0.1em] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+                    SYSTEM_FAILURE_DETECTED
+                </p>
+</div>
+<!-- Metric List -->
+<div class="py-2 bg-primary/5">
+<!-- ListItem: Predicted Expiration -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] py-2 justify-between border-b border-primary/10">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center bg-primary/10 shrink-0 size-10 border border-primary/30">
+<span class="material-symbols-outlined">skull</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-sm font-bold leading-none uppercase tracking-wider">预计生命报废期</p>
+<p class="text-primary/50 text-[10px] font-normal leading-normal uppercase">Predicted Expiration</p>
+</div>
+</div>
+<div class="shrink-0"><p class="text-danger text-lg font-bold">2029</p></div>
+</div>
+<!-- ListItem: Vertebral Compression -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] py-2 justify-between border-b border-primary/10">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center bg-primary/10 shrink-0 size-10 border border-primary/30">
+<span class="material-symbols-outlined">compress</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-sm font-bold leading-none uppercase tracking-wider">椎间盘受压程度</p>
+<p class="text-primary/50 text-[10px] font-normal leading-normal uppercase">Vertebral Compression</p>
+</div>
+</div>
+<div class="shrink-0"><p class="text-danger text-lg font-bold">EXTREME</p></div>
+</div>
+<!-- ListItem: Metabolic Stagnation -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center bg-primary/10 shrink-0 size-10 border border-primary/30">
+<span class="material-symbols-outlined">hourglass_empty</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-sm font-bold leading-none uppercase tracking-wider">代谢停滞率</p>
+<p class="text-primary/50 text-[10px] font-normal leading-normal uppercase">Metabolic Stagnation</p>
+</div>
+</div>
+<div class="shrink-0"><p class="text-danger text-lg font-bold">88%</p></div>
+</div>
+</div>
+<!-- Toxic Summary Block -->
+<div class="p-6 bg-danger/10 border-t border-danger/30">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-danger">report_problem</span>
+<p class="text-danger text-xs font-bold leading-relaxed tracking-wide uppercase">
+                        Your system is on the verge of total structural failure. Immediate maintenance required to prevent permanent hardware damage.
+                    </p>
+</div>
+</div>
+<!-- Massive Action Button -->
+<div class="p-6">
+<button class="w-full bg-success hover:bg-success/90 text-black font-black text-xl py-5 flex items-center justify-center gap-3 animate-pulse-neon transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined font-bold">bolt</span>
+                    立即续命
+                    <span class="material-symbols-outlined font-bold">bolt</span>
+</button>
+<div class="mt-4 flex justify-between items-center opacity-40">
+<p class="text-[8px] text-white font-mono uppercase tracking-[0.2em]">SEQ_ID: 99283-A</p>
+<p class="text-[8px] text-white font-mono uppercase tracking-[0.2em]">TIMESTAMP: 2023-10-24 14:02:11</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Screen Decorative Elements -->
+<div class="fixed top-4 left-4 z-[60] text-primary/20 text-[10px] rotate-90 origin-top-left pointer-events-none">
+        SCANNING_PHYSICAL_MATRIX...
+    </div>
+<div class="fixed bottom-4 right-4 z-[60] text-primary/20 text-[10px] -rotate-90 origin-bottom-right pointer-events-none">
+        LIFE_CORE_CONNECTION_STABLE
+    </div>
+</body></html>

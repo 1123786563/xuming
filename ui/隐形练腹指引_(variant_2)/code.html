@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b4f73",
+                        "accent-cyan": "#00BCD4",
+                        "stealth-green": "#4CAF50",
+                        "background-light": "#f0f2f5",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .radar-line {
+            background: linear-gradient(90deg, transparent 0%, rgba(43, 79, 115, 0.2) 50%, transparent 100%);
+        }
+        .scan-line {
+            background: linear-gradient(to bottom, transparent, rgba(0, 188, 212, 0.1), transparent);
+        }
+        .x-ray-glow {
+            box-shadow: 0 0 20px rgba(43, 79, 115, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-[430px] mx-auto border-x border-white/5 shadow-2xl">
+<!-- TopAppBar: Stealth Status -->
+<div class="flex items-center bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between z-20 border-b border-white/5">
+<div class="text-primary flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined text-2xl">biotech</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<span class="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1">Current Protocol</span>
+<h2 class="text-white text-base font-bold leading-tight tracking-wider">隐蔽修复中</h2>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full bg-white/5 text-white/60 hover:text-white transition-colors border border-white/10 group">
+<span class="material-symbols-outlined text-xl group-hover:scale-90 transition-transform">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Radar Background Decor -->
+<div class="absolute inset-0 pointer-events-none opacity-20">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/20 rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-primary/10 rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] border border-primary/5 rounded-full"></div>
+<div class="radar-line absolute top-1/2 left-0 w-full h-[1px]"></div>
+</div>
+<!-- Headline: Context -->
+<div class="pt-8 px-6 text-center z-10">
+<h1 class="text-white tracking-tighter text-3xl font-bold leading-tight mb-1">腹部系统压缩</h1>
+<div class="flex items-center justify-center gap-2">
+<span class="flex h-2 w-2 rounded-full bg-stealth-green animate-pulse"></span>
+<p class="text-white/40 text-[10px] uppercase tracking-[0.3em] font-medium">Stomach Vacuum Active</p>
+</div>
+</div>
+<!-- Central Visual: X-Ray Torso -->
+<div class="relative flex-1 flex items-center justify-center px-4">
+<div class="relative w-full aspect-square max-w-[320px] group">
+<!-- Abstract 3D Torso Representation -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-3xl border border-primary/20 backdrop-blur-sm overflow-hidden x-ray-glow">
+<!-- Scanner effect -->
+<div class="scan-line absolute inset-0 w-full h-12 top-1/4 animate-scan"></div>
+<!-- SVG Simulation of X-Ray Torso Side View -->
+<div class="absolute inset-0 flex items-center justify-center p-8">
+<svg class="w-full h-full text-primary/40 stroke-current fill-none" viewbox="0 0 200 200">
+<!-- Back Profile -->
+<path d="M140,20 Q160,100 140,180" stroke-width="2"></path>
+<!-- Spine -->
+<path d="M130,30 Q145,100 130,170" stroke-dasharray="4 4" stroke-width="1"></path>
+<!-- Abdominal Wall (The Vacuum) -->
+<path class="opacity-30" d="M60,20 Q100,100 60,180" stroke-width="2"></path>
+<!-- Contracted Core -->
+<path class="text-accent-cyan" d="M60,20 Q120,100 60,180" stroke-linecap="round" stroke-width="3">
+<animate attributename="d" dur="4s" repeatcount="indefinite" values="M60,20 Q120,100 60,180; M60,20 Q95,100 60,180; M60,20 Q120,100 60,180"></animate>
+</path>
+<!-- Internal Organs/Glow -->
+<circle class="fill-primary/20" cx="100" cy="100" r="30"></circle>
+</svg>
+</div>
+<!-- Technical Callouts -->
+<div class="absolute top-4 left-4 border-l border-accent-cyan pl-2">
+<p class="text-[8px] text-accent-cyan/60 uppercase">Axial Plane</p>
+<p class="text-[10px] text-white/80 font-mono">T-09 ACTIVE</p>
+</div>
+<div class="absolute bottom-4 right-4 text-right border-r border-primary pr-2">
+<p class="text-[8px] text-primary uppercase">Depth Metric</p>
+<p class="text-[10px] text-white/80 font-mono">8.2mm VAC</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Progress Indicators -->
+<div class="px-6 space-y-4 mb-6 z-10">
+<div class="flex flex-col gap-2 p-4 bg-white/5 rounded-xl border border-white/5 backdrop-blur-md">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-white/60 text-xs font-medium uppercase tracking-widest italic">Compression Depth</p>
+<p class="text-accent-cyan text-lg font-bold leading-none font-mono">85%</p>
+</div>
+<div class="h-1.5 w-full rounded-full bg-white/5 overflow-hidden">
+<div class="h-full rounded-full bg-gradient-to-r from-primary to-accent-cyan" style="width: 85%;"></div>
+</div>
+<div class="flex justify-between items-center mt-1">
+<p class="text-white/30 text-[10px] uppercase font-mono tracking-tighter">Abdominal System Active</p>
+<p class="text-stealth-green text-[10px] uppercase font-bold">Synchronized</p>
+</div>
+</div>
+</div>
+<!-- BodyText: Quote -->
+<div class="px-8 pb-10 text-center z-10">
+<p class="text-white/80 text-sm italic font-light leading-relaxed max-w-[280px] mx-auto">
+                "Build your core while you build that useless <span class="text-primary font-bold">PowerPoint</span>."
+            </p>
+</div>
+<!-- Hidden/Discreet Boss Mode Trigger (Bottom) -->
+<div class="mt-auto px-6 pb-8 z-10">
+<div class="flex items-center justify-between p-3 bg-primary/10 rounded-full border border-primary/20">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">security</span>
+</div>
+<span class="text-[10px] font-bold text-white/60 tracking-widest uppercase">Stealth Mode</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[9px] text-white/40 uppercase">Boss Mode</span>
+<button class="w-10 h-5 bg-black rounded-full border border-white/20 relative">
+<div class="absolute top-1 left-1 size-3 bg-white/20 rounded-full"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Screen Overlay for textures -->
+<div class="absolute inset-0 pointer-events-none opacity-10 bg-[radial-gradient(circle_at_center,_transparent_0%,_#000_100%)]"></div>
+<div class="absolute inset-0 pointer-events-none opacity-[0.03]" data-alt="carbon fiber pattern background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNpqBLRdDjiJPMB5-oeORFYcfIlegRB05P0X6i7IuJPBRn8UFmTA0-4F3KxmbRBpgem8MGlFyXefydO1SO5WcEe47aLk8ENB-4aPPRATUcHxPXKGLhzaSXfdYRN0N9jfMF0mRxzZFakgLrLEC4RfForUiUOu_zwg3Xpny3CvbZk3y_huQA4r-PYdAxH25dF_HPOs7saJ58g3TE1u3n2pjOLNSLr22CBTO5fVd5GxGA5TALzXwo9UPgRG7PKcZDPMRKqkXgfINBTHM');"></div>
+</div>
+</body></html>

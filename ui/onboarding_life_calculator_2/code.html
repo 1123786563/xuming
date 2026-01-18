@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>剩余寿命计算器 - 续命</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ff41",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#000000",
+                        "warning": "#FFB800",
+                        "fault": "#FF003C",
+                        "surface": "#111111",
+                        "surface-accent": "#1C1C1E"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "sans-serif"],
+                        "mono": ["Space Mono", "Courier New", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glitch-text {
+            text-shadow: 2px 0 #FF003C, -2px 0 #00FF41;
+        }
+        .micro-matte {
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+        }
+        .industrial-gauge {
+            background: conic-gradient(from 180deg at 50% 100%, #00FF41 0deg, #FFB800 120deg, #FF003C 180deg);
+            mask: radial-gradient(circle at 50% 100%, transparent 60%, black 61%);
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white selection:bg-primary selection:text-black">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[430px] mx-auto border-x border-primary/10 bg-background-dark">
+<div class="flex items-center bg-black p-4 pb-2 justify-between border-b border-primary/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">terminal</span>
+<span class="text-[10px] font-mono text-primary/60 tracking-tighter">用户ID: 0x8F2</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-fault animate-pulse"></div>
+<h2 class="text-white text-xs font-mono font-bold leading-tight tracking-widest uppercase">系统状态: 临界</h2>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-[10px] font-mono text-primary/60">正在记录</span>
+<button class="flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">sensors_off</span>
+</button>
+</div>
+</div>
+<div class="px-4 py-2 bg-primary/5">
+<p class="text-[9px] font-mono text-primary/40 leading-none">ROOT@BIOS: ~ /身体/诊断/损耗同步中...</p>
+</div>
+<div class="pt-6 pb-2 text-center">
+<h4 class="text-primary text-[10px] font-mono font-bold tracking-[0.3em] mb-1">正在诊断身体损耗状况</h4>
+<h1 class="text-white tracking-tight text-2xl font-bold leading-tight px-6 uppercase italic">颈椎报废倒计时</h1>
+</div>
+<div class="relative flex flex-col items-center justify-center py-6">
+<div class="relative w-64 h-32 overflow-hidden">
+<div class="industrial-gauge w-64 h-64 rounded-full opacity-80"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-24 bg-background-dark flex flex-col items-center justify-end pb-2">
+<span class="text-[10px] font-mono text-primary/60">结构失效概率</span>
+<span class="text-4xl font-mono font-bold text-fault glitch-text">88.4%</span>
+</div>
+<div class="absolute bottom-0 left-1/2 w-1 h-28 bg-white origin-bottom -rotate-[65deg] shadow-[0_0_10px_#fff]"></div>
+</div>
+</div>
+<div class="flex gap-2 py-4 px-4">
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-surface-accent micro-matte border-b-2 border-fault/50">
+<p class="text-white text-2xl font-mono font-bold">04</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-primary/60 text-[10px] font-mono uppercase">年</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-surface-accent micro-matte border-b-2 border-fault/50">
+<p class="text-white text-2xl font-mono font-bold">212</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-primary/60 text-[10px] font-mono uppercase">天</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-surface-accent micro-matte border-b-2 border-fault/50">
+<p class="text-white text-2xl font-mono font-bold">14</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-primary/60 text-[10px] font-mono uppercase">时</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-surface-accent micro-matte border-b-2 border-fault/50">
+<p class="text-white text-2xl font-mono font-bold animate-pulse">09</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-primary/60 text-[10px] font-mono uppercase">分</p></div>
+</div>
+</div>
+<div class="px-4 mt-4">
+<h4 class="text-primary/80 text-[10px] font-mono font-bold leading-normal tracking-widest border-l-2 border-primary pl-2 uppercase">需要诊断数据输入</h4>
+</div>
+<div class="space-y-3 p-4 pb-32">
+<div class="p-4 bg-surface-accent micro-matte rounded-sm border-l-2 border-primary">
+<div class="flex justify-between items-center mb-3">
+<p class="text-white text-xs font-bold font-mono tracking-tight uppercase">每日坐姿时长</p>
+<p class="text-primary text-xs font-mono">10.5 小时</p>
+</div>
+<div class="relative h-6 flex items-center">
+<div class="absolute inset-0 flex justify-between px-1 pointer-events-none">
+<div class="w-px h-full bg-primary/20"></div>
+<div class="w-px h-full bg-primary/20"></div>
+<div class="w-px h-full bg-primary/20"></div>
+<div class="w-px h-full bg-primary/20"></div>
+<div class="w-px h-full bg-primary/20"></div>
+</div>
+<div class="w-full h-1 bg-white/10 relative">
+<div class="absolute h-full bg-primary w-[75%]"></div>
+<div class="absolute h-4 w-4 bg-primary top-1/2 -translate-y-1/2 left-[75%] shadow-[0_0_10px_#00ff41]"></div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-accent micro-matte rounded-sm border-l-2 border-warning">
+<div class="flex justify-between items-center mb-3">
+<p class="text-white text-xs font-bold font-mono tracking-tight uppercase">疼痛等级</p>
+<p class="text-warning text-xs font-mono">等级 07</p>
+</div>
+<div class="flex gap-1 h-3">
+<div class="flex-1 bg-primary/40"></div>
+<div class="flex-1 bg-primary/40"></div>
+<div class="flex-1 bg-primary/40"></div>
+<div class="flex-1 bg-warning/60"></div>
+<div class="flex-1 bg-warning/60"></div>
+<div class="flex-1 bg-warning/60"></div>
+<div class="flex-1 bg-warning shadow-[0_0_8px_#FFB800]"></div>
+<div class="flex-1 bg-white/10"></div>
+<div class="flex-1 bg-white/10"></div>
+<div class="flex-1 bg-white/10"></div>
+</div>
+</div>
+<div class="p-4 bg-surface-accent micro-matte rounded-sm border-l-2 border-fault">
+<div class="flex justify-between items-center mb-3">
+<p class="text-white text-xs font-bold font-mono tracking-tight uppercase">当前姿势</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 flex flex-col items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-sm">
+<span class="material-symbols-outlined text-white/40">accessibility_new</span>
+<span class="text-[10px] font-mono text-white/40">标准</span>
+</button>
+<button class="flex-1 flex flex-col items-center gap-2 p-3 bg-fault/20 border border-fault/50 rounded-sm shadow-[inset_0_0_10px_rgba(255,0,60,0.2)]">
+<span class="material-symbols-outlined text-fault">airline_seat_recline_extra</span>
+<span class="text-[10px] font-mono text-fault font-bold">蜷缩/瘫坐</span>
+</button>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto p-6 bg-gradient-to-t from-black via-black/90 to-transparent">
+<button class="group relative w-full h-16 bg-primary rounded-full overflow-hidden flex items-center justify-center transition-transform active:scale-95 shadow-[0_0_20px_rgba(0,255,65,0.4)]">
+<div class="absolute inset-1 border border-black/10 rounded-full pointer-events-none"></div>
+<div class="absolute left-4 px-2 py-0.5 bg-black text-primary text-[10px] font-mono font-bold rounded-sm tracking-tighter">
+                    生命值 +5m
+                </div>
+<div class="flex items-center gap-2">
+<span class="text-black font-display font-black text-lg tracking-tighter uppercase">立即续命 +5分钟</span>
+<span class="material-symbols-outlined text-black font-bold">bolt</span>
+</div>
+<div class="absolute right-4 flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-black/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-black/20"></div>
+</div>
+</button>
+</div>
+<div class="absolute top-1/4 right-2 opacity-20 pointer-events-none">
+<p class="text-[8px] font-mono rotate-90 origin-right text-primary">电压稳定_0.88V</p>
+</div>
+<div class="absolute bottom-1/4 left-2 opacity-20 pointer-events-none">
+<p class="text-[8px] font-mono -rotate-90 origin-left text-fault italic">检测到骨骼劳损</p>
+</div>
+</div>
+
+</body></html>

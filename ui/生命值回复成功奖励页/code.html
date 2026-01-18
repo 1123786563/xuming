@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ff40",
+                        "background-light": "#f1f2f4",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-border {
+            box-shadow: 0 0 10px rgba(0, 255, 64, 0.3), inset 0 0 5px rgba(0, 255, 64, 0.2);
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+        .segment-bar {
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 4px, #000000 4px, #000000 6px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary selection:text-black">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Scanline Overlay -->
+<div class="absolute inset-0 scanline z-50 opacity-30"></div>
+<!-- Top Technical Header -->
+<div class="flex items-center bg-transparent p-6 pb-2 justify-between z-10 border-b border-primary/20">
+<div class="text-primary flex size-8 items-center">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-primary text-[10px] font-bold leading-tight tracking-[0.2em] uppercase">BIO_DATA_SYNC_COMPLETE</h2>
+<div class="flex gap-2 items-center">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<p class="text-[8px] text-primary/60 font-mono">LATENCY: 0.04ms // SECURE_LINK</p>
+</div>
+</div>
+<div class="flex w-8 items-center justify-end text-primary">
+<span class="material-symbols-outlined text-[24px]">qr_code_2</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center px-6 relative">
+<!-- Background Watermark Text -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none">
+<span class="text-[12rem] font-black rotate-90">XUMING</span>
+</div>
+<!-- Life Extension Readout -->
+<div class="text-center mb-8 z-10">
+<h1 class="text-white tracking-tighter text-[42px] font-bold leading-none mb-1">
+                    LIFE EXTENDED:<br/>
+<span class="text-primary">+5 MINUTES</span>
+</h1>
+<p class="text-primary text-sm font-medium tracking-[0.3em] uppercase opacity-80">Current HP: 100%</p>
+</div>
+<!-- 3D Human Silhouette Placeholder Area -->
+<div class="relative w-full aspect-[4/5] max-w-[300px] mb-8 flex items-center justify-center">
+<!-- Glitch decorative corners -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-right-2 border-primary/30"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/30"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary"></div>
+<!-- Central Silhouette Image -->
+<div class="w-full h-full bg-center bg-no-repeat bg-contain opacity-80 mix-blend-screen" data-alt="Neon green wireframe human silhouette with data lines" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDz5Px2Ex0l4aQgN3JvbVWxuxNxy4PWDgIcSeKgHwqw-bYHV9GwbzyodMXJFPD605r_YB50e5VVFqIuSBTn73oxp79LkIO8duFD2EPIawbPxDa1FdWR2bhSIykxfw5Py2vYkSOdWdc3_cBKZIetW-V_wFBu9blGUyaivQrYxk_Hw-t9n-VLqX5Z1C_lQMe8185xfEVM0qN1D_vNZ3__NgMOsHBc2krKjX3WPIw4S3yZi1a1MeiEh9Y6lkATWRk04P6E_6YNJkN4q8o");'>
+</div>
+<!-- Overlay Parameters -->
+<div class="absolute top-4 left-4 flex flex-col gap-1">
+<div class="bg-primary text-black px-1 text-[8px] font-bold">PULSE: 72BPM</div>
+<div class="bg-black/80 border border-primary/40 text-primary px-1 text-[8px]">OXY: 99.2%</div>
+</div>
+</div>
+<!-- Segmented Progress Bar -->
+<div class="w-full max-w-sm flex flex-col gap-2 z-10">
+<div class="flex justify-between items-end px-1">
+<p class="text-primary text-[10px] font-bold tracking-widest uppercase">Biological Integrity</p>
+<p class="text-white text-xs font-bold leading-none">100% RECOVERED</p>
+</div>
+<div class="h-6 w-full bg-primary/10 border border-primary/30 relative overflow-hidden glitch-border">
+<div class="absolute inset-0 bg-primary h-full segment-bar" style="width: 100%;"></div>
+</div>
+<div class="flex justify-between px-1">
+<p class="text-primary/60 text-[8px] font-mono">ID: 4402-B-SYNC</p>
+<p class="text-primary/60 text-[8px] font-mono">STATUS: OPTIMIZED</p>
+</div>
+</div>
+</div>
+<!-- Footer Quote & Actions -->
+<div class="p-6 flex flex-col gap-4 bg-black/40 backdrop-blur-md border-t border-primary/20 z-20">
+<div class="text-center px-4 py-2 border-l-2 border-primary/40 mb-2">
+<p class="text-white/70 text-xs italic leading-relaxed font-light">
+                    "You managed to delay the inevitable. Go back to your digital slave cabin."
+                </p>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary text-black h-14 rounded-lg font-bold text-base tracking-widest uppercase active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">dashboard_customize</span>
+                    Back to Dashboard
+                </button>
+<button class="w-full bg-transparent border border-primary text-primary h-12 rounded-lg font-bold text-sm tracking-widest uppercase active:bg-primary/10 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+                    Share Insurance Policy
+                </button>
+</div>
+<!-- Screen ID -->
+<div class="flex justify-between items-center opacity-30 mt-2">
+<span class="text-[8px] font-mono">NODE_OS_v4.2.0</span>
+<span class="text-[8px] font-mono text-right">0xFF00-HP-SYNCED</span>
+</div>
+</div>
+</div>
+</body></html>

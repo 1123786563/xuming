@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>XuMing App Store Poster</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ac2eea",
+                        "secondary": "#00FFC2",
+                        "accent": "#FF0090",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#0e0e1b", // Deep inky black
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        "neon": "0 0 10px rgba(172, 46, 234, 0.5), 0 0 20px rgba(172, 46, 234, 0.3)",
+                        "neon-green": "0 0 10px rgba(0, 255, 194, 0.5), 0 0 20px rgba(0, 255, 194, 0.3)",
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(rgba(172,46,234,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(172,46,234,0.1) 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities */
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        
+        .glitch-text {
+            text-shadow: 2px 0 #FF0090, -2px 0 #00FFC2;
+        }
+
+        .clip-hex {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Animation simulation */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; box-shadow: 0 0 15px rgba(172, 46, 234, 0.6); }
+            50% { opacity: 0.8; box-shadow: 0 0 5px rgba(172, 46, 234, 0.3); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-white font-display overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Poster Container -->
+<div class="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden">
+<!-- Background Elements -->
+<div class="absolute inset-0 bg-background-dark z-0"></div>
+<div class="absolute inset-0 bg-grid-pattern bg-[size:40px_40px] opacity-20 z-0"></div>
+<!-- Glow Orbs -->
+<div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Scanlines Overlay -->
+<div class="absolute inset-0 scanlines z-50 opacity-20 pointer-events-none"></div>
+<!-- Main Content Wrapper -->
+<div class="relative z-10 w-full max-w-md flex flex-col h-full p-6 gap-6">
+<!-- 1. Promotional Headline -->
+<header class="flex flex-col gap-2 pt-8 pb-4 text-center">
+<div class="inline-block mx-auto px-3 py-1 bg-primary/20 border border-primary/50 rounded-full backdrop-blur-sm mb-2">
+<p class="text-secondary text-xs font-bold tracking-[0.2em] uppercase">Variant 03 // Gamified Growth</p>
+</div>
+<h1 class="text-white text-[34px] font-bold leading-[1.1] tracking-tight glitch-text">
+                    将枯燥的工位拉伸<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">变成一场硬核生存游戏</span>
+</h1>
+<p class="text-gray-400 text-sm font-medium tracking-wide mt-2">TURN YOUR DESK JOB INTO A BATTLE FOR SURVIVAL</p>
+</header>
+<!-- 2. The "App Interface" (Device Frame/Card) -->
+<main class="flex-1 w-full bg-[#16162a]/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden relative group transform transition-all hover:scale-[1.01] duration-500">
+<!-- Inner Glow Border -->
+<div class="absolute inset-0 rounded-3xl border border-primary/30 pointer-events-none z-20"></div>
+<!-- Top Bar (Mock) -->
+<div class="flex items-center justify-between px-5 py-4 border-b border-white/5 bg-black/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">token</span>
+<span class="text-xs font-bold tracking-widest text-primary">XU-MING OS</span>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<div class="w-2 h-2 rounded-full bg-secondary/30"></div>
+<div class="w-2 h-2 rounded-full bg-secondary/30"></div>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto scrollbar-hide p-4 flex flex-col gap-5">
+<!-- Stats HUD (ProfileStats) -->
+<section class="grid grid-cols-3 gap-2">
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-primary/10 border border-primary/30 shadow-neon">
+<span class="text-white text-xl font-bold">2450</span>
+<span class="text-[10px] text-primary/80 uppercase tracking-wider mt-1">Total XP</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10">
+<span class="text-secondary text-xl font-bold">14</span>
+<span class="text-gray-400 text-[10px] uppercase tracking-wider mt-1">Day Streak</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10">
+<span class="text-accent text-xl font-bold">85%</span>
+<span class="text-gray-400 text-[10px] uppercase tracking-wider mt-1">Energy</span>
+</div>
+</section>
+<!-- Achievements (ImageGrid adapted) -->
+<section>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">military_tech</span>
+                                Medal Wall
+                            </h3>
+<span class="text-[10px] px-2 py-0.5 rounded bg-primary text-white font-bold">3 UNLOCKED</span>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<!-- Unlocked Item 1 -->
+<div class="aspect-square relative group cursor-pointer">
+<div class="absolute inset-0 bg-primary/20 rounded-xl border border-primary/50 flex items-center justify-center animate-pulse-glow">
+<span class="material-symbols-outlined text-4xl text-primary drop-shadow-[0_0_8px_rgba(172,46,234,0.8)]">accessibility_new</span>
+</div>
+<div class="absolute bottom-1 w-full text-center">
+<p class="text-[9px] font-bold text-white truncate px-1">Spine Saver</p>
+</div>
+</div>
+<!-- Unlocked Item 2 -->
+<div class="aspect-square relative group cursor-pointer">
+<div class="absolute inset-0 bg-secondary/20 rounded-xl border border-secondary/50 flex items-center justify-center shadow-neon-green">
+<span class="material-symbols-outlined text-4xl text-secondary drop-shadow-[0_0_8px_rgba(0,255,194,0.8)]">hardware</span>
+</div>
+<div class="absolute bottom-1 w-full text-center">
+<p class="text-[9px] font-bold text-white truncate px-1">Neck of Steel</p>
+</div>
+</div>
+<!-- Unlocked Item 3 -->
+<div class="aspect-square relative group cursor-pointer">
+<div class="absolute inset-0 bg-primary/20 rounded-xl border border-primary/50 flex items-center justify-center animate-pulse-glow">
+<span class="material-symbols-outlined text-4xl text-primary drop-shadow-[0_0_8px_rgba(172,46,234,0.8)]">shield</span>
+</div>
+<div class="absolute bottom-1 w-full text-center">
+<p class="text-[9px] font-bold text-white truncate px-1">Wrist Guard</p>
+</div>
+</div>
+<!-- Locked Item 1 -->
+<div class="aspect-square relative opacity-50">
+<div class="absolute inset-0 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-gray-600">lock</span>
+</div>
+<div class="absolute bottom-1 w-full text-center">
+<p class="text-[9px] font-medium text-gray-500 truncate px-1">Lumbar Lord</p>
+</div>
+</div>
+<!-- Locked Item 2 -->
+<div class="aspect-square relative opacity-50">
+<div class="absolute inset-0 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-gray-600">lock</span>
+</div>
+<div class="absolute bottom-1 w-full text-center">
+<p class="text-[9px] font-medium text-gray-500 truncate px-1">Eye Protect</p>
+</div>
+</div>
+<!-- Locked Item 3 -->
+<div class="aspect-square relative opacity-50">
+<div class="absolute inset-0 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-gray-600">lock</span>
+</div>
+<div class="absolute bottom-1 w-full text-center">
+<p class="text-[9px] font-medium text-gray-500 truncate px-1">Hydration</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="mt-2">
+<div class="rounded-2xl border border-white/10 bg-black/40 p-4 relative overflow-hidden">
+<!-- Background Grid for Chart -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+<div class="relative z-10 flex justify-between items-end mb-4">
+<div>
+<p class="text-[10px] text-secondary font-bold tracking-wider mb-1">LIFE MONITORING CENTER</p>
+<p class="text-2xl font-bold text-white flex items-center gap-2">
+                                        RECOVERING
+                                        <span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+</p>
+</div>
+<div class="text-right">
+<p class="text-secondary text-lg font-bold">+24%</p>
+<p class="text-[10px] text-gray-400">Past 7 Days</p>
+</div>
+</div>
+<!-- SVG Chart -->
+<div class="h-32 w-full relative">
+<svg class="overflow-visible" fill="none" height="100%" preserveaspectratio="none" viewbox="0 0 400 150" width="100%">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00FFC2" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#00FFC2" stop-opacity="0"></stop>
+</lineargradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="2.5"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Area Fill -->
+<path d="M0 109C18 109 18 80 36 80C54 80 54 95 72 95C90 95 90 60 108 60C127 60 127 85 145 85C163 85 163 40 181 40C199 40 199 70 217 70C236 70 236 30 254 30C272 30 272 65 290 65C308 65 308 20 326 20C344 20 344 50 363 50C381 50 381 10 399 10V150H0V109Z" fill="url(#chartGradient)"></path>
+<!-- Line Stroke -->
+<path d="M0 109C18 109 18 80 36 80C54 80 54 95 72 95C90 95 90 60 108 60C127 60 127 85 145 85C163 85 163 40 181 40C199 40 199 70 217 70C236 70 236 30 254 30C272 30 272 65 290 65C308 65 308 20 326 20C344 20 344 50 363 50C381 50 381 10 399 10" fill="none" filter="url(#glow)" stroke="#00FFC2" stroke-width="3"></path>
+<!-- Data Points -->
+<circle cx="399" cy="10" fill="#00FFC2" filter="url(#glow)" r="4"></circle>
+<circle cx="254" cy="30" fill="#00FFC2" r="3"></circle>
+<circle cx="181" cy="40" fill="#00FFC2" r="3"></circle>
+</svg>
+</div>
+<!-- X Axis -->
+<div class="flex justify-between mt-2 pt-2 border-t border-white/10">
+<span class="text-[10px] text-gray-500 font-mono">MON</span>
+<span class="text-[10px] text-gray-500 font-mono">TUE</span>
+<span class="text-[10px] text-gray-500 font-mono">WED</span>
+<span class="text-[10px] text-gray-500 font-mono">THU</span>
+<span class="text-[10px] text-gray-500 font-mono">FRI</span>
+<span class="text-[10px] text-secondary font-bold font-mono">SAT</span>
+<span class="text-[10px] text-secondary font-bold font-mono">SUN</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- 3. Bottom CTA -->
+<footer class="flex items-center justify-between pt-2 pb-6 px-2">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-black border border-white/20 flex items-center justify-center overflow-hidden relative">
+<div class="absolute inset-0 bg-[url('https://placeholder.pics/svg/300/ac2eea/FFFFFF/X')] bg-cover opacity-80" data-alt="App Icon Abstract"></div>
+</div>
+<div>
+<p class="text-white font-bold text-lg leading-none">XuMing</p>
+<p class="text-gray-400 text-xs">Micro-movements. Mega-gains.</p>
+</div>
+</div>
+<button class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm hover:bg-gray-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    GET APP
+                </button>
+</footer>
+</div>
+</div>
+</body></html>

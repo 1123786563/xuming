@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>身体系统初始化 - 续命</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+Kuaile&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ff40",
+                        "warning": "#F2FF00",
+                        "danger": "#FF003C",
+                        "background": "#000000",
+                        "surface": "#111111",
+                    },
+                    fontFamily: {
+                        "pixel": ["ZCOOL Kuaile", "monospace"],
+                        "mono": ["Share Tech Mono", "ui-monospace", "monospace"],
+                        "sans": ["Noto Sans SC", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .scanline {
+                background: linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(0, 255, 64, 0.2) 50%,
+                    rgba(0, 255, 64, 0.5) 50%,
+                    rgba(0, 255, 64, 0.2) 100%
+                );
+                height: 4px;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                animation: scan 3s linear infinite;
+                z-index: 5;
+            }
+            @keyframes scan {
+                0% { top: 0%; }
+                100% { top: 100%; }
+            }
+            .grid-bg {
+                background-image: radial-gradient(rgba(0, 255, 64, 0.1) 1px, transparent 1px);
+                background-size: 30px 30px;
+            }
+            .cyber-border {
+                clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+            }
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 20px;
+                width: 10px;
+                background: #00ff40;
+                cursor: pointer;
+                box-shadow: 0 0 10px #00ff40;
+                border-radius: 0;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-sans text-white overflow-hidden">
+<div class="relative flex h-screen w-full flex-col p-6 grid-bg">
+<header class="flex flex-col items-center mb-4 pt-4">
+<h1 class="text-primary font-mono text-xs tracking-[0.3em] opacity-80">SYSTEM_DIAGNOSTIC_INIT_v1.0.4</h1>
+<div class="w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mt-2"></div>
+</header>
+<main class="flex-1 flex flex-col gap-6 overflow-y-auto pb-32">
+<div class="relative w-full aspect-square max-h-[300px] flex items-center justify-center bg-surface/30 border border-primary/20 rounded-lg overflow-hidden">
+<div class="scanline"></div>
+<div class="relative opacity-60">
+<span class="material-symbols-outlined text-[160px] text-primary select-none" style="font-variation-settings: 'FILL' 0, 'wght' 100;">accessibility_new</span>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-64 h-64 border border-primary/10 rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="absolute top-2 left-2 text-[8px] font-mono text-primary/60">
+                    [ANALYZING_BONE_DENSITY]<br/>
+                    [POSTURE_SCAN_ACTIVE]
+                </div>
+<div class="absolute bottom-2 right-2 text-[8px] font-mono text-danger/60 text-right">
+                    [WARNING: SEDENTARY_DETECTED]<br/>
+                    [CELLULAR_DECAY_ESTIMATED]
+                </div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center px-1">
+<h2 class="text-primary font-pixel text-lg">1. 今日服役时长</h2>
+<span class="text-primary font-mono text-sm" id="time-val">8 小时</span>
+</div>
+<div class="bg-surface p-4 border border-white/10 rounded">
+<input class="w-full h-1 bg-white/20 appearance-none rounded-lg cursor-pointer accent-primary" max="16" min="0" oninput="document.getElementById('time-val').innerText = this.value + ' 小时'" step="1" type="range" value="8"/>
+<div class="flex justify-between mt-2 text-[10px] font-mono text-white/40">
+<span>0H</span>
+<span>4H</span>
+<span>8H</span>
+<span>12H</span>
+<span>16H+</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<h2 class="text-primary font-pixel text-lg">2. 生物损伤感官</h2>
+<div class="grid grid-cols-4 gap-2">
+<button class="bg-surface border border-primary/30 py-3 flex flex-col items-center gap-1 group active:bg-primary/20 transition-all">
+<span class="text-[10px] font-mono text-primary group-hover:text-white">LEVEL_0</span>
+<span class="text-[10px] font-pixel">无感</span>
+</button>
+<button class="bg-surface border border-warning/30 py-3 flex flex-col items-center gap-1 group active:bg-warning/20 transition-all">
+<span class="text-[10px] font-mono text-warning group-hover:text-white">LEVEL_1</span>
+<span class="text-[10px] font-pixel">微酸</span>
+</button>
+<button class="bg-surface border border-danger/50 py-3 flex flex-col items-center gap-1 group active:bg-danger/20 transition-all">
+<span class="text-[10px] font-mono text-danger group-hover:text-white">LEVEL_2</span>
+<span class="text-[10px] font-pixel">疼痛</span>
+</button>
+<button class="bg-danger/20 border-2 border-danger py-3 flex flex-col items-center gap-1 animate-pulse">
+<span class="text-[10px] font-mono text-danger">CRITICAL</span>
+<span class="text-[10px] font-pixel">崩溃</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<h2 class="text-primary font-pixel text-lg">3. 脊椎预设姿势</h2>
+<div class="flex gap-4">
+<label class="flex-1 cursor-pointer group">
+<input class="hidden peer" name="posture" type="radio"/>
+<div class="flex flex-col items-center gap-2 p-3 border border-white/10 rounded group-hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined text-3xl">accessibility</span>
+<span class="text-xs font-pixel">笔直</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input checked="" class="hidden peer" name="posture" type="radio"/>
+<div class="flex flex-col items-center gap-2 p-3 border border-white/10 rounded group-hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined text-3xl">airline_seat_recline_extra</span>
+<span class="text-xs font-pixel">瘫痪</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input class="hidden peer" name="posture" type="radio"/>
+<div class="flex flex-col items-center gap-2 p-3 border border-white/10 rounded group-hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined text-3xl">person_pin</span>
+<span class="text-xs font-pixel">蜷缩</span>
+</div>
+</label>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+<button class="w-full py-5 bg-primary text-black font-pixel text-xl tracking-widest cyber-border shadow-[0_0_25px_rgba(0,255,64,0.4)] active:scale-95 transition-transform flex items-center justify-center gap-3">
+<span class="material-symbols-outlined font-bold">power_settings_new</span>
+                开始生存评估
+            </button>
+<div class="mt-4 flex justify-between text-[8px] font-mono text-primary/40 uppercase tracking-tighter">
+<span>Data_Secure: AES-256</span>
+<span>User_Status: Initializing</span>
+<span>Build: 2024.X-7</span>
+</div>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00cc00",
+                        "accent-purple": "#a855f7",
+                        "background-light": "#f2f2f2",
+                        "background-dark": "#0c0c0d",
+                        "terminal-gray": "#1a1a1c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .cyber-grid {
+            background-size: 20px 20px;
+            background-image: linear-gradient(to right, rgba(0, 204, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 204, 0, 0.05) 1px, transparent 1px);
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 204, 0, 0.02) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        .glitch-text {
+            text-shadow: 2px 0 #a855f7, -2px 0 #00cc00;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display antialiased text-white selection:bg-primary/30">
+<div class="relative min-h-screen w-full flex flex-col overflow-x-hidden cyber-grid">
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-background-dark/80 backdrop-blur-md border-b border-primary/20 p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">arrow_back_ios</span>
+<div>
+<h1 class="text-xl font-bold tracking-tighter uppercase glitch-text">续命商店</h1>
+<span class="text-[10px] text-primary/60 font-mono tracking-widest">LIFE_SUPPORT_v4.02</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block text-[10px] font-mono text-primary/40 text-right uppercase">
+                    Transaction: SECURE<br/>Sync: ACTIVE
+                </div>
+<button class="size-10 rounded border border-primary/40 flex items-center justify-center text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+</button>
+</div>
+</header>
+<main class="flex-1 pb-24">
+<!-- Stats / Balance HUD -->
+<section class="p-4 pt-6">
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-primary/20 blur opacity-75"></div>
+<div class="relative bg-terminal-gray border border-primary/50 p-6 rounded shadow-[0_0_15px_rgba(0,204,0,0.1)]">
+<div class="flex justify-between items-start mb-2">
+<p class="text-[10px] font-mono uppercase tracking-[0.2em] text-primary/70">Current Balance</p>
+<span class="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">BIOS_UPGRADE_READY</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-bold tracking-tighter text-white">2,500</h2>
+<span class="text-primary font-bold text-lg">续命币</span>
+</div>
+<div class="mt-4 h-1 w-full bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 shadow-[0_0_8px_#00cc00]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SectionHeader -->
+<div class="px-4 flex items-center justify-between group">
+<h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex items-center gap-2">
+<span class="size-2 bg-primary animate-pulse"></span>
+                    RESOURCE_MARKET
+                </h3>
+<span class="text-[10px] font-mono text-primary/40 uppercase">Filtering: ALL_DEPT</span>
+</div>
+<!-- ImageGrid / Resource Cards -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-3 p-4">
+<!-- Card 1: Unlocked -->
+<div class="relative group aspect-[4/5] bg-terminal-gray border border-primary/50 rounded overflow-hidden">
+<div class="absolute inset-0 opacity-40 bg-cover bg-center" data-alt="Holographic wireframe of a person stretching against a wall" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-YCWvqD-rFJpdYfc1vsylMAD0qK2De2_pmYold_cccyZYGdg9d3AGP_0m2mi7Pw_x5TAJURX5bEAYRcQEU9Cy94A6GgUU7f7wAAtTVPo-3U7qW1YlrBnOFnyEF2FXRcRO1Oa8Dn-DKsXCHxqsakssKddwPlb7cpzlZpNc_ETMSgNvriy4FZtpI5UqBRiO3CmrNztlrB0S1VRZgOZybarSipness3a_vKNh5Nx1AWp5xzMwKtpMsL6BFqXAxiMshEMvWsTJfOkxkI")'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute top-2 right-2">
+<span class="bg-primary text-black text-[10px] font-black px-2 py-0.5 rounded-sm uppercase italic">OWNED</span>
+</div>
+<div class="absolute bottom-0 p-3 w-full">
+<p class="text-white text-xs font-mono mb-1 opacity-60">SCENARIO_01</p>
+<p class="text-white text-sm font-bold leading-tight uppercase tracking-tight">Wall Stretching</p>
+</div>
+</div>
+<!-- Card 2: Locked (Premium/Purple) -->
+<div class="relative group aspect-[4/5] bg-terminal-gray border border-accent-purple/50 rounded overflow-hidden">
+<div class="absolute inset-0 opacity-30 bg-cover bg-center grayscale contrast-125" data-alt="Dark abstract holographic core pulse" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbzVfbFlieYSNChwNpXneOWH_QkROhxdIGJTMU43qckojHA2RojHRV1_pwnPjkWZk6z3_SQpFWTt4q5UEJZpqH0mmGVr1-wndi1H6cK_dQJa0JiJMTTwxS8PbKIdC2yaN7pQiKRjwuo9Y7wLLQ6zFtOCLGWJXmkEEj-pWNd2G74ictBz1n6ZF-UMbHgqa_YRJtAX2D2S-bHW2YB0hGzk9atDGAmbijzn4kOUusraQBtiElPL96DDspZAhEn7RPGzSElFnLvx8uIkc")'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-accent-purple text-4xl opacity-50 group-hover:scale-110 transition-transform">lock</span>
+</div>
+<div class="absolute bottom-0 p-3 w-full">
+<p class="text-accent-purple text-[10px] font-mono mb-1">SCENARIO_PRO</p>
+<p class="text-white text-sm font-bold leading-tight uppercase mb-2">Stealth Mode: Adv</p>
+<button class="w-full py-2 bg-accent-purple text-white text-[10px] font-bold rounded flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-xs">database</span> 1,200 COINS
+                        </button>
+</div>
+</div>
+<!-- Card 3: Action Pack -->
+<div class="relative group aspect-[4/5] bg-terminal-gray border border-primary/30 rounded overflow-hidden">
+<div class="absolute inset-0 opacity-40 bg-cover bg-center" data-alt="X-ray style holographic scan of a wrist and hand" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDDqDmfrNvYsppX6njd8YBDH_aGpybSVTSP4OTuEeSlmqRXGohqiL7qU0gmfTYeSwWpmxic8jK28mWuMem0XZJDqFNg-NZSY2-G_2HcGP0mGaYHqD3WpZSIto3PEo1x0FXRkA8f9t4IlbEMUP1_wXkV7kMWHiJXmnCbdEO_KJnGgdPnPONqu3veoWvPDet97WsRsxRI23rq5BCuCifiNkfbR0vW7-E9N9D_5jStLFFdKJ0ag0Ie8flCgAOwF-r-CZpEm3YqLWxqUPU")'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 p-3 w-full">
+<p class="text-primary text-[10px] font-mono mb-1">ACTION_PACK</p>
+<p class="text-white text-sm font-bold leading-tight uppercase mb-2">CTS Recovery</p>
+<button class="w-full py-2 border border-primary/50 text-primary text-[10px] font-bold rounded flex items-center justify-center gap-1 hover:bg-primary/10">
+<span class="material-symbols-outlined text-xs">database</span> 500 COINS
+                        </button>
+</div>
+</div>
+</section>
+<!-- SectionHeader -->
+<div class="px-4 mt-6 flex items-center gap-2">
+<h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex items-center gap-2">
+<span class="size-2 border border-primary animate-ping"></span>
+                    MISSION_TERMINAL
+                </h3>
+</div>
+<!-- Mission Terminal List -->
+<section class="p-4 space-y-3">
+<div class="bg-terminal-gray border-l-2 border-primary p-4 rounded-r flex items-center justify-between group hover:bg-primary/5 transition-colors">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-mono text-primary bg-primary/10 px-1">DAILY</span>
+<h4 class="text-sm font-bold text-white uppercase tracking-wider">60min Sitting Sync</h4>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-1 flex-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+<span class="text-[10px] font-mono text-primary/60">45/60m</span>
+</div>
+</div>
+<div class="ml-4 text-right">
+<span class="text-primary font-bold text-xs">+50</span>
+<p class="text-[8px] text-white/40 font-mono uppercase">Credits</p>
+</div>
+</div>
+<div class="bg-terminal-gray border-l-2 border-primary/30 p-4 rounded-r flex items-center justify-between opacity-60">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-mono text-white/40 bg-white/5 px-1">ONCE</span>
+<h4 class="text-sm font-bold text-white uppercase tracking-wider">Deep Breath Routine</h4>
+</div>
+<p class="text-[10px] text-white/40 italic">Complete 3 sets of box breathing</p>
+</div>
+<div class="ml-4 text-right">
+<span class="text-primary/60 font-bold text-xs">+30</span>
+<p class="text-[8px] text-white/40 font-mono uppercase">Credits</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full bg-background-dark/95 backdrop-blur-xl border-t border-primary/30 pb-6 pt-3 px-6 z-40">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-variation-fill-1">storefront</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Shop</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-white/40" href="#">
+<span class="material-symbols-outlined">exercise</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Sync</span>
+</a>
+<div class="relative -top-6">
+<div class="absolute -inset-2 bg-primary/20 rounded-full blur"></div>
+<button class="relative size-14 bg-primary text-black rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,204,0,0.4)]">
+<span class="material-symbols-outlined text-3xl font-bold">bolt</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-white/40" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-white/40" href="#">
+<span class="material-symbols-outlined">settings_cinematic_blur</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">System</span>
+</a>
+</div>
+</nav>
+<!-- Technical Decorative Corners -->
+<div class="fixed top-20 right-2 pointer-events-none rotate-90 origin-right">
+<span class="text-[8px] font-mono text-primary/20 tracking-[1em] uppercase">SYSTEM_STABLE_LOAD_88%</span>
+</div>
+<div class="fixed bottom-32 left-2 pointer-events-none">
+<div class="flex flex-col gap-1">
+<div class="w-1 h-1 bg-primary/40"></div>
+<div class="w-1 h-1 bg-primary/40"></div>
+<div class="w-1 h-4 bg-primary/20"></div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38ff14",
+                        "background-light": "#ffffff",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            color: #38ff14;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(56, 255, 20, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(56, 255, 20, 0.8);
+        }
+        .wireframe-grid {
+            background-image: linear-gradient(rgba(56, 255, 20, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(56, 255, 20, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .neon-border {
+            box-shadow: 0 0 5px rgba(56, 255, 20, 0.5), inset 0 0 5px rgba(56, 255, 20, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary selection:text-black">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden wireframe-grid">
+<!-- Scanline Overlay Effect -->
+<div class="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-50 bg-[length:100%_4px,3px_100%]"></div>
+<!-- TopAppBar -->
+<div class="flex items-center bg-transparent p-4 pb-2 justify-between z-10">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined cursor-pointer">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-primary text-sm font-bold leading-tight tracking-[0.2em] uppercase glow-text">System Active</h2>
+<div class="h-1 w-12 bg-primary mt-1"></div>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded h-12 bg-transparent text-primary gap-2 p-0">
+<span class="material-symbols-outlined">memory</span>
+</button>
+</div>
+</div>
+<!-- HeadlineText -->
+<div class="px-6 py-4 z-10">
+<h1 class="text-primary tracking-tighter text-4xl font-bold leading-none uppercase glow-text italic">
+                任务: <br/>视觉神经重置
+            </h1>
+<div class="flex items-center gap-2 mt-2">
+<span class="w-2 h-2 bg-primary animate-pulse"></span>
+<p class="text-[10px] text-primary/80 tracking-widest uppercase">Protocol: Ocular_Calibration_v1.0.4</p>
+</div>
+</div>
+<!-- Main Visual: 3D Wireframe Head Section -->
+<div class="relative flex-1 flex flex-col items-center justify-center p-4 min-h-[400px]">
+<!-- Decorative corner brackets -->
+<div class="absolute top-10 left-10 w-8 h-8 border-t-2 border-l-2 border-primary/40"></div>
+<div class="absolute top-10 right-10 w-8 h-8 border-t-2 border-r-2 border-primary/40"></div>
+<div class="absolute bottom-10 left-10 w-8 h-8 border-b-2 border-l-2 border-primary/40"></div>
+<div class="absolute bottom-10 right-10 w-8 h-8 border-b-2 border-r-2 border-primary/40"></div>
+<!-- Central Head Graphic -->
+<div class="relative w-full aspect-square max-w-[320px] flex items-center justify-center">
+<div class="w-full h-full opacity-90 filter drop-shadow-[0_0_15px_rgba(56,255,20,0.4)]" data-alt="3D wireframe head with glowing neon green eyes and digital scanning lines" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKt1rRUnkpzF_N8c5RaaTrXTMQ96FIc2txGfeCsIbDJ6YdzrZCchYsXP9A_BltS0mpYm9bmhcHV26blIP89_xIbaViTKMY76QUrkDh9foJlXn-3-PmYl9SCV0MJtxKHEVuy_tPXLzSsbjKfvAxKVqAiaOKYnjTmAfl8fCiGzifkFnn0MmyYZsjqjQhf8apC-f3SbUWSEfpd1pWXmq-HAutjSDHUO2B-CCCi1eznCBftC6cCVeg52y4W5ytTvgPYXjyvuutRRv6gxY"); background-size: contain; background-repeat: no-repeat; background-position: center;'>
+</div>
+<!-- Directional Arrows Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<!-- UP -->
+<div class="absolute top-0 animate-bounce">
+<span class="material-symbols-outlined text-5xl glow-text">keyboard_double_arrow_up</span>
+</div>
+<!-- DOWN -->
+<div class="absolute bottom-0 opacity-40">
+<span class="material-symbols-outlined text-5xl">keyboard_double_arrow_down</span>
+</div>
+<!-- LEFT -->
+<div class="absolute left-0 opacity-40">
+<span class="material-symbols-outlined text-5xl">keyboard_double_arrow_left</span>
+</div>
+<!-- RIGHT -->
+<div class="absolute right-0 opacity-40">
+<span class="material-symbols-outlined text-5xl">keyboard_double_arrow_right</span>
+</div>
+</div>
+</div>
+<div class="mt-4 bg-primary/10 border border-primary/30 px-6 py-2 rounded-full">
+<span class="text-primary text-xs font-bold tracking-[0.3em] uppercase glow-text">Phase: Look Up</span>
+</div>
+</div>
+<!-- BodyText: Cynical Quote -->
+<div class="px-8 pb-6 text-center z-10">
+<p class="text-primary/70 text-sm font-light leading-relaxed italic font-mono border-l-2 border-primary/40 pl-4 text-left mx-auto max-w-xs">
+                "Your eyes are frying from the blue light. Give them a break or buy a braille keyboard."
+            </p>
+</div>
+<!-- Stats Section -->
+<div class="flex flex-wrap gap-2 p-4 pt-0 z-10">
+<div class="flex-1 flex flex-col gap-1 rounded bg-black/40 p-4 border border-primary/20 neon-border">
+<p class="text-primary/60 text-[10px] font-bold tracking-widest uppercase">Latency</p>
+<p class="text-primary tracking-tighter text-2xl font-bold leading-tight glow-text">0.04ms</p>
+</div>
+<div class="flex-1 flex flex-col gap-1 rounded bg-black/40 p-4 border border-primary/20 neon-border">
+<p class="text-primary/60 text-[10px] font-bold tracking-widest uppercase">Refresh</p>
+<p class="text-primary tracking-tighter text-2xl font-bold leading-tight glow-text">120HZ</p>
+</div>
+</div>
+<!-- Progress Bar at the very bottom -->
+<div class="h-1 w-full bg-primary/10 relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary w-2/3 glow-text"></div>
+</div>
+<!-- Navigation Placeholder -->
+<div class="flex justify-around items-center p-4 bg-black/80 backdrop-blur-md border-t border-primary/20">
+<span class="material-symbols-outlined opacity-40">home</span>
+<span class="material-symbols-outlined glow-text scale-125">grid_view</span>
+<span class="material-symbols-outlined opacity-40">person</span>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+SC:wght@400;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#80ff00",
+                        "secondary": "#ffff33",
+                        "danger": "#ff0000",
+                        "background-light": "#f7f8f5",
+                        "background-dark": "#000000",
+                        "surface": "#121a0a",
+                        "border-glow": "#4d6b2e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans SC", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-image: 
+                linear-gradient(rgba(128, 255, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90px, rgba(128, 255, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(128, 255, 0, 0.1);
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .pixel-border {
+            border: 1px solid #4d6b2e;
+            box-shadow: 0 0 10px rgba(128, 255, 0, 0.1);
+        }
+        .cyber-badge {
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
+        }
+        .monospaced {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen selection:bg-primary selection:text-black">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-primary/20">
+<div class="flex items-center justify-between p-4 h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">terminal</span>
+<span class="text-[10px] monospaced text-primary/50 leading-none">SYS_V2.04<br/>STATUS: ACTIVE</span>
+</div>
+<h1 class="text-primary font-bold text-xl tracking-tighter uppercase monospaced">生命监控中心</h1>
+<button class="w-10 h-10 flex items-center justify-center border border-primary/30 rounded-lg">
+<span class="material-symbols-outlined text-primary">settings_input_component</span>
+</button>
+</div>
+<div class="h-[1px] w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+</header>
+<main class="p-4 space-y-6">
+<!-- System Logs Background Overlay (Subtle) -->
+<div class="fixed top-20 right-4 opacity-10 pointer-events-none select-none text-[8px] monospaced text-primary text-right leading-tight">
+            LOG_ANALYSIS_SYNCING...<br/>
+            CORE_TEMP_STABLE: 36.5C<br/>
+            POSTURE_ENGINE: POLLING<br/>
+            ENCRYPTED_LINK: ESTABLISHED<br/>
+            PACKET_LOSS: 0.002%
+        </div>
+<!-- Headline HP Section -->
+<section class="space-y-2">
+<div class="flex justify-between items-end px-2">
+<div>
+<p class="text-[10px] text-primary/60 uppercase monospaced tracking-widest">Health Point History</p>
+<h2 class="text-4xl font-bold text-white tracking-tighter">HP Trend</h2>
+</div>
+<div class="text-right">
+<p class="text-primary text-3xl font-bold monospaced">92%</p>
+<p class="text-[#0bda2e] text-[10px] font-medium">+5.2% VS LAST_WEEK</p>
+</div>
+</div>
+<!-- Main Chart Module -->
+<div class="pixel-border bg-surface/40 p-4 rounded-xl relative overflow-hidden">
+<div class="absolute top-2 right-2 flex gap-1">
+<div class="w-1 h-1 bg-primary"></div>
+<div class="w-1 h-1 bg-primary/30"></div>
+<div class="w-1 h-1 bg-primary/30"></div>
+</div>
+<div class="flex min-h-[200px] flex-col gap-6 py-2">
+<svg fill="none" height="150" preserveaspectratio="none" viewbox="0 0 480 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#80ff00" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#80ff00" stop-opacity="0"></stop>
+</lineargradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="2"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Area Fill -->
+<path d="M0 100 Q 40 100, 80 40 T 160 80 T 240 30 T 320 120 T 400 20 T 480 60 V 150 H 0 Z" fill="url(#chartGradient)"></path>
+<!-- Glow Pulse Line -->
+<path d="M0 100 Q 40 100, 80 40 T 160 80 T 240 30 T 320 120 T 400 20 T 480 60" filter="url(#glow)" stroke="#80ff00" stroke-linecap="round" stroke-width="3"></path>
+<!-- Grid Lines (Horizontal) -->
+<line stroke="#80ff00" stroke-dasharray="4" stroke-opacity="0.1" x1="0" x2="480" y1="30" y2="30"></line>
+<line stroke="#80ff00" stroke-dasharray="4" stroke-opacity="0.1" x1="0" x2="480" y1="75" y2="75"></line>
+<line stroke="#80ff00" stroke-dasharray="4" stroke-opacity="0.1" x1="0" x2="480" y1="120" y2="120"></line>
+</svg>
+<div class="flex justify-between px-2">
+<p class="text-primary/60 text-[10px] font-bold monospaced tracking-tighter">05/01</p>
+<p class="text-primary/60 text-[10px] font-bold monospaced tracking-tighter">05/03</p>
+<p class="text-primary/60 text-[10px] font-bold monospaced tracking-tighter">05/05</p>
+<p class="text-primary/60 text-[10px] font-bold monospaced tracking-tighter">TODAY</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Industrial Data Cards -->
+<section class="grid grid-cols-2 gap-3">
+<!-- Total Life Extended -->
+<div class="flex flex-col gap-3 rounded-lg border border-primary/40 bg-surface/60 p-4 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-1">
+<span class="material-symbols-outlined text-primary/20 text-4xl">hourglass_empty</span>
+</div>
+<div class="z-10">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm">timer</span>
+<h3 class="text-white text-[10px] font-bold tracking-widest uppercase">累计续命时长</h3>
+</div>
+<p class="text-primary text-2xl font-bold monospaced leading-none">48:22:15</p>
+<p class="text-primary/40 text-[9px] mt-2 monospaced">ESTIMATED_RECOVERY: +12H</p>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-primary/10">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+</div>
+<!-- Spine Warning Frequency -->
+<div class="flex flex-col gap-3 rounded-lg border border-danger/40 bg-surface/60 p-4 relative overflow-hidden">
+<div class="z-10">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-danger text-sm">warning</span>
+<h3 class="text-white text-[10px] font-bold tracking-widest uppercase">脊椎预警频率</h3>
+</div>
+<div class="flex items-end gap-1 h-8 mt-1">
+<div class="w-2 bg-danger/20 h-[30%]"></div>
+<div class="w-2 bg-danger/40 h-[50%]"></div>
+<div class="w-2 bg-danger/60 h-[80%]"></div>
+<div class="w-2 bg-danger h-[100%]"></div>
+<div class="w-2 bg-danger/50 h-[60%]"></div>
+<div class="w-2 bg-danger/30 h-[40%]"></div>
+</div>
+<p class="text-danger text-xs font-bold monospaced mt-2">12 次/周</p>
+</div>
+<div class="absolute -bottom-2 -right-2 opacity-10">
+<span class="material-symbols-outlined text-danger text-6xl">person_pin</span>
+</div>
+</div>
+</section>
+<!-- Achievements Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-4">
+<h3 class="text-white text-lg font-bold tracking-tighter monospaced uppercase italic">Survival Achievement</h3>
+<div class="flex-1 h-[1px] bg-primary/20"></div>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<!-- Achievement 1: Unlocked -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 bg-primary/20 border border-primary flex items-center justify-center cyber-badge shadow-[0_0_15px_rgba(128,255,0,0.2)]">
+<span class="material-symbols-outlined text-primary text-3xl">build</span>
+</div>
+<span class="text-[9px] text-primary text-center monospaced font-bold">首次修复</span>
+</div>
+<!-- Achievement 2: Unlocked -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 bg-primary/20 border border-primary flex items-center justify-center cyber-badge shadow-[0_0_15px_rgba(128,255,0,0.2)]">
+<span class="material-symbols-outlined text-primary text-3xl">visibility_off</span>
+</div>
+<span class="text-[9px] text-primary text-center monospaced font-bold">潜行大师</span>
+</div>
+<!-- Achievement 3: Locked -->
+<div class="flex flex-col items-center gap-2 grayscale opacity-40">
+<div class="w-14 h-14 bg-white/5 border border-white/20 flex items-center justify-center cyber-badge">
+<span class="material-symbols-outlined text-white text-3xl">bolt</span>
+</div>
+<span class="text-[9px] text-white text-center monospaced">极限平衡</span>
+</div>
+<!-- Achievement 4: Locked -->
+<div class="flex flex-col items-center gap-2 grayscale opacity-40">
+<div class="w-14 h-14 bg-white/5 border border-white/20 flex items-center justify-center cyber-badge">
+<span class="material-symbols-outlined text-white text-3xl">security</span>
+</div>
+<span class="text-[9px] text-white text-center monospaced">终极防御</span>
+</div>
+</div>
+</section>
+<!-- System Message / Call to Action -->
+<div class="mt-8 border-l-2 border-secondary bg-secondary/5 p-4 rounded-r-lg">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<div>
+<h4 class="text-secondary font-bold text-sm uppercase monospaced">System Advice</h4>
+<p class="text-white/80 text-xs leading-relaxed mt-1">
+                        检测到脊椎 S3 区域压力过载。建议执行 <span class="text-primary">"深海呼吸"</span> 序列以恢复 HP 稳定性。
+                    </p>
+</div>
+</div>
+</div>
+<div class="h-20"></div> <!-- Padding for nav -->
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full bg-background-dark/90 backdrop-blur-xl border-t border-primary/20 pb-6 px-6 pt-3">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<button class="flex flex-col items-center gap-1 text-white/40">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[9px] monospaced uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-[9px] monospaced uppercase font-bold">Monitor</span>
+<div class="w-1 h-1 bg-primary rounded-full mt-0.5"></div>
+</button>
+<div class="relative -mt-10">
+<button class="w-14 h-14 bg-primary text-black flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(128,255,0,0.4)] border-2 border-black">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-white/40">
+<span class="material-symbols-outlined text-2xl">military_tech</span>
+<span class="text-[9px] monospaced uppercase">Badge</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-white/40">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[9px] monospaced uppercase">User</span>
+</button>
+</div>
+</nav>
+<!-- Floating UI Artifacts -->
+<div class="fixed top-1/4 -left-1 w-[1px] h-20 bg-primary/40"></div>
+<div class="fixed top-1/2 -right-1 w-[1px] h-32 bg-secondary/40"></div>
+</body></html>

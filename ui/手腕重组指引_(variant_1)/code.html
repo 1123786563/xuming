@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ff00",
+                        "background-light": "#f2f2f2",
+                        "background-dark": "#000000",
+                        "cyber-gray": "#1A1D20",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .pixel-text {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+        .neon-border {
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+        .pulse-ring {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.1); }
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 0, 0.05) 51%);
+            background-size: 100% 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary selection:text-black min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-dark p-6 justify-between border-b border-primary/20 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">arrow_back_ios</span>
+<div class="flex flex-col">
+<h2 class="text-primary text-xs font-bold leading-tight tracking-[0.2em] pixel-text">TASK: WRIST_RESTRUCTURE</h2>
+<h1 class="text-white text-lg font-bold">手腕结构重组</h1>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-primary animate-pulse"></div>
+<p class="text-primary text-[10px] font-bold tracking-widest leading-none">BIO_LINK: STABLE</p>
+</div>
+<p class="text-white/40 text-[9px] mt-1 font-mono">ENCRYPTED_SIGNAL_0X4F</p>
+</div>
+</header>
+<main class="flex-1 flex flex-col overflow-y-auto scanline relative">
+<!-- Technical HUD Stats -->
+<div class="grid grid-cols-2 gap-px bg-primary/20 mt-4 mx-4 border border-primary/20">
+<div class="bg-background-dark p-3">
+<p class="text-primary/60 text-[10px] uppercase font-bold">Joint Tension</p>
+<div class="flex items-end gap-1">
+<span class="text-xl font-bold">42</span>
+<span class="text-xs text-white/40 mb-1">PSI</span>
+</div>
+</div>
+<div class="bg-background-dark p-3">
+<p class="text-primary/60 text-[10px] uppercase font-bold">Sync Rate</p>
+<div class="flex items-end gap-1">
+<span class="text-xl font-bold text-primary">98.4</span>
+<span class="text-xs text-white/40 mb-1">%</span>
+</div>
+</div>
+</div>
+<!-- Central Visual (HeaderImage variant) -->
+<div class="relative flex-1 flex flex-col items-center justify-center py-8">
+<!-- 3D Hand Visualization Placeholder -->
+<div class="relative w-full aspect-square max-w-[320px] mx-auto flex items-center justify-center">
+<!-- Glowing pulses over important joints -->
+<div class="absolute top-[45%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+<div class="w-32 h-32 rounded-full border border-primary/40 pulse-ring"></div>
+<div class="absolute inset-0 w-48 h-48 -left-8 -top-8 rounded-full border border-primary/10 pulse-ring" style="animation-delay: 0.5s"></div>
+</div>
+<!-- Stylized Joint Nodes -->
+<div class="absolute top-[40%] left-[45%] size-3 bg-primary rounded-full shadow-[0_0_15px_#00ff00]"></div>
+<div class="absolute top-[55%] left-[55%] size-2 bg-primary/60 rounded-full shadow-[0_0_10px_#00ff00]"></div>
+<!-- Main Image -->
+<img alt="A holographic 3D hand model with glowing green digital joints showing wrist extension" class="w-full h-full object-contain opacity-90 drop-shadow-[0_0_20px_rgba(0,255,0,0.3)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbQ5rd_XUmGkEaHdmUg8WDr8elpRnxatr1aPIcJBKrT0pbKhzhbkrg-tuUn6yQKxE-IgCeR-6TFpMO7MRZi9KjEEpG5vWsjZ5QieW50GMhOdpAFhQ8ZQ9V0CahGwZ45jbfsfDt7iNLmnfs7ChppdIMDWtzvRMe4-hjcyjBNiEr2hg_ZDLHEwJbd-xMdnejFeNcYH9S3I6--IhO42-qN3-fTOUEvJ9n7t-PwoK1H4Y62ljOV5dHYQTXuP-NBKZQ5i1kSWh9SoRRJeM"/>
+<div class="absolute bottom-4 left-0 w-full px-4 text-center">
+<div class="inline-block px-3 py-1 bg-primary text-black text-[10px] font-black uppercase tracking-tighter">
+                        Active: Wrist Extension
+                    </div>
+</div>
+</div>
+</div>
+<!-- Timer / Calibration Section -->
+<div class="bg-cyber-gray/50 backdrop-blur-md border-y border-primary/20 py-4 mb-6">
+<div class="flex justify-around items-center px-4 max-w-sm mx-auto">
+<div class="flex flex-col items-center">
+<div class="h-14 w-16 flex items-center justify-center bg-primary/10 border border-primary/30 rounded">
+<p class="text-primary text-2xl font-bold leading-none tracking-tighter">00</p>
+</div>
+<p class="text-white/40 text-[10px] font-bold mt-2 uppercase tracking-widest">HRS</p>
+</div>
+<div class="text-primary text-2xl font-bold animate-pulse">:</div>
+<div class="flex flex-col items-center">
+<div class="h-14 w-16 flex items-center justify-center bg-primary/10 border border-primary/30 rounded">
+<p class="text-primary text-2xl font-bold leading-none tracking-tighter">00</p>
+</div>
+<p class="text-white/40 text-[10px] font-bold mt-2 uppercase tracking-widest">MIN</p>
+</div>
+<div class="text-primary text-2xl font-bold animate-pulse">:</div>
+<div class="flex flex-col items-center">
+<div class="h-14 w-24 flex flex-col items-center justify-center bg-primary/20 border border-primary/60 rounded relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5"></div>
+<p class="text-primary text-2xl font-bold leading-none tracking-tighter z-10">15</p>
+<p class="text-primary/60 text-[10px] font-mono leading-none z-10">234ms</p>
+</div>
+<p class="text-white/40 text-[10px] font-bold mt-2 uppercase tracking-widest">SEC_MS</p>
+</div>
+</div>
+</div>
+<!-- Headline & Quote -->
+<div class="px-6 pb-20 space-y-4">
+<h3 class="text-white tracking-tight text-xl font-bold text-center leading-snug">
+                保持腕部向后拉伸，<br/>感知<span class="text-primary">神经电流</span>的回流。
+            </h3>
+<div class="h-px w-12 bg-primary/40 mx-auto"></div>
+<p class="text-white/60 text-sm font-normal leading-relaxed text-center italic font-display">
+                "Don't let your hands turn into rigid claws."
+            </p>
+</div>
+</main>
+<!-- Navigation / Action Bar -->
+<footer class="bg-background-dark border-t border-primary/20 p-4 pb-8">
+<div class="flex items-center justify-between max-w-sm mx-auto">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-white/40 group-hover:text-primary transition-colors">analytics</span>
+<span class="text-[9px] text-white/40 uppercase tracking-tighter font-bold">Log</span>
+</button>
+<button class="flex flex-col items-center justify-center size-14 bg-primary text-black rounded-full shadow-[0_0_20px_rgba(0,255,0,0.4)] active:scale-95 transition-all -mt-8 border-4 border-background-dark">
+<span class="material-symbols-outlined font-bold text-3xl">play_arrow</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-primary">settings_accessibility</span>
+<span class="text-[9px] text-primary uppercase tracking-tighter font-bold">Action</span>
+</button>
+</div>
+</footer>
+</body></html>

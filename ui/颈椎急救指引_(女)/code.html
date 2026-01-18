@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#80ff00",
+                        "warning": "#E6D900",
+                        "background-light": "#f4f5f6",
+                        "background-dark": "#121216",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @font-face {
+            font-family: 'Pixel-Monospace';
+            src: url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+        }
+        .pixel-font { font-family: 'DotGothic16', 'Space Grotesk', monospace; }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(128, 255, 0, 0) 50%, rgba(128, 255, 0, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary selection:text-black">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- TopAppBar -->
+<div class="z-20 flex items-center bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-primary/20">
+<div class="text-white flex size-10 shrink-0 items-center justify-center border border-primary/30 rounded">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-primary text-[10px] tracking-[0.3em] font-bold leading-tight uppercase">PROJECT: CERVICAL_REPAIR_V2</h2>
+<div class="text-[8px] text-primary/50 tracking-widest">STATUS: ACTIVE_RECOVERY</div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<p class="text-primary text-[10px] font-bold leading-normal tracking-[0.15em] shrink-0">BIO_SYNC</p>
+<div class="size-2 bg-primary rounded-full animate-pulse"></div>
+</div>
+</div>
+<!-- MetaText / Tactical Readouts -->
+<div class="z-20 flex justify-between px-4 pt-4">
+<div class="flex flex-col">
+<p class="text-primary text-[10px] font-medium tracking-tighter pixel-font">SYS_CALIBRATING...</p>
+<p class="text-white/40 text-[9px] font-medium tracking-tighter">LATENCY: 12ms</p>
+</div>
+<div class="text-right">
+<p class="text-warning text-[10px] font-medium tracking-tighter pixel-font">STRETCH_ANGLE: 45°</p>
+<p class="text-white/40 text-[9px] font-medium tracking-tighter uppercase">Heart_Rate: Synced</p>
+</div>
+</div>
+<!-- Main Viewport (3D Character & Overlays) -->
+<div class="relative flex-1 flex flex-col items-center justify-center px-4">
+<!-- HeaderImage (Placeholder for 3D Viewport) -->
+<div class="absolute inset-0 z-0 overflow-hidden scanline">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="3D female character performing lateral neck stretch in a dark office" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArroUHE3eR7BYbzSXK7GeuOzVuc59ajrYN9FAeUlTWgEUFPVQzinn8Xau4HGIfYJy-GU69vQZUeXGz-ab7kJ1btpVV5q2aV_DMMzQp32tklUNHHBz346aBQybhJgss8yCoN6WRUNLwbWWNH9bT69UnrteuAW5ub-hmZEsU0yMF9DzUkxaDANlKbOyUGAPjROrO9RTx-DnVmYzfOAzJcugrzBxStk_WAY1nOLxPXIsTdJm72sTEMV-_bPNp0LkCjRQgG_BOZ1txbnk");'>
+</div>
+<!-- Neon Overlay Mockup -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-64 h-96 border-x border-primary/10 relative">
+<!-- Yellow Warning Directional Lines -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-32 h-1 border-t-2 border-dashed border-warning opacity-80"></div>
+<span class="material-symbols-outlined absolute top-[22%] left-[70%] text-warning text-3xl">keyboard_double_arrow_right</span>
+<!-- Ghostly Silhouette (CSS Representation) -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-20 h-20 border-2 border-primary/40 rounded-full blur-[2px]"></div>
+</div>
+</div>
+</div>
+<!-- HeadlineText -->
+<div class="z-10 mt-auto mb-4 w-full text-center">
+<div class="inline-block px-3 py-1 bg-primary/10 border border-primary/30 mb-2">
+<h2 class="text-white tracking-[0.2em] text-2xl font-bold pixel-font">侧向颈部拉伸</h2>
+</div>
+<div class="h-px w-32 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto"></div>
+</div>
+</div>
+<!-- Toxic Quote Module -->
+<div class="z-20 px-6 py-4 bg-background-dark/90 border-t border-primary/20 backdrop-blur-xl">
+<!-- BodyText -->
+<div class="relative">
+<span class="material-symbols-outlined absolute -top-2 -left-4 text-primary/20 text-4xl">format_quote</span>
+<p class="text-white text-xs font-light leading-relaxed text-center mb-2 italic">
+                    "Stop pretending to work; your neck is screaming louder than your boss."
+                </p>
+<p class="text-primary/70 text-[11px] font-normal leading-normal text-center pixel-font tracking-tight">
+                    (别装在加班了，你的脖子叫得比老板还响。)
+                </p>
+</div>
+</div>
+<!-- HP RECOVERY Section -->
+<div class="z-20 px-4 pb-8 bg-background-dark">
+<div class="flex justify-between items-end mb-2">
+<div class="flex flex-col">
+<span class="text-[10px] text-primary/60 tracking-widest uppercase">Recovery Unit</span>
+<span class="text-xl font-bold text-primary pixel-font">HP RECOVERY</span>
+</div>
+<div class="text-right">
+<span class="text-2xl font-bold text-white font-mono">00:42</span>
+<span class="text-[10px] text-white/40 block">SEC_REMAINING</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-4 bg-white/5 rounded-sm overflow-hidden border border-white/10 p-[2px]">
+<div class="h-full bg-primary relative overflow-hidden" style="width: 65%">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-full"></div>
+</div>
+</div>
+<!-- Control Tab -->
+<div class="flex justify-between mt-6 gap-3">
+<button class="flex-1 h-12 border border-white/20 bg-white/5 flex items-center justify-center gap-2 hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">close</span>
+<span class="text-[10px] font-bold tracking-widest uppercase pixel-font">Abort_Task</span>
+</button>
+<button class="flex-1 h-12 bg-primary flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-black font-bold">pause</span>
+<span class="text-[10px] text-black font-bold tracking-widest uppercase pixel-font">Pause_Sync</span>
+</button>
+</div>
+</div>
+<!-- Decorative Corners -->
+<div class="absolute top-0 left-0 size-16 border-t-2 border-l-2 border-primary/30 z-30 pointer-events-none"></div>
+<div class="absolute bottom-0 right-0 size-16 border-b-2 border-r-2 border-primary/30 z-30 pointer-events-none"></div>
+</div>
+</body></html>

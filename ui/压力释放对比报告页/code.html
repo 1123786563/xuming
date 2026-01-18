@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>压力释放对比报告</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#80ff00",
+                        "background-light": "#f7f8f5",
+                        "background-dark": "#080808",
+                        "glitch-red": "#ff0033",
+                        "surface-dark": "#121212",
+                        "border-green": "#4d6b2e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-border {
+            box-shadow: 2px 0 0 #ff0033, -2px 0 0 #80ff00;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(128, 255, 0, 0.05) 51%, transparent 51%);
+            background-size: 100% 4px;
+        }
+        .crt-overlay {
+            background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30 min-h-screen overflow-x-hidden relative">
+<!-- Background Scanlines & HUD Decoration -->
+<div class="fixed inset-0 scanline pointer-events-none z-0 opacity-20"></div>
+<div class="fixed inset-0 crt-overlay pointer-events-none z-0"></div>
+<div class="fixed top-0 left-0 w-full h-full border-[10px] border-white/5 pointer-events-none z-50"></div>
+<!-- Top Navigation / Header -->
+<header class="relative z-10 flex items-center bg-background-dark/80 backdrop-blur-md p-4 border-b border-primary/20 justify-between">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center border border-primary/30" data-icon="target">
+<span class="material-symbols-outlined text-2xl">crossword</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-white text-base font-bold leading-tight tracking-widest uppercase italic">任务完成：结构修复报告</h2>
+<p class="text-[10px] text-primary/60 font-mono tracking-tighter">VER: 0.9.42_STABLE</p>
+</div>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center border border-primary/30 text-primary hover:bg-primary hover:text-black transition-colors">
+<span class="material-symbols-outlined text-2xl">monitoring</span>
+</button>
+</div>
+</header>
+<main class="relative z-10 flex flex-col gap-2 pb-24">
+<!-- Comparison Visuals -->
+<section class="grid grid-cols-2 gap-1 p-2">
+<div class="flex flex-col border border-glitch-red/40 bg-glitch-red/5 p-2 gap-2">
+<div class="relative w-full aspect-[4/5] bg-surface-dark overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-glitch-red/40 to-transparent z-10"></div>
+<div class="w-full h-full bg-center bg-no-repeat bg-cover opacity-80" data-alt="3D spinal column heat map showing critical pressure in red" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeSHupfYhufuKrb5P-_Jly2w-yKfP0OlAc4Pl2AyCYO_3_vepiFZbuDbeUcbNbTTSK7EBwcuf6ySdbkKC1tEBQkxbaeZbVDXFufpaPig61VckEExeMeLzOKXw8muAeCQyeIQTM1gQX7YZDAMKrF0gwVNa2l5fhix9k5bNAnUM4Jo3Wf_huQwXLXG7nApVujbpcISqQhZKgmKjkfx91JGqpmv8zi2MH6iyko1CLelzl50i4tUdkg7gmyV9wPH7n6AZkMe5RpBvFoDA");'></div>
+<div class="absolute top-2 left-2 z-20 bg-glitch-red text-white text-[10px] px-1 font-bold">CRITICAL</div>
+</div>
+<div>
+<p class="text-glitch-red text-xs font-bold leading-none uppercase tracking-tighter italic">Phase: PRE-FIX</p>
+<p class="text-white/60 text-[10px] leading-tight font-mono">STRESS: MAX_CAPACITY</p>
+<p class="text-white/40 text-[10px] font-mono">SCAN_ID: #B_442</p>
+</div>
+</div>
+<div class="flex flex-col border border-primary/40 bg-primary/5 p-2 gap-2">
+<div class="relative w-full aspect-[4/5] bg-surface-dark overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent z-10"></div>
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="3D spinal column showing optimized stable alignment in green" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuBMs6aix3ZEM9NvVhzkgbo5VOI--YBNv4PQ2apudp70mKAPE20hiRZ2iv7fDkU8zpKFLo1lAy_KK7l8ut1FfYJ4F8K9xX4phq55NbsOz3VRsfaDtzjbD-iLEVjttyFpkvLil-nOgCjXTPaEie1KNxKdxmefkawZRb3YTBvA9tiiTDY0_U8tAkKmM_4DIs0bjGUXbH4HS0mE8uB59Mp8pmGSOQqUnLEstNG7mYnHJPB5giCtk7H6b0X9tv5rNJPa3L5Wja8uUqyPk");'></div>
+<div class="absolute top-2 right-2 z-20 bg-primary text-black text-[10px] px-1 font-bold">STABLE</div>
+</div>
+<div class="text-right">
+<p class="text-primary text-xs font-bold leading-none uppercase tracking-tighter italic">Phase: POST-FIX</p>
+<p class="text-white/60 text-[10px] leading-tight font-mono">INTEGRITY: OPTIMIZED</p>
+<p class="text-white/40 text-[10px] font-mono">SCAN_ID: #A_442</p>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="flex flex-wrap gap-2 px-2">
+<div class="flex flex-1 min-w-[100px] flex-col gap-1 border border-border-green/50 bg-surface-dark p-3 relative">
+<div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40"></div>
+<p class="text-white/60 text-[10px] uppercase font-bold">Pressure Relieved</p>
+<div class="flex items-baseline gap-1">
+<p class="text-glitch-red text-2xl font-bold tracking-tighter">-42%</p>
+<span class="material-symbols-outlined text-glitch-red text-sm">trending_down</span>
+</div>
+</div>
+<div class="flex flex-1 min-w-[100px] flex-col gap-1 border border-border-green/50 bg-surface-dark p-3 relative">
+<div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40"></div>
+<p class="text-white/60 text-[10px] uppercase font-bold">HP Recovered</p>
+<div class="flex items-baseline gap-1">
+<p class="text-primary text-2xl font-bold tracking-tighter">+12%</p>
+<span class="material-symbols-outlined text-primary text-sm">add_circle</span>
+</div>
+</div>
+<div class="flex w-full flex-col gap-1 border border-border-green/50 bg-primary/10 p-3 relative">
+<div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary"></div>
+<p class="text-primary text-[10px] uppercase font-bold">Cervical Integrity Status</p>
+<div class="flex justify-between items-center">
+<p class="text-white text-xl font-bold tracking-widest italic">IMPROVED</p>
+<p class="text-primary font-mono text-sm">+100.00%</p>
+</div>
+</div>
+</section>
+<!-- Action Panel / Quote -->
+<section class="px-2">
+<div class="relative p-5 border border-primary/20 bg-surface-dark overflow-hidden">
+<!-- Corner Decorations -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
+<div class="flex flex-col gap-3">
+<div class="space-y-1">
+<p class="text-white text-lg font-bold leading-tight uppercase">You've delayed your decomposition by another day.</p>
+<p class="text-primary text-sm font-medium opacity-80 italic">Don't let it go to your head.</p>
+</div>
+<div class="h-[1px] w-full bg-gradient-to-r from-primary/50 to-transparent"></div>
+<div class="flex items-center justify-between text-[10px] font-mono text-white/40">
+<div class="flex items-center gap-2">
+<span class="size-1.5 bg-primary animate-pulse"></span>
+<span>SYS_LOG: DATA_ANALYSIS_COMPLETE</span>
+</div>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline / Process Log -->
+<section class="px-6 py-4">
+<div class="grid grid-cols-[30px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="text-primary flex items-center justify-center size-6 border border-primary/30 bg-primary/10">
+<span class="material-symbols-outlined text-xs">terminal</span>
+</div>
+<div class="w-[1px] bg-primary/20 h-8"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-white/80 text-xs font-bold font-mono">BIO_METRIC_SCAN_INITIATED</p>
+<p class="text-primary/60 text-[10px] font-mono">09:41:01 // SUCCESS</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="text-primary flex items-center justify-center size-6 border border-primary/30 bg-primary/10">
+<span class="material-symbols-outlined text-xs">settings_accessibility</span>
+</div>
+<div class="w-[1px] bg-primary/20 h-8"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-white/80 text-xs font-bold font-mono">TENSION_REDUCTION_SEQUENCING</p>
+<p class="text-primary/60 text-[10px] font-mono">09:41:45 // OPTIMIZING</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="text-primary flex items-center justify-center size-6 border border-primary shadow-[0_0_10px_rgba(128,255,0,0.4)]">
+<span class="material-symbols-outlined text-xs">shield</span>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-primary text-xs font-bold font-mono italic">STRUCTURAL_INTEGRITY_SYNC</p>
+<p class="text-white/40 text-[10px] font-mono">09:42:10 // DATA_SYNC_COMPLETE</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Footer Actions -->
+<footer class="fixed bottom-0 left-0 w-full p-4 bg-background-dark/95 backdrop-blur-xl border-t border-primary/20 flex flex-col gap-3 z-50">
+<button class="w-full bg-primary text-black h-12 flex items-center justify-center gap-2 font-black uppercase tracking-widest text-sm hover:brightness-110 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined font-bold">dashboard</span>
+            Return to Survival Dashboard
+        </button>
+<button class="w-full bg-transparent border border-primary/40 text-primary h-10 flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-xs hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-lg">share</span>
+            Share Success
+        </button>
+</footer>
+<!-- Decorative Corner Labels -->
+<div class="fixed top-20 right-0 -rotate-90 origin-right pointer-events-none opacity-20 hidden md:block">
+<span class="text-[8px] font-mono tracking-[0.5em] text-primary">PROJECT_REANIMATION_v4.2</span>
+</div>
+</body></html>

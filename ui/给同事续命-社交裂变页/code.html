@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>给同事续命 - 投放生物能量弹</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#53d22d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#000000", // OLED Black for higher contrast
+                        "warning": "#facc15",
+                        "danger": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .crt-scanline {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(83, 210, 45, 0.8);
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(83, 210, 45, 0.3);
+        }
+        .pixel-font {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+<!-- CRT Overlay -->
+<div class="fixed inset-0 crt-scanline z-50 opacity-20 pointer-events-none"></div>
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-32">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-background-dark/80 backdrop-blur-md border-b border-primary/20">
+<div class="flex items-center p-4 justify-between">
+<div class="text-primary flex size-10 items-center justify-center rounded-full bg-primary/10" data-icon="ArrowBack">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-primary text-lg font-bold leading-tight tracking-wider glow-text uppercase pixel-font">投放生物能量弹</h2>
+<div class="flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] text-primary/70 pixel-font tracking-tighter">SYSTEM_READY // ENERGIZE_COWORKER</span>
+</div>
+</div>
+<div class="flex w-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined" style="font-size: 20px;">settings_accessibility</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Headline Status -->
+<section class="mt-4 px-4">
+<div class="bg-primary/5 border border-primary/30 rounded-lg p-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-20">
+<span class="material-symbols-outlined text-4xl">radar</span>
+</div>
+<h3 class="text-primary pixel-font text-sm font-bold tracking-widest mb-1">TARGET_LOCKED: SCANNING_OFFICE_NETWORK</h3>
+<p class="text-primary/60 text-xs font-mono">ENCRYPTED_SIGNAL_STRENGTH: 98% [STABLE]</p>
+</div>
+</section>
+<!-- Section Header -->
+<div class="mt-6">
+<h4 class="text-primary/70 text-[10px] font-bold tracking-[0.3em] px-4 py-2 uppercase pixel-font">Colleague_HP_Status</h4>
+</div>
+<!-- Target List (Colleagues) -->
+<div class="flex flex-col gap-1 px-2">
+<!-- Target 1 -->
+<div class="flex items-center gap-4 bg-primary/5 border border-primary/10 rounded-xl px-4 min-h-[84px] py-3 justify-between group transition-all hover:border-primary/50 hover:bg-primary/10">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 border-2 border-danger/50" data-alt="Cyberpunk avatar of a tired office worker" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3Dljm1KaW1WLbcPITlfBTV4EKdyJXx8VgRSDjuujIMbXzUew3zs51Ej4tz5Z_Q10aSrL9phd6-mqM5daAEJ9-bXTqPVKSC3NxCsj1AVHuSNLidGwLG4IgrKXjkSlGF4CwahkcFhHK9Bc49GOKUfDowsD78-39E_KMjpO83ieUJsH43CADZ7f5aR8dNq6ITK45Ry1Aomjboig3KcoCYOWaJI2piy-1e2Kwsq9Aj0ByNmtvcmtpehQSW8bZte5pgnxjzrKBCUC_RvM");'></div>
+<div class="absolute -bottom-1 -right-1 bg-danger text-black text-[8px] font-bold px-1 rounded-sm pixel-font">CRITICAL</div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-base font-bold leading-none mb-1">李伟 (Front-end)</p>
+<p class="text-danger text-[10px] font-mono leading-tight tracking-tighter">HP: SPINE_DEVIATION_DETECTED</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<div class="flex items-center gap-2">
+<div class="w-20 overflow-hidden rounded-full bg-white/10 h-1.5">
+<div class="h-full rounded-full bg-danger shadow-[0_0_8px_rgba(239,68,68,0.8)]" style="width: 25%;"></div>
+</div>
+<p class="text-danger text-xs font-mono font-bold">25</p>
+</div>
+<div class="text-[9px] text-primary/40 pixel-font">DIST: 12m</div>
+</div>
+</div>
+<!-- Target 2 -->
+<div class="flex items-center gap-4 bg-primary/20 border-2 border-primary rounded-xl px-4 min-h-[84px] py-3 justify-between glow-border">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 border-2 border-warning/50" data-alt="High tech portrait of a female office worker" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmXkvkI_CnHci18PFHy3k-fNDKlQTpkYyEI5Pzg-JEDgNXGJd5L2rE-sXj7qBB2MLv5_YkBf0XH-LNAzIwKcJyE-KCH993-w_crWVhCdOAIGg7cng2764GqoJc0EHQ88VpGOtQOcYbA54XCtHoEzlTWRAzHoGjAGJs5JU0V1r4lNyK5yHxq_S-5nSjc6tHyrCZUuMJru0RVkOy5RSfoFNbIfn9NVjrctAGCK6lRWQifj4GYjtEJeYAWHHVli_Wpt-jVMnFohwhEAQ");'></div>
+<div class="absolute -bottom-1 -right-1 bg-warning text-black text-[8px] font-bold px-1 rounded-sm pixel-font">WARNING</div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-base font-bold leading-none mb-1">Sarah Chen (Product)</p>
+<p class="text-warning text-[10px] font-mono leading-tight tracking-tighter">HP: LOW_OXYGEN_LEVELS</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<div class="flex items-center gap-2">
+<div class="w-20 overflow-hidden rounded-full bg-white/10 h-1.5">
+<div class="h-full rounded-full bg-warning shadow-[0_0_8px_rgba(250,204,21,0.8)]" style="width: 51%;"></div>
+</div>
+<p class="text-warning text-xs font-mono font-bold">51</p>
+</div>
+<div class="text-primary text-[9px] pixel-font">TARGET_LOCKED</div>
+</div>
+</div>
+<!-- Target 3 -->
+<div class="flex items-center gap-4 bg-primary/5 border border-primary/10 rounded-xl px-4 min-h-[84px] py-3 justify-between opacity-60">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 border-2 border-primary/30" data-alt="Portrait of a smiling male colleague" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD05A2PjED01xvv-ywpjpnt-rWMHG5uDYdG3S7wtun_XS3n6N6X-CUKWsn1UkO9Y6VgK65q6c9oX7Xl4ANn5n31SibecGjXVjnXPNEYufvcVFp6wQoi7sufJeekM_enRw2vRB0pRS0JMlIb82Av5mdltBRRuWIIkrNPCe5W0uIOtq0FFlN1wFmBNxKNk-Z7s3sX1Qyt3wHEHn2ZZivG9CRnwCjstyS9rgljib7G8Je0HeDlUA7TzVMtMI7SYYLpH6qN9Mwir-p4NBs");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-base font-bold leading-none mb-1">张强 (Backend)</p>
+<p class="text-primary/60 text-[10px] font-mono leading-tight">HP: OPTIMAL_STAND_TIME</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<div class="flex items-center gap-2">
+<div class="w-20 overflow-hidden rounded-full bg-white/10 h-1.5">
+<div class="h-full rounded-full bg-primary" style="width: 88%;"></div>
+</div>
+<p class="text-primary text-xs font-mono font-bold">88</p>
+</div>
+<div class="text-[9px] text-primary/40 pixel-font">DIST: 24m</div>
+</div>
+</div>
+</div>
+<!-- Bomb Selection -->
+<div class="mt-8 px-4">
+<h4 class="text-primary/70 text-[10px] font-bold tracking-[0.3em] mb-4 uppercase pixel-font">Select_Warhead_Type</h4>
+<div class="grid grid-cols-1 gap-3">
+<!-- Level 1 -->
+<button class="flex items-start gap-3 p-3 bg-white/5 border border-white/10 rounded-xl transition-all hover:bg-white/10">
+<div class="size-10 shrink-0 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<div class="text-left">
+<p class="text-white text-sm font-bold">Level 1: Gentle Poke</p>
+<p class="text-primary/60 text-xs">Standard notification vibration.</p>
+</div>
+</button>
+<!-- Level 2 -->
+<button class="flex items-start gap-3 p-3 bg-white/5 border border-white/10 rounded-xl transition-all hover:bg-white/10">
+<div class="size-10 shrink-0 bg-warning/20 rounded-lg flex items-center justify-center text-warning">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="text-left">
+<p class="text-white text-sm font-bold">Level 2: Sarcastic Jab</p>
+<p class="text-warning/60 text-xs">"The coffee machine is lonely. Go visit it."</p>
+</div>
+</button>
+<!-- Level 3 -->
+<button class="flex items-start gap-3 p-4 bg-primary/20 border-2 border-primary rounded-xl relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-7xl">emergency_home</span>
+</div>
+<div class="size-10 shrink-0 bg-primary rounded-lg flex items-center justify-center text-black shadow-[0_0_15px_rgba(83,210,45,0.6)]">
+<span class="material-symbols-outlined">skull</span>
+</div>
+<div class="text-left relative z-10">
+<div class="flex items-center gap-2">
+<p class="text-white text-sm font-bold">Level 3: Reality Check</p>
+<span class="bg-primary text-black text-[8px] px-1 font-bold rounded-sm">FATAL</span>
+</div>
+<p class="text-primary font-mono text-xs mt-1 italic">"Your spine is a question mark, and so is your future. MOVE!"</p>
+</div>
+</button>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background-dark via-background-dark/95 to-transparent pt-12">
+<button class="w-full bg-primary py-5 rounded-full text-black font-black text-xl tracking-[0.2em] shadow-[0_0_30px_rgba(83,210,45,0.5)] active:scale-95 transition-transform flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined font-black group-hover:rotate-12 transition-transform">rocket_launch</span>
+<span class="pixel-font">DEPLOY_BOMB</span>
+</button>
+<div class="mt-4 overflow-hidden h-4 relative">
+<div class="whitespace-nowrap flex gap-8 animate-[marquee_20s_linear_infinite] opacity-50">
+<span class="text-[10px] text-primary font-mono pixel-font">CALCULATING_POSTURE_DEVIATION...</span>
+<span class="text-[10px] text-primary font-mono pixel-font">BYPASSING_OFFICE_FIREWALL...</span>
+<span class="text-[10px] text-primary font-mono pixel-font">TARGETing_HUMAN_RESOURCES_WIFI...</span>
+<span class="text-[10px] text-primary font-mono pixel-font">SENDING_OXYGEN_REMINDER...</span>
+<span class="text-[10px] text-primary font-mono pixel-font">CALCULATING_POSTURE_DEVIATION...</span>
+</div>
+</div>
+</div>
+</div>
+<style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-\[marquee_20s_linear_infinite\] {
+            animation: marquee 20s linear infinite;
+        }
+    </style>
+</body></html>

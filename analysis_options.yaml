@@ -1,0 +1,17 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # 避免使用 print 语句
+    avoid_print: true
+    # 偏好使用 const 构造函数
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    # 必须声明参数类型
+    always_specify_types: false
+    # 偏好使用 final 局部变量
+    prefer_final_locals: true
+    # 偏好使用相对导入
+    prefer_relative_imports: true
+    # 排序 import
+    directives_ordering: true

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>上周生存周报弹窗</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3fff14",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0d0d0d",
+                        "glitch-red": "#ff2e2e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .scanlines {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px #3fff14;
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(63, 255, 20, 0.2);
+        }
+        .terminal-grid {
+            background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white selection:bg-primary selection:text-black">
+<div class="relative min-h-screen w-full max-w-[430px] mx-auto overflow-x-hidden border-x border-[#3e5639] bg-background-dark flex flex-col">
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 scanlines z-50 pointer-events-none opacity-30"></div>
+<!-- Top Header Navigation -->
+<div class="flex items-center bg-background-dark p-4 pb-2 justify-between sticky top-0 z-40 border-b border-[#3e5639]">
+<div class="text-primary flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-[28px]">terminal</span>
+</div>
+<h2 class="text-primary text-sm font-bold leading-tight tracking-widest flex-1 text-center uppercase glow-text">
+                上周生存记录：系统存续状态
+            </h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded h-10 w-10 bg-transparent text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<main class="flex-1 overflow-y-auto terminal-grid pb-24">
+<!-- Headline Status -->
+<div class="pt-8 pb-4">
+<h1 class="text-primary tracking-tighter text-[32px] font-bold leading-tight px-6 text-center glow-text">
+                    [ONLINE] <br/>
+                    SYSTEM PERSISTENCE
+                </h1>
+<p class="text-[#a0bc9a] text-xs text-center mt-2 font-mono uppercase tracking-[0.3em]">Week 42 // Deployment Success</p>
+</div>
+<!-- Radar Chart Visualization Section -->
+<div class="px-4 py-6">
+<div class="border border-[#3e5639] bg-background-dark/80 p-6 rounded relative overflow-hidden">
+<div class="absolute top-2 left-2 text-[10px] text-[#3e5639] font-mono">RADAR_INIT_VER.8.1</div>
+<div class="flex flex-col items-center gap-6 relative">
+<!-- Simulated Radar Chart -->
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- SVG Radar -->
+<svg class="w-full h-full transform -rotate-18" viewbox="0 0 100 100">
+<!-- Background Circles -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#1a2a17" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="30" stroke="#1a2a17" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="15" stroke="#1a2a17" stroke-width="0.5"></circle>
+<!-- Axes -->
+<line stroke="#1a2a17" stroke-width="0.5" x1="50" x2="50" y1="5" y2="95"></line>
+<line stroke="#1a2a17" stroke-width="0.5" x1="5" x2="95" y1="50" y2="50"></line>
+<!-- Data Polygon -->
+<path d="M50 15 L85 40 L70 85 L30 85 L15 40 Z" fill="rgba(63, 255, 20, 0.15)" stroke="#3fff14" stroke-width="1.5"></path>
+<!-- Data Points -->
+<circle cx="50" cy="15" fill="#3fff14" r="1.5"></circle>
+<circle cx="85" cy="40" fill="#3fff14" r="1.5"></circle>
+<circle cx="70" cy="85" fill="#3fff14" r="1.5"></circle>
+<circle cx="30" cy="85" fill="#3fff14" r="1.5"></circle>
+<circle cx="15" cy="40" fill="#3fff14" r="1.5"></circle>
+</svg>
+<!-- Dimension Labels -->
+<div class="absolute top-0 text-[10px] font-bold text-primary bg-background-dark px-1">颈椎完整度</div>
+<div class="absolute right-0 top-1/3 text-[10px] font-bold text-primary bg-background-dark px-1">腰椎压力值</div>
+<div class="absolute bottom-4 right-8 text-[10px] font-bold text-primary bg-background-dark px-1">活动频率</div>
+<div class="absolute bottom-4 left-8 text-[10px] font-bold text-primary bg-background-dark px-1">摸鱼技巧</div>
+<div class="absolute left-0 top-1/3 text-[10px] font-bold text-primary bg-background-dark px-1">生命体征</div>
+</div>
+<div class="w-full flex justify-between items-end border-t border-[#3e5639] pt-4">
+<div class="flex flex-col">
+<span class="text-[#a0bc9a] text-[10px] uppercase font-bold tracking-widest">存续评估等级</span>
+<span class="text-primary text-4xl font-bold leading-none glow-text">B+</span>
+</div>
+<div class="text-right">
+<span class="text-primary text-sm font-medium">+5% EFFICIENCY</span>
+<p class="text-[#a0bc9a] text-[10px]">COMPARED TO PREV_WEEK</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Survival Stats Grid -->
+<div class="grid grid-cols-2 gap-4 px-4 pb-4">
+<div class="flex flex-col gap-1 rounded border border-[#3e5639] bg-background-dark p-4 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary opacity-50"></div>
+<p class="text-[#a0bc9a] text-[10px] font-bold uppercase tracking-tighter">续命时长</p>
+<p class="text-primary tracking-light text-2xl font-bold leading-tight">+185min</p>
+</div>
+<div class="flex flex-col gap-1 rounded border border-[#3e5639] bg-background-dark p-4 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary opacity-50"></div>
+<p class="text-[#a0bc9a] text-[10px] font-bold uppercase tracking-tighter">规避核击</p>
+<p class="text-primary tracking-light text-2xl font-bold leading-tight">12 次</p>
+</div>
+<div class="col-span-2 flex flex-col gap-1 rounded border border-[#3e5639] bg-background-dark p-4 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary opacity-50"></div>
+<p class="text-[#a0bc9a] text-[10px] font-bold uppercase tracking-tighter">同类存续排名</p>
+<div class="flex items-baseline gap-2">
+<p class="text-primary tracking-light text-2xl font-bold leading-tight">TOP 5%</p>
+<p class="text-[#a0bc9a] text-xs font-normal">CYBER-WORKER</p>
+</div>
+</div>
+</div>
+<!-- Toxic Summary Panel -->
+<div class="px-4 pb-6">
+<div class="p-5 rounded border border-glitch-red/50 bg-glitch-red/5 flex flex-col gap-3 relative">
+<div class="absolute -top-3 left-4 bg-background-dark border border-glitch-red/50 px-2 py-0.5 text-glitch-red text-[10px] font-bold uppercase tracking-widest">
+                        System Warning // 警告
+                    </div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-glitch-red shrink-0">warning</span>
+<div class="flex flex-col gap-2">
+<p class="text-white text-sm font-bold leading-tight">脊柱状态异常侦测</p>
+<p class="text-[#a0bc9a] text-sm font-normal leading-relaxed italic">
+                                "You survived another week of corporate slavery. Don't be too proud; your spine is still a question mark."
+                            </p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-glitch-red/20 pt-3 mt-1">
+<span class="text-[10px] text-[#a0bc9a] font-mono">ANALYSIS_ID: 99x_FATAL</span>
+<label class="relative flex h-[24px] w-[44px] cursor-pointer items-center rounded-full border-none bg-zinc-800 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-glitch-red">
+<div class="h-full w-[20px] rounded-full bg-white shadow-sm"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Actions -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] p-4 bg-background-dark border-t border-[#3e5639] z-50 flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 rounded border border-primary bg-transparent text-primary py-4 text-sm font-bold tracking-widest uppercase hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">share</span>
+                分享日志
+            </button>
+<button class="flex-[1.5] flex items-center justify-center gap-2 rounded bg-primary text-black py-4 text-sm font-bold tracking-widest uppercase glow-border hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                开启新周维护
+            </button>
+</div>
+</div>
+</body></html>

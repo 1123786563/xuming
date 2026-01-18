@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>续命 - 紧急抢修任务</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fc2c2c",
+                        "background-light": "#ffffff",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(252, 44, 44, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(252, 44, 44, 0.8); }
+        }
+        .glow-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+            background-size: 100% 4px;
+        }
+        .distorted-text {
+            text-shadow: 2px 0 #fc2c2c, -2px 0 #00ffff55;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display antialiased text-white selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 pointer-events-none scanline z-50"></div>
+<!-- Background Monospace HUD -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden opacity-10 flex flex-col p-4 text-[10px] font-mono leading-none tracking-tighter">
+<div class="flex justify-between">
+<span>BIO_LINK_ESTABLISHED</span>
+<span>ID: XP-882-SYS</span>
+</div>
+<div class="mt-auto space-y-1">
+<p>FATIGUE_LIMIT_REACHED</p>
+<p>STRUCTURAL_FAILURE_IMMINENT</p>
+<p>INITIATING_CORE_RECOVERY_PROTOCOL_V4</p>
+</div>
+</div>
+<!-- TopAppBar -->
+<div class="relative flex items-center bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-primary/20">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-primary">close</span>
+</div>
+<h2 class="text-primary text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center distorted-text">
+                紧急抢修任务: 脊椎解压
+            </h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded h-12 bg-transparent text-primary">
+<span class="material-symbols-outlined">warning</span>
+</button>
+</div>
+</div>
+<!-- Headline Status -->
+<div class="py-4 border-b border-primary/10">
+<h3 class="text-primary tracking-[0.2em] text-sm font-bold leading-tight px-4 text-center animate-pulse">
+                STRUCTURAL_INTEGRITY_LOW
+            </h3>
+</div>
+<!-- Main Visual: 3D Spine Diagnostic -->
+<div class="relative flex-1 flex flex-col items-center justify-center p-4">
+<div class="absolute inset-0 flex items-center justify-center opacity-20">
+<div class="w-64 h-64 rounded-full border border-primary/30 flex items-center justify-center">
+<div class="w-48 h-48 rounded-full border border-primary/20"></div>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] max-w-sm flex items-center justify-center">
+<!-- Spine Image Placeholder -->
+<div class="w-full h-full bg-center bg-no-repeat bg-contain" data-alt="3D medical anatomy of a human spine with red glowing heatmaps on lower back and neck" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW4G-J5JT-jpXbYMuNjT79oO0bzaIUdf6FW-VISvq6hvLtYlflcETgxhEVia1bu7uyzcihFDYfmCJNFblybpS_Dawt4hgm2MsUVi9NU7vjSwZ70f7PmQ3aCRxPjCeNv1thpHrpo8_A2mop66SeUdm0DekKBSv7dMKmC98ddBjftCZZgzv2wVpDltm1UTa99dIvYv-Y65pSu4H_2wzBCuWo-lKIObA850Crm_6A6VCREFLa_e9dXWOxbL9epw-m9HrI-cRek7tSwXw");'>
+</div>
+<!-- HUD Overlays -->
+<div class="absolute left-4 top-1/4 border-l border-t border-primary/40 p-2 bg-black/40">
+<p class="text-[10px] text-primary/60 font-mono">SEGMENT_C1-C7</p>
+<p class="text-xs font-bold text-primary">OVERLOAD</p>
+</div>
+<div class="absolute right-4 bottom-1/3 border-r border-b border-primary/40 p-2 bg-black/40 text-right">
+<p class="text-[10px] text-primary/60 font-mono">SEGMENT_L1-L5</p>
+<p class="text-xs font-bold text-primary">CRITICAL</p>
+</div>
+</div>
+</div>
+<!-- Stats Section -->
+<div class="flex gap-2 px-4 pb-4">
+<div class="flex-1 flex flex-col gap-1 rounded border border-primary/30 bg-primary/5 p-4">
+<p class="text-primary/70 text-[10px] font-bold uppercase tracking-widest">Pressure Relief</p>
+<p class="text-white text-3xl font-bold leading-none">-45%</p>
+</div>
+<div class="flex-1 flex flex-col gap-1 rounded border border-primary/30 bg-primary/5 p-4">
+<p class="text-primary/70 text-[10px] font-bold uppercase tracking-widest">Duration</p>
+<p class="text-white text-3xl font-bold leading-none">03:00</p>
+</div>
+</div>
+<!-- Protocol Card -->
+<div class="px-4 pb-6">
+<div class="flex items-stretch justify-between gap-4 rounded border border-white/10 bg-white/5 p-4">
+<div class="flex flex-[2_2_0px] flex-col justify-between py-1">
+<div class="flex flex-col gap-1">
+<p class="text-white text-lg font-bold leading-tight">Standing Back Extension</p>
+<p class="text-primary/80 text-xs font-mono uppercase tracking-tighter">Recommended Protocol: Level 5 Relief</p>
+</div>
+<button class="flex items-center gap-2 text-primary text-xs font-bold mt-4">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="border-b border-primary/40">VIEW TECHNICAL GUIDE</span>
+</button>
+</div>
+<div class="w-24 h-24 bg-zinc-900 border border-white/5 rounded-lg flex items-center justify-center bg-center bg-cover" data-alt="Technical wireframe illustration of a person performing a back stretch" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeJKoccr-pifHeuOFMaukbeIKQhTKk_wiCw5Kc8DqeppWs1FbBKRdSyd8EptO0fD28EjL2mkITRgJnrtt7vlJpG9sVN1FnbQ7mai8-tdARUChexELhRMxbWwr-T43CUa7QIci81DKXGOPzWRzqemzwzfrQpe1x7Vvwf9QXw3ppkCdc_CWK0aEGa58S9dq4s6SAqOH_fS6aLJbXgqaKWnyyMXGo5gV0NLYBwciO2y_yG-awhOqnjq8igA83gWF9Zw4j_lkKl13ZCXI");'>
+</div>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="p-4 pt-0 mb-6">
+<button class="w-full bg-primary text-white h-16 rounded flex items-center justify-center gap-3 glow-pulse active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+<span class="text-xl font-bold tracking-[0.1em]">START REPAIR (开始修复)</span>
+</button>
+<p class="text-center text-[10px] text-white/30 font-mono mt-3">BIO_RECOVERY_SYSTEM_READY // NO_REVERSAL_ALLOWED</p>
+</div>
+</div>
+</body></html>

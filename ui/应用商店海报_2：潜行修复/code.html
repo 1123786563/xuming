@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>XuMing App Store Poster 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffbf00",
+                        "accent": "#ff0055", // Electric Magenta
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#131315",
+                        "code-bg": "#1e1e1e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Mono", "monospace"], // Fallback to monospace
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'radar-spin': 'spin 4s linear infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.1)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        
+        .glitch-clip {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 55% 85%, 50% 100%, 0 90%);
+        }
+
+        .glitch-text {
+            text-shadow: 2px 0 #ff0055, -2px 0 #00ffff;
+        }
+
+        .code-syntax-keyword { color: #569cd6; }
+        .code-syntax-function { color: #dcdcaa; }
+        .code-syntax-string { color: #ce9178; }
+        .code-syntax-comment { color: #6a9955; }
+        .code-syntax-variable { color: #9cdcfe; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white overflow-x-hidden antialiased selection:bg-primary selection:text-black">
+<!-- Main Container representing the Poster Surface -->
+<div class="relative min-h-screen w-full flex flex-col max-w-md mx-auto border-x border-[#333] shadow-2xl">
+<!-- Scanline Overlay -->
+<div class="scanlines absolute inset-0 z-50 pointer-events-none opacity-40 mix-blend-overlay"></div>
+<!-- Top Section: Headline & Disguise -->
+<div class="relative bg-code-bg pt-8 pb-12 overflow-hidden flex-1 glitch-clip z-10">
+<!-- Headline -->
+<div class="px-5 mb-6 relative z-20">
+<div class="inline-block bg-primary text-black text-xs font-bold px-2 py-0.5 mb-2 rounded tracking-widest uppercase">Variant 02 // Stealth Mode</div>
+<h1 class="text-primary tracking-tight text-[36px] font-bold leading-[1.1] glitch-text" style="font-feature-settings: 'ss04' on;">
+                    在老板眼皮底下，<br/>
+                    偷偷完成身体修复
+                </h1>
+</div>
+<!-- Feature Tag 1 -->
+<div class="absolute right-4 top-24 z-30 flex items-center gap-2">
+<span class="text-xs text-white/60 font-mono tracking-wider">MASK_ACTIVE</span>
+<span class="material-symbols-outlined text-primary text-lg animate-pulse">visibility_off</span>
+</div>
+<!-- VS Code Disguise Interface -->
+<div class="mx-4 relative rounded-t-lg bg-[#252526] border border-[#3e3e42] shadow-2xl overflow-hidden opacity-90">
+<!-- Editor Header -->
+<div class="flex items-center bg-[#333333] px-3 py-2 gap-2 text-xs">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+<span class="ml-4 text-white/60 font-mono">work_final_v2.js</span>
+</div>
+<!-- Editor Body -->
+<div class="p-4 font-mono text-xs leading-relaxed text-[#d4d4d4] h-48">
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">1</div>
+<div><span class="code-syntax-keyword">const</span> <span class="code-syntax-variable">employeeStatus</span> = {</div>
+</div>
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">2</div>
+<div class="pl-4"><span class="code-syntax-variable">focus</span>: <span class="code-syntax-keyword">true</span>,</div>
+</div>
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">3</div>
+<div class="pl-4"><span class="code-syntax-variable">productivity</span>: <span class="code-syntax-string">'100%'</span>,</div>
+</div>
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">4</div>
+<div class="pl-4"><span class="code-syntax-comment">// TODO: Refactor legacy codebase</span></div>
+</div>
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">5</div>
+<div class="pl-4"><span class="code-syntax-variable">repairBody</span>: <span class="code-syntax-function">init</span>(<span class="code-syntax-string">'stealth'</span>)</div>
+</div>
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">6</div>
+<div>}</div>
+</div>
+<div class="flex">
+<div class="w-6 text-[#858585] text-right mr-3 select-none">7</div>
+<div><span class="code-syntax-keyword">return</span> <span class="code-syntax-variable">employeeStatus</span>;</div>
+</div>
+<!-- Feature Label pointing to code -->
+<div class="absolute top-[60%] right-[-10px] bg-accent text-white text-[10px] font-bold px-2 py-1 transform -rotate-2 shadow-lg border border-white/20">
+                        一键伪装
+                    </div>
+</div>
+</div>
+<!-- Glitch Divider Graphic -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
+<div class="absolute bottom-[2px] right-0 w-2/3 h-[1px] bg-accent"></div>
+</div>
+<!-- Boss Radar Widget (Floating) -->
+<div class="absolute top-[38%] left-4 z-40">
+<div class="relative bg-background-dark/90 backdrop-blur border border-primary/50 rounded p-3 shadow-[0_0_15px_rgba(255,191,0,0.2)] flex items-center gap-3 max-w-[200px]">
+<div class="relative w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center overflow-hidden bg-black">
+<div class="absolute w-full h-full bg-[conic-gradient(from_0deg,transparent_0_deg,rgba(255,191,0,0.5)_60deg,transparent_60deg)] animate-[spin_2s_linear_infinite] opacity-80"></div>
+<div class="w-1 h-1 bg-primary rounded-full animate-pulse"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-primary text-[10px] font-bold uppercase tracking-widest leading-tight">Boss Radar</span>
+<span class="text-white text-xs font-medium whitespace-nowrap">Detection: 5m</span>
+</div>
+<!-- Connecting Line -->
+<div class="absolute -right-2 top-1/2 w-2 h-[1px] bg-primary/50"></div>
+<div class="absolute -right-3 top-1/2 w-1 h-1 bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Bottom Section: The Real Repair -->
+<div class="relative flex-1 bg-background-dark pt-12 px-5 pb-8 flex flex-col justify-between">
+<!-- Context Text -->
+<div class="mb-4">
+<h2 class="text-white/90 text-xl font-bold uppercase tracking-wide flex items-center gap-2">
+<span class="material-symbols-outlined text-accent">personal_injury</span>
+                    Spine Repair
+                </h2>
+<p class="text-[#888] text-sm mt-1">Real-time 3D guidance hidden in plain sight.</p>
+</div>
+<!-- 3D Card Visual -->
+<div class="relative w-full aspect-[4/3] bg-[#0a0a0a] rounded-lg border border-[#333] overflow-hidden group">
+<!-- Grid Background -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- The "Image" representing 3D Model -->
+<div class="w-full h-full bg-center bg-no-repeat bg-cover relative z-10 mix-blend-lighten contrast-125" data-alt="Wireframe 3D model of human spine with glowing magenta vertebrae highlighting L4-L5 section" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBAJ2BpeDJXppBQAtpyE5HQt2KQd4meA-2at76CNo16-Z7y3JHhWRxGy1DI2K24BKoIZyjUKNkiudyuWHWtrmDIlIBZNHNcbbpssX8dUX-TDy1Hg527uNKtUn3gt10_fxXBxS1ht7sFJaeFSq9qnM8dLt1k7lKNnwB-5oDP1k0Vmy7JPAmiBE1nzcr3dCa8ydnFjwpwiOwF_FJEDZriY-RD00tE7tLyNsdE17faQ457wRIdPVJGvudJ1Ofm_aKZJt8KXJUdImsUDho");'>
+<!-- Simulated UI Overlay on Image -->
+<div class="absolute inset-0 p-4 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="text-[10px] text-accent font-mono border border-accent/30 px-1 bg-accent/10">L4-L5 LOAD: 85%</div>
+<div class="text-[10px] text-white/40 font-mono">X: 45 Y: 12 Z: 99</div>
+</div>
+<!-- Target Graphic Overlay -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-dashed border-accent/40 rounded-full flex items-center justify-center">
+<div class="w-20 h-20 border border-accent rounded-full opacity-50 animate-ping"></div>
+</div>
+<div class="flex justify-end">
+<div class="bg-black/80 backdrop-blur px-2 py-1 rounded border-l-2 border-primary">
+<p class="text-white text-xs font-bold">Decompressing...</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area / CTA -->
+<div class="mt-6">
+<div class="flex items-center justify-between border-t border-[#333] pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-primary uppercase tracking-widest mb-1">Current Session</span>
+<span class="text-white text-lg font-bold">04:59 <span class="text-xs font-normal text-gray-500">remaining</span></span>
+</div>
+<button class="relative overflow-hidden group/btn bg-primary text-black font-bold text-sm px-6 py-3 rounded uppercase tracking-wide">
+<span class="relative z-10 flex items-center gap-2">
+                            Stop Repair
+                            <span class="material-symbols-outlined text-sm">stop_circle</span>
+</span>
+<div class="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity"></div>
+</button>
+</div>
+</div>
+<!-- Decorative Footer Elements -->
+<div class="absolute bottom-2 left-0 w-full px-5 flex justify-between items-end opacity-30 pointer-events-none">
+<div class="h-8 w-1 bg-white"></div>
+<div class="text-[10px] font-mono">SYS_READY // V.2.0.4</div>
+</div>
+</div>
+</div>
+<!-- Script for Lucide Icons or Interactivity if needed (None requested) -->
+</body></html>

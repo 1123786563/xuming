@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00eaff",
+                        "background-light": "#f0f2f4",
+                        "background-dark": "#0d1116",
+                        "surface-dark": "#1C232F",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-border {
+            box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.2), 0 0 5px rgba(0, 234, 255, 0.1);
+        }
+        .data-grid {
+            background-image: radial-gradient(circle, #00eaff11 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 234, 255, 0.05) 50%, transparent 100%);
+            height: 40px;
+            width: 100%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30 min-h-screen flex justify-center items-center">
+<div class="relative w-full max-w-[430px] h-[932px] bg-background-dark shadow-2xl overflow-hidden flex flex-col border-x border-primary/10">
+<!-- Top App Bar -->
+<div class="flex items-center bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between z-10 border-b border-primary/20">
+<div class="text-primary flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-white text-xs font-medium tracking-[0.2em] uppercase opacity-60">System Module</h2>
+<h2 class="text-primary text-lg font-bold leading-tight tracking-tight">XUMING v2.0</h2>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 border border-primary/30 text-primary">
+<span class="material-symbols-outlined text-xl">settings_input_component</span>
+</button>
+</div>
+</div>
+<!-- Main Content Area with Grid Background -->
+<div class="flex-1 overflow-y-auto data-grid relative">
+<!-- Headline Section -->
+<div class="px-6 pt-8 pb-4 text-center">
+<div class="inline-block px-3 py-1 bg-primary/20 border border-primary/40 rounded-full mb-3">
+<span class="text-primary text-[10px] font-bold tracking-widest uppercase">Manual Data Flush</span>
+</div>
+<h2 class="text-white tracking-tight text-3xl font-bold leading-tight uppercase">任务: 掌骨压力排空</h2>
+<div class="w-12 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+</div>
+<!-- Central Diagnostic View (3D Hand Visualization) -->
+<div class="relative px-4 py-2">
+<div class="relative w-full aspect-square bg-surface-dark/40 rounded-2xl border border-primary/20 glow-border overflow-hidden group">
+<!-- Faux-3D Visualization Placeholder -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-full bg-center bg-no-repeat bg-contain opacity-80" data-alt="3D wireframe hand model with neon blue data lines" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwc0Bt4oqM_QyY8ZjFu7pKSPfMP3Ks7N4Oa2HqQifj9aDTAMZ7vJedzlpgtf7hLoUkJL9Z3jwe6WuJ55WagIWOjJzAeafFbBLEESWCUKwQUOsNrOtR3NuoX6IKAkDWvCw7tThhHJ9WH64B_OGgUZv1Zwl-Xmt3fhTt6I7-0S54SzYL4B-U6s2bxT62XAAtFEFvsCCuWIE_hqc9lBSq2u5P45dYiIHNsoPUJwFYdGri9jOdE6Sy2mJ1KjCaaMvuGdM6ltIEzt4D4pQ');">
+</div>
+</div>
+<!-- Diagnostic Overlays -->
+<div class="absolute top-4 left-4 flex flex-col gap-1">
+<div class="text-[10px] text-primary/70 font-mono">X-AXIS: STABLE</div>
+<div class="text-[10px] text-primary/70 font-mono">Y-AXIS: FLUSHING...</div>
+</div>
+<div class="absolute bottom-4 right-4 flex flex-col items-end">
+<div class="text-[10px] text-primary/70 font-mono">CARPAL INTEGRITY</div>
+<div class="text-xl font-bold text-primary">88.4%</div>
+</div>
+<!-- Scanline Effect -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20 flex flex-col">
+<div class="scanline"></div>
+</div>
+</div>
+</div>
+<!-- Progress Bar Section -->
+<div class="flex flex-col gap-3 p-6 mt-2">
+<div class="flex gap-6 justify-between items-end">
+<div class="flex flex-col">
+<p class="text-primary text-[10px] font-bold tracking-widest uppercase">Process Status</p>
+<p class="text-white text-base font-medium leading-normal">FLUSHING TOXIC DATA...</p>
+</div>
+<p class="text-primary text-2xl font-bold leading-none tabular-nums">65%</p>
+</div>
+<div class="rounded-full bg-surface-dark border border-primary/20 h-4 p-1">
+<div class="h-full rounded-full bg-primary shadow-[0_0_15px_rgba(0,234,255,0.6)]" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between">
+<p class="text-primary/60 text-[10px] font-mono leading-normal">SYST_LOG: NEURAL_PATHWAY_CLEAR</p>
+<p class="text-primary/60 text-[10px] font-mono leading-normal">MT_02_CARPAL</p>
+</div>
+</div>
+<!-- Body Text / Quote -->
+<div class="px-6 py-4">
+<div class="bg-surface-dark/60 p-5 rounded-xl border-l-4 border-primary/50 italic">
+<p class="text-white/80 font-body text-sm leading-relaxed text-center">
+                        "Your hands were built for tools, not just for endless scrolling and clicking."
+                    </p>
+</div>
+</div>
+</div>
+<!-- Bottom Control Panel / Tab Bar -->
+<div class="bg-surface-dark border-t border-primary/20 p-6 pb-10 flex flex-col gap-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-lg flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(0,234,255,0.3)]">
+<span class="material-symbols-outlined font-bold">bolt</span>
+<span class="tracking-widest uppercase">Complete Flush Sync</span>
+</button>
+<div class="flex justify-around items-center pt-2">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-2xl">exercise</span>
+<span class="text-[10px] font-bold tracking-tighter">TRAIN</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-white/40">
+<span class="material-symbols-outlined text-2xl">monitoring</span>
+<span class="text-[10px] font-bold tracking-tighter">DATA</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-white/40">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[10px] font-bold tracking-tighter">BIO</span>
+</div>
+</div>
+</div>
+<!-- Decorative UI Elements -->
+<div class="absolute top-0 left-0 w-full h-1 bg-primary/30"></div>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-primary/20 rounded-full"></div>
+</div>
+</body></html>

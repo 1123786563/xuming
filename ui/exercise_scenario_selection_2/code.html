@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>场景切片选择 - 续命</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ff40",
+                        "warning": "#F2FF00",
+                        "danger": "#FF003C",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#050505",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glass-card {
+            background: rgba(20, 20, 22, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 64, 0.15);
+        }
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+        }
+        .realism-preview {
+            position: relative;
+            overflow: hidden;
+            background-color: #0a0a0a;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .realism-preview::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white selection:bg-primary selection:text-black min-h-screen overflow-x-hidden relative">
+<div class="fixed inset-0 crt-overlay z-50 pointer-events-none"></div>
+<div class="relative flex flex-col w-full z-10 max-w-md mx-auto min-h-screen">
+<div class="flex items-center bg-transparent p-6 pb-2 justify-between">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center border border-primary/30 rounded bg-primary/5 active:bg-primary/20" data-icon="ArrowLeft">
+<span class="material-symbols-outlined text-lg">arrow_back_ios_new</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-white text-xl font-bold leading-tight tracking-[0.2em] flex-1 text-center italic">场景切片</h2>
+<span class="text-[10px] text-primary/60 font-mono uppercase">System Status: Optimized // 12ms</span>
+</div>
+<div class="flex w-10 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded border border-primary/30 size-10 bg-transparent text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+</div>
+</div>
+<div class="px-4 py-4">
+<div class="flex items-center justify-between border-b border-primary/20 pb-1">
+<h4 class="text-primary text-[10px] font-bold tracking-[0.3em] uppercase">战术部署协议_v3.0</h4>
+<div class="flex items-center gap-2">
+<span class="size-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_#00ff40]"></span>
+<span class="text-[10px] text-primary font-mono uppercase">生命体征: 稳定</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 p-4">
+<div class="glass-card flex flex-col gap-4 rounded-xl p-3 aspect-[4/5] relative group active:scale-95 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-mono text-primary/40">SCENE_01</span>
+<span class="material-symbols-outlined text-primary text-xl">chair_alt</span>
+</div>
+<div class="flex-1 realism-preview rounded-lg border border-white/5 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoB_Qu2NQGBUOxw11uRntVs_P1kRM9-1y4bQ1pkywzwDhVT4yFbTVscLbg-cvgDo6S9rOziJWF1TeitlPC6N1mdc6pW5eKESdWJyle_15nkE0K5C4wjy1KRuFqLpnRCt8GbA9GpeJ1lh-Bmd8IKwXZ7FhKx-W9CK4XYcoH4aeyz2Kx3U7lOXDGKbuVPgyFB8BkerucKF3v8BHepAJf9bejXaZyqdnj1rS8AGKotVsylnuNYy3P70DhSIX367LBWlMcxiZj6O5hp3w");'>
+</div>
+<div>
+<p class="text-primary text-sm font-bold leading-tight tracking-wider">椅子办公</p>
+<p class="text-[9px] text-white/50 leading-tight mt-1">写实3D人体受限机动方案。</p>
+</div>
+</div>
+<div class="glass-card flex flex-col gap-4 rounded-xl p-3 aspect-[4/5] relative group active:scale-95 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-mono text-primary/40">SCENE_02</span>
+<span class="material-symbols-outlined text-primary text-xl">accessibility_new</span>
+</div>
+<div class="flex-1 realism-preview rounded-lg border border-white/5 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuj33woHlEJCfEYsaA1YBpulQSXbjiGW7a4SP2aPz5soseoXDUpcKLaZLT9JoCqJzwmfilaqlAzHaQ9QGCvLcaOZJAHpyAqL5XMLmPmY6OoRDyYCsM2FrAd6WX8x8C-KQraAOmN5VDRRhlBUHZq_awgir3vLHleaM-uyuVi2x3htEINbQOFn4VycbLNHZ3AYCSc6eYWd9T3c47TnWe1Z3XCRnSgHpEhZcvq9wq2sLm9AWdSZhSJc1oUGubhJQWACocOSlRS--aXjA");'>
+</div>
+<div>
+<p class="text-primary text-sm font-bold leading-tight tracking-wider">站立办公</p>
+<p class="text-[9px] text-white/50 leading-tight mt-1">全比例模型脊柱重置协议。</p>
+</div>
+</div>
+<div class="glass-card flex flex-col gap-4 rounded-xl p-3 aspect-[4/5] relative group active:scale-95 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-mono text-primary/40">SCENE_03</span>
+<span class="material-symbols-outlined text-primary text-xl">foundation</span>
+</div>
+<div class="flex-1 realism-preview rounded-lg border border-white/5 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKVPgCl4cP1bCoGWCtlRmJ_FdCfH4bcealzTQbLOlaC-y1iNLpzXLFAczIBKoroCLOtP90iaXm4u_xqG8kB3cVbxb3qd08RtxuNCcGQWqWMObOvRhuUF1IpjsOtj8UFCTWx4kaJ4EI37l4FU24qovrbA5lYnELchqVpe_ACB-wJGHassHr0c6CsRLv8BlUPKHr_oeUvXnmRSDWXVgMYIrcQqcjx76kt2btVbEHHvc0USmkHMIagbsM5FTl2TBoTxwdgFkkMvf_SiI");'>
+</div>
+<div>
+<p class="text-primary text-sm font-bold leading-tight tracking-wider">墙面拉伸</p>
+<p class="text-[9px] text-white/50 leading-tight mt-1">结构化生物力学对齐方案。</p>
+</div>
+</div>
+<div class="glass-card border-warning/40 flex flex-col gap-4 rounded-xl p-3 aspect-[4/5] relative group active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(242,255,0,0.05)]">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-mono text-warning/60">SCENE_04</span>
+<span class="material-symbols-outlined text-warning text-xl">visibility_off</span>
+</div>
+<div class="flex-1 realism-preview rounded-lg border border-warning/10 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDP1qdx3XLLMqgBC3Zm-8hrasWcDoecDGuKqBlvcbBRMPckRwtRCs6AnjlUb5ZIXoHqgJThZjyXa7GYxAt-WsQSzKd9qKqoFImYf3MTpJ-JKM91IHB1PBClQJj44TfAtAeWhPnvW-YaBEnWT4I9iY8yxoOQtGqEiq8MjFjdNpn5NW9_QrZPQ0IRBHJqVf87l3kM8SXREWw_PosGTJR8r0RTCgG6IA-WValnaJOKp7v10jIzFIhZWrQJUDiUnPJ6Pggl-n12q8z3Wjk");'>
+</div>
+<div class="absolute top-2 right-2 flex items-center gap-1 bg-warning px-1.5 py-0.5 rounded-sm">
+<span class="material-symbols-outlined text-[10px] text-black font-bold">visibility_off</span>
+<span class="text-[8px] text-black font-black">老板看不见</span>
+</div>
+<div>
+<p class="text-warning text-sm font-bold leading-tight tracking-wider">潜行续命</p>
+<p class="text-[9px] text-white/50 leading-tight mt-1">低视觉特征下的人体激活。</p>
+</div>
+</div>
+</div>
+<div class="mt-4 px-4">
+<div class="border border-primary/20 bg-primary/5 p-4 rounded-xl relative overflow-hidden backdrop-blur-sm">
+<div class="absolute top-0 left-0 h-full w-1 bg-primary shadow-[0_0_10px_#00ff40]"></div>
+<h3 class="text-primary tracking-tighter text-lg font-bold leading-tight italic flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+                [警告] 久坐等于慢性自杀.EXE
+            </h3>
+<p class="text-white text-xs font-mono leading-normal pt-2 opacity-80">
+                肉体朽坏程度: 88% - 再不动，你就真的要和键盘融为一体了。
+            </p>
+</div>
+</div>
+<div class="mt-auto px-4 pb-12 pt-8">
+<div class="flex items-center justify-between gap-6">
+<div class="flex flex-col gap-2 flex-1">
+<div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
+<div class="h-full bg-primary w-2/3 shadow-[0_0_15px_#00ff40]"></div>
+</div>
+<div class="flex justify-between px-1">
+<span class="text-[9px] font-mono text-primary/60 uppercase tracking-widest">久坐时限监控</span>
+<span class="text-[9px] font-mono text-primary font-bold">已达到_66.4%</span>
+</div>
+</div>
+<button class="bg-danger size-14 rounded-full flex items-center justify-center shadow-[0_0_25px_rgba(255,0,60,0.4)] border-2 border-white/20 active:scale-90 transition-transform flex-shrink-0">
+<span class="material-symbols-outlined text-white text-3xl">emergency_home</span>
+</button>
+</div>
+<div class="relative mt-8">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-primary/10"></div></div>
+<div class="relative flex justify-center">
+<span class="bg-background-dark px-4 text-[9px] font-mono text-primary/40 tracking-[0.4em] uppercase">
+                    // 战术指令待命中 //
+                </span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-4 left-4 pointer-events-none opacity-30">
+<div class="w-16 h-16 border-l-2 border-b-2 border-primary/40 rounded-bl-xl"></div>
+</div>
+<div class="fixed top-4 right-4 pointer-events-none opacity-30">
+<div class="w-16 h-16 border-r-2 border-t-2 border-primary/40 rounded-tr-xl"></div>
+</div>
+
+</body></html>

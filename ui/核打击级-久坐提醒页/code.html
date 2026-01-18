@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ff0033",
+            "background-light": "#f8f5f6",
+            "background-dark": "#0a0304",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom scanline and noise effects */
+    .scanlines {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+    .glitch-border {
+      border: 2px solid #ff0033;
+      box-shadow: 2px 0px 0px #00fffb, -2px 0px 0px #ff0033;
+    }
+    .text-glitch {
+      text-shadow: 2px 0 #ff0033, -2px 0 #00fffb;
+    }
+    .bg-grid {
+      background-image: radial-gradient(#ff0033 0.5px, transparent 0.5px);
+      background-size: 10px 10px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display selection:bg-primary selection:text-white overflow-hidden">
+<!-- Main Container -->
+<div class="relative flex h-screen w-full flex-col bg-background-dark group/design-root overflow-hidden border-4 border-primary/20">
+<!-- Scanline Overlay -->
+<div class="absolute inset-0 scanlines z-50 opacity-30"></div>
+<!-- Technical Background Noise -->
+<div class="absolute inset-0 z-0 opacity-10 flex flex-col justify-between p-2 pointer-events-none select-none uppercase text-[10px] leading-none text-primary overflow-hidden">
+<div class="flex justify-between whitespace-nowrap">
+<span>SYSTEM_FAIL_IMMINENT // SYSTEM_FAIL_IMMINENT // </span>
+<span>ERROR_CODE: 0x800421 // </span>
+</div>
+<div class="flex justify-between whitespace-nowrap opacity-50">
+<span>BIO_SIGNS_FADING // SEDENTARY_LOCKDOWN // </span>
+<span>LEVEL_3_STRIKE // </span>
+</div>
+<div class="flex justify-between whitespace-nowrap">
+<span>SPINE_CRITICAL_FAILURE // SPINE_CRITICAL_FAILURE // </span>
+</div>
+<div class="flex justify-between whitespace-nowrap opacity-50">
+<span>ESTIMATED_LIFE_REDUCED_BY_45MIN // </span>
+<span>REPAIR_REQUIRED // </span>
+</div>
+</div>
+<!-- Top Bar -->
+<div class="relative z-10 flex items-center bg-primary p-4 justify-between">
+<div class="text-white flex size-6 shrink-0 items-center">
+<span class="material-symbols-outlined !text-[24px]">warning</span>
+</div>
+<h2 class="text-white text-sm font-black leading-tight tracking-[0.2em] flex-1 text-center italic">SYSTEM_FAIL_IMMINENT</h2>
+<div class="flex w-6 items-center justify-end">
+<span class="material-symbols-outlined text-white !text-[20px]">barcode_scanner</span>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="relative z-10 flex-1 flex flex-col items-center justify-center p-6 space-y-8 bg-grid">
+<!-- Central Warning Hub -->
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/20 blur-xl rounded-full"></div>
+<div class="relative flex items-center justify-center w-40 h-40 border-8 border-primary rounded-none glitch-border">
+<span class="material-symbols-outlined !text-[100px] text-primary">power</span>
+</div>
+<div class="absolute -bottom-2 -right-4 bg-primary text-white text-[10px] font-bold px-2 py-1">
+          LVL_03_THREAT
+        </div>
+</div>
+<!-- Headline -->
+<div class="w-full text-center">
+<h1 class="text-white tracking-tighter text-[38px] font-black leading-[0.9] uppercase text-glitch">
+          核打击预警：<br/>检测到生物性放弃
+        </h1>
+</div>
+<!-- Stats Grid -->
+<div class="flex w-full gap-2">
+<div class="flex flex-1 flex-col gap-1 rounded-none border border-primary/40 p-4 bg-primary/10 backdrop-blur-sm">
+<p class="text-primary text-[10px] font-bold tracking-widest">LIFE_REDUCED</p>
+<p class="text-white text-2xl font-black leading-none">-45MIN</p>
+<p class="text-primary/80 text-[10px] font-bold">-15.4% TOTAL</p>
+</div>
+<div class="flex flex-1 flex-col gap-1 rounded-none border border-primary/40 p-4 bg-primary/10 backdrop-blur-sm">
+<p class="text-primary text-[10px] font-bold tracking-widest">BIO_SIGNS</p>
+<p class="text-white text-2xl font-black leading-none">FADING</p>
+<p class="text-primary/80 text-[10px] font-bold">CRITICAL_STATE</p>
+</div>
+</div>
+<!-- Toxic Copy Block -->
+<div class="relative w-full border-l-4 border-primary pl-4 py-2">
+<div class="absolute top-0 right-0 text-[10px] text-primary/50 font-mono">TRUTH_MODULE_v4.2</div>
+<p class="text-white text-lg font-medium leading-tight italic">
+          “你的脊椎正在哀鸣，而你却在为老板的游艇添砖加瓦。你想在轮椅上领退休金吗？”
+        </p>
+</div>
+</div>
+<!-- Action Section -->
+<div class="relative z-10 p-6 pt-0 pb-12 bg-background-dark">
+<button class="w-full bg-primary hover:bg-primary/90 text-white h-20 flex flex-col items-center justify-center gap-0 glitch-border transition-transform active:scale-95">
+<span class="text-xl font-black tracking-[0.2em]">EMERGENCY REPAIR</span>
+<span class="text-sm font-bold opacity-80 uppercase tracking-widest">立即续命 / START PROTOCOL</span>
+</button>
+<div class="mt-4 flex justify-between items-center text-[10px] text-primary/60 font-mono uppercase tracking-widest">
+<span>Manual override required</span>
+<span>Auth: 882-SYS-BIO</span>
+</div>
+</div>
+<!-- Bottom Decorative Image/Map -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-primary"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Small floating technical blocks -->
+<div class="fixed top-20 right-4 z-20 border border-primary/30 p-2 bg-background-dark/80 backdrop-blur-md hidden @[480px]:block">
+<div class="w-20 h-20 bg-center bg-no-repeat bg-cover opacity-60" data-alt="Cyberpunk glitchy diagnostic display" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvAiY2y-pmyG3-9vuY4fqLbDrJpy1FwyHIIoEvx5FFUigBHuZP9E1rCPyCbxn72DPx2KKdDMdrDLZTPGyc3cjIW_mYJ2GGmaZwYMi5RtKh8Ie1cNPCVG54q2SWRSHUbx1RnUjjnJI3pqv9M7oTTbOz4JJp7ewXId80LLWHFFEJgF0QIgnF80dsx5db2IwkZbA4z_Gsk7a4ZfZY0iFG3qSWdTjZ354A-Gw5S5qGGhKMpYyqkpaQ2hSVRimZKFzAnDGDKcCzOBD1csY");'></div>
+<div class="text-[8px] text-primary mt-1 font-mono">UNIT_01_HEALTH</div>
+</div>
+</body></html>

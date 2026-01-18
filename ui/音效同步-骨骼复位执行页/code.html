@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00eaff",
+                        "accent-lime": "#a3ff00",
+                        "accent-yellow": "#e6c319",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-text {
+            text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9;
+            letter-spacing: 0.1em;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+        }
+        .spine-container {
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30 overflow-hidden min-h-screen flex flex-col">
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 scanline z-50 opacity-20 pointer-events-none"></div>
+<!-- Top Navigation & Header -->
+<header class="relative z-10 flex items-center justify-between p-4 pt-6">
+<div class="flex items-center gap-3">
+<div class="size-10 flex items-center justify-center rounded-lg border border-primary/30 bg-primary/10">
+<span class="material-symbols-outlined text-primary text-[24px]">headphones</span>
+</div>
+<div>
+<h2 class="text-primary text-sm font-bold tracking-widest uppercase">音效同步: 骨骼复位 [ASMR]</h2>
+<div class="flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-accent-lime animate-pulse"></span>
+<p class="text-[10px] text-accent-lime font-mono tracking-tighter">SYNC_ACTIVE // SIGNAL_STRENGTH_MAX</p>
+</div>
+</div>
+</div>
+<button class="size-10 flex items-center justify-center rounded-lg border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-white text-[20px]">close</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center justify-center relative px-6">
+<!-- Corner Technical Labels -->
+<div class="absolute top-4 left-6 border-l-2 border-primary pl-2">
+<p class="text-[10px] text-primary/70 font-mono">AUDIO_FEEDBACK_LOCKED</p>
+<p class="text-[10px] text-primary font-mono font-bold">MODE: BONE_RESONANCE</p>
+</div>
+<div class="absolute top-4 right-6 text-right border-r-2 border-accent-lime pr-2">
+<p class="text-[10px] text-accent-lime/70 font-mono">HAPTIC_SYNC_ENABLED</p>
+<p class="text-[10px] text-accent-lime font-mono font-bold">LATENCY: 0.002ms</p>
+</div>
+<!-- Central Visualizer -->
+<div class="relative w-full aspect-square flex items-center justify-center spine-container">
+<!-- Background Grid/Interface -->
+<div class="absolute inset-0 border border-primary/10 rounded-full scale-110 opacity-20 border-dashed animate-[spin_20s_linear_infinite]"></div>
+<!-- 3D Spine Mockup -->
+<div class="relative z-10 w-64 h-80 bg-center bg-no-repeat bg-contain opacity-90 drop-shadow-[0_0_30px_rgba(0,234,255,0.3)]" data-alt="3D wireframe visualization of a human spine and neck vertebrae" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIhCzSUbdMnu9nGqpmCpBcCfvm6M1KdYCCeQNESLFFkadZTkhhZWeiVl91Y6SuZ4bW6RKB6qZ3H2Q2SagDPZUG2kJcY8AyIi0Gs4rBn0mYr1Yo9x6BZvJGknhE0PQvK75mCJbtvte75bQOwBXIR_u_Yr7Mn61gTKdPzix3GrLBmyskMPAJYVe1QXs7ZVoh1oUk65OI4GHP7JTETJFGREi1m4HwP7kmCGodgqPpDVJO9asxezCK62XTgsKyMBfiGavBNamaCen3XkY');">
+</div>
+<!-- Oscilloscope Overlay -->
+<div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+<svg class="w-full h-32 opacity-80" viewbox="0 0 400 200">
+<path class="opacity-50" d="M0 100 Q 50 20, 100 100 T 200 100 T 300 100 T 400 100" fill="none" stroke="#00eaff" stroke-width="2"></path>
+<path d="M0 100 L 50 100 L 60 70 L 80 130 L 100 40 L 120 160 L 140 100 L 400 100" fill="none" stroke="#00eaff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Glitch Popup -->
+<div class="absolute z-30 flex flex-col items-center">
+<h3 class="glitch-text text-6xl font-black italic text-white tracking-tighter filter drop-shadow-lg">CRACK</h3>
+<div class="bg-primary/20 backdrop-blur-md border border-primary px-3 py-1 rounded mt-2">
+<p class="text-[10px] font-bold text-primary tracking-[0.3em]">ALIGNMENT_SUCCESS</p>
+</div>
+</div>
+</div>
+<!-- Precise Timer -->
+<div class="mt-8 flex flex-col items-center">
+<div class="text-[48px] font-bold font-mono text-primary tracking-tight leading-none tabular-nums">
+                00:22.<span class="text-3xl opacity-70">45</span>
+</div>
+<p class="text-[10px] text-white/40 tracking-[0.5em] mt-2 font-mono uppercase">Session_Elapsed</p>
+</div>
+</main>
+<!-- Bottom Controls -->
+<footer class="p-6 space-y-8 bg-gradient-to-t from-background-dark via-background-dark to-transparent">
+<!-- Stats Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-[#1a1a1a] border border-white/5 rounded-lg p-4 flex flex-col gap-1">
+<p class="text-[10px] text-white/50 font-bold uppercase tracking-wider">Sound Intensity</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-white">74.2</span>
+<span class="text-xs text-primary font-mono italic">dB</span>
+</div>
+</div>
+<div class="bg-[#1a1a1a] border border-white/5 rounded-lg p-4 flex flex-col gap-1">
+<p class="text-[10px] text-white/50 font-bold uppercase tracking-wider">Sync Stability</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-white">99.8</span>
+<span class="text-xs text-accent-lime font-mono italic">%</span>
+</div>
+</div>
+</div>
+<!-- Industrial Yellow Slider -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="text-[11px] font-black text-accent-yellow tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">vibration</span>
+                    VIBRATION_INTENSITY
+                </label>
+<span class="text-accent-yellow font-mono font-bold text-sm">LVL_08</span>
+</div>
+<div class="relative h-10 flex items-center">
+<!-- Custom Slider Track -->
+<div class="absolute inset-0 bg-[#332d00] rounded overflow-hidden">
+<div class="h-full bg-accent-yellow/30 border-r-4 border-accent-yellow w-[80%] flex items-center justify-end pr-2">
+<div class="h-full w-4 flex gap-1 items-center">
+<div class="w-0.5 h-6 bg-accent-yellow opacity-50"></div>
+<div class="w-0.5 h-6 bg-accent-yellow opacity-50"></div>
+</div>
+</div>
+</div>
+<!-- Interactive Mask (for demo appearance) -->
+<div class="absolute inset-y-0 right-0 w-[20%] border-2 border-accent-yellow/20 border-l-0 rounded-r flex items-center justify-center">
+<div class="w-1 h-1 bg-accent-yellow rounded-full"></div>
+</div>
+<!-- Slider Knob -->
+<div class="absolute left-[80%] -translate-x-1/2 w-8 h-12 bg-accent-yellow rounded border-2 border-black flex items-center justify-center shadow-xl">
+<div class="flex flex-col gap-1">
+<div class="w-4 h-0.5 bg-black opacity-30"></div>
+<div class="w-4 h-0.5 bg-black opacity-30"></div>
+<div class="w-4 h-0.5 bg-black opacity-30"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between text-[9px] font-mono text-white/30 px-1 uppercase italic">
+<span>Min_Safe</span>
+<span>Danger_Zone</span>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="flex justify-between items-center pt-2 border-t border-white/5">
+<div class="flex gap-4">
+<span class="text-[9px] text-white/40 font-mono tracking-tighter">OS_VER: 2.4.0_REV</span>
+<span class="text-[9px] text-white/40 font-mono tracking-tighter">BIO_AUTH: OK</span>
+</div>
+<div class="size-2 rounded-full bg-primary glow-cyan"></div>
+</div>
+</footer>
+</body></html>

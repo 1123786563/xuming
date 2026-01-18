@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38ff14",
+                        "glitch-red": "#FF3914",
+                        "background-light": "#f6f8f5",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-text {
+            text-shadow: 2px 0 #FF3914, -2px 0 #38ff14;
+        }
+        .pixel-border {
+            box-shadow: 0 0 10px rgba(56, 255, 20, 0.3);
+        }
+        .mechanical-button {
+            border: 1px solid #38ff14;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+        .bg-dots {
+            background-image: radial-gradient(circle, #38ff14 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.05;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white selection:bg-primary selection:text-black min-h-screen overflow-x-hidden relative">
+<!-- Decorative Data Bits -->
+<div class="fixed inset-0 pointer-events-none bg-dots z-0"></div>
+<div class="absolute top-4 left-4 text-[10px] text-primary/40 font-mono tracking-widest z-10">
+        SYS_LOG: 0x4F2A<br/>
+        OS_VER_2.0.42<br/>
+        STATUS: STABLE
+    </div>
+<div class="absolute top-4 right-4 text-[10px] text-primary/40 font-mono tracking-widest text-right z-10">
+        ENCRYPTION: ACTIVE<br/>
+        LATENCY: 12ms<br/>
+        LOC: 39.9042° N
+    </div>
+<div class="relative z-10 flex flex-col min-h-screen max-w-[480px] mx-auto">
+<!-- Top Navigation Area -->
+<div class="flex items-center p-6 justify-between">
+<div class="text-primary flex size-8 items-center justify-center border border-primary/30 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] text-primary tracking-[0.2em] font-bold">USER_AUTH_PENDING</span>
+<div class="h-[2px] w-12 bg-primary mt-1 shadow-[0_0_8px_#38ff14]"></div>
+</div>
+<div class="size-8"></div>
+</div>
+<!-- Hero Section -->
+<div class="flex flex-col items-center pt-12 pb-16">
+<div class="relative">
+<h1 class="text-primary text-[56px] font-bold leading-none tracking-tighter glitch-text italic">
+                    XuMing
+                </h1>
+<div class="absolute -top-1 -left-1 text-glitch-red opacity-50 blur-[1px] select-none pointer-events-none text-[56px] font-bold italic">XuMing</div>
+</div>
+<div class="mt-4 flex flex-col items-center gap-1">
+<h2 class="text-primary text-sm font-bold tracking-[0.3em] uppercase">延缓报废，即刻续命</h2>
+<div class="flex gap-2">
+<span class="size-1 bg-primary"></span>
+<span class="size-1 bg-primary/40"></span>
+<span class="size-1 bg-primary/20"></span>
+</div>
+</div>
+</div>
+<!-- Login Form -->
+<div class="px-8 flex flex-col gap-6">
+<!-- Phone Input -->
+<div class="relative">
+<div class="flex flex-col">
+<p class="text-[10px] text-primary/60 font-bold uppercase tracking-widest mb-2 ml-1">Mobile_Entry</p>
+<div class="flex items-center border border-primary/50 bg-primary/5 rounded-lg focus-within:border-primary focus-within:ring-1 focus-within:ring-primary pixel-border transition-all">
+<span class="pl-4 pr-2 text-primary/80 font-mono text-sm">[ +86 ]</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-white placeholder:text-primary/30 py-4 font-mono tracking-wider" placeholder="ENTER_DIGITS" type="tel"/>
+</div>
+</div>
+</div>
+<!-- Verification Code Input -->
+<div class="relative">
+<div class="flex flex-col">
+<p class="text-[10px] text-primary/60 font-bold uppercase tracking-widest mb-2 ml-1">Validation_Protocol</p>
+<div class="flex items-center gap-2">
+<div class="flex-1 flex items-center border border-primary/50 bg-primary/5 rounded-lg focus-within:border-primary transition-all">
+<input class="w-full bg-transparent border-none focus:ring-0 text-white placeholder:text-primary/30 py-4 pl-4 font-mono tracking-widest" placeholder="6-DIGIT_CODE" type="text"/>
+</div>
+<button class="px-4 py-[15px] bg-primary/10 border border-primary text-primary text-[10px] font-bold tracking-tighter hover:bg-primary/20 transition-all rounded-lg whitespace-nowrap">
+                            GET_CODE
+                        </button>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="mt-4 w-full bg-primary text-black font-bold py-5 rounded-lg shadow-[0_0_20px_rgba(56,255,20,0.4)] hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="tracking-[0.2em]">INITIALIZE_LOGIN</span>
+<span class="material-symbols-outlined font-bold">bolt</span>
+</button>
+</div>
+<!-- Footer / Social -->
+<div class="mt-auto pb-12 px-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="h-[1px] flex-1 bg-primary/20"></div>
+<span class="text-[10px] text-primary/40 font-bold tracking-widest uppercase">其他方式注入生命值</span>
+<div class="h-[1px] flex-1 bg-primary/20"></div>
+</div>
+<div class="flex justify-center gap-8">
+<!-- WeChat -->
+<button class="group flex flex-col items-center gap-2">
+<div class="size-14 rounded-full border border-[#07C160]/50 bg-[#07C160]/5 flex items-center justify-center group-hover:shadow-[0_0_15px_#07C160] transition-all">
+<svg class="size-7 fill-[#07C160]" data-alt="WeChat logo icon green glow" viewbox="0 0 24 24">
+<path d="M8.22 3.012c-4.14 0-7.5 2.87-7.5 6.41 0 2.02 1.1 3.82 2.82 5.06l-.72 2.14 2.54-1.28c.9.23 1.86.36 2.86.36.42 0 .82-.03 1.22-.07-.22-.56-.35-1.16-.35-1.78 0-3.37 2.91-6.11 6.51-6.11.23 0 .46.01.68.03C15.35 5.252 12.11 3.012 8.22 3.012zm10.51 6.77c-3.41 0-6.17 2.4-6.17 5.37 0 1.69.9 3.2 2.32 4.24l-.59 1.79 2.09-1.07c.74.19 1.53.3 2.35.3 3.4 0 6.17-2.4 6.17-5.37s-2.77-5.26-6.17-5.26z"></path>
+</svg>
+</div>
+<span class="text-[9px] text-primary/40 font-bold tracking-widest">WE_CHAT</span>
+</button>
+<!-- QQ -->
+<button class="group flex flex-col items-center gap-2">
+<div class="size-14 rounded-full border-[#12B7F5]/50 border bg-[#12B7F5]/5 flex items-center justify-center group-hover:shadow-[0_0_15px_#12B7F5] transition-all">
+<svg class="size-7 fill-[#12B7F5]" data-alt="QQ messenger icon blue glow" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+</svg>
+</div>
+<span class="text-[9px] text-primary/40 font-bold tracking-widest">SYSTEM_QQ</span>
+</button>
+<!-- Alternative -->
+<button class="group flex flex-col items-center gap-2">
+<div class="size-14 rounded-full border-white/30 border bg-white/5 flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all">
+<span class="material-symbols-outlined text-white/80">fingerprint</span>
+</div>
+<span class="text-[9px] text-primary/40 font-bold tracking-widest">BIOMETRIC</span>
+</button>
+</div>
+</div>
+<!-- Corner Bits (Bottom) -->
+<div class="absolute bottom-4 left-4 size-2 bg-primary/20 blur-[1px]"></div>
+<div class="absolute bottom-10 left-10 size-1 bg-glitch-red/40"></div>
+<div class="absolute bottom-4 right-4 flex flex-col items-end gap-1 opacity-20">
+<div class="h-1 w-8 bg-primary"></div>
+<div class="h-1 w-4 bg-primary"></div>
+</div>
+</div>
+</body></html>

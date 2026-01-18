@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>限时特惠 - 续命 (Xumíng)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b700db",
+                        "glitch-red": "#ff003c",
+                        "cyber-bg": "#000000",
+                        "terminal-gray": "#1a1a1a",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-text {
+            text-shadow: 2px 0 #ff003c, -2px 0 #00fff9;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(183, 0, 219, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+        .hologram-glow {
+            box-shadow: 0 0 20px rgba(183, 0, 219, 0.4);
+        }
+        .border-glitch {
+            border-image: linear-gradient(45deg, #b700db, transparent, #ff003c) 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/40 selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden max-w-md mx-auto border-x border-primary/20">
+<!-- Top App Bar / Status -->
+<div class="flex items-center bg-background-dark p-4 pb-2 justify-between border-b border-primary/30 sticky top-0 z-50 backdrop-blur-md">
+<div class="text-white flex size-10 shrink-0 items-center justify-center hover:bg-primary/20 rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-primary text-[10px] font-bold tracking-[0.2em] leading-none mb-1">XUMING_STATION_V1.0</h2>
+<h2 class="text-white text-sm font-bold leading-tight tracking-widest">LIMITED_TIME_OFFER</h2>
+</div>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-primary/20 text-white transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Glitch Countdown Header -->
+<div class="flex flex-col gap-2 py-6 px-4 bg-background-dark relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full scanline opacity-30 pointer-events-none"></div>
+<div class="flex justify-between items-end mb-1">
+<span class="text-glitch-red text-[10px] font-bold tracking-tighter">DEAL_EXPIRY_SEQUENCE_ACTIVE</span>
+<span class="text-primary text-[10px] font-mono opacity-50">#FF003C_RECOVERY</span>
+</div>
+<div class="flex gap-2">
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-glitch-red/10 border border-glitch-red/40">
+<p class="text-glitch-red text-3xl font-bold tracking-[-0.05em] glitch-text">02</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-glitch-red/70 text-[10px] font-bold uppercase tracking-widest">Hours</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-glitch-red/10 border border-glitch-red/40">
+<p class="text-glitch-red text-3xl font-bold tracking-[-0.05em] glitch-text">59</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-glitch-red/70 text-[10px] font-bold uppercase tracking-widest">Minutes</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-16 grow items-center justify-center rounded-sm bg-glitch-red/10 border border-glitch-red/40">
+<p class="text-glitch-red text-3xl font-bold tracking-[-0.05em] glitch-text">58</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-glitch-red/70 text-[10px] font-bold uppercase tracking-widest">Seconds</p></div>
+</div>
+</div>
+</div>
+<!-- Central Visual: Hologram -->
+<div class="@container px-4 py-2">
+<div class="relative group">
+<!-- Technical Log Overlay (Top Left) -->
+<div class="absolute top-4 left-4 z-10 font-mono text-[8px] text-primary space-y-1 bg-black/40 p-1">
+<p>&gt; AUTHENTICATING...</p>
+<p>&gt; ASSET_LOADED: BODY_RECON</p>
+<p>&gt; FRAME_RATE: 120FPS</p>
+</div>
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden bg-terminal-gray border-t border-r-4 border-primary rounded-sm min-h-80 relative" data-alt="3D holographic wireframe of a human body highlighting muscle groups in glowing purple" style='background-image: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(183,0,219,0.1) 50%, transparent 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTJo8ysptNemryo8ZonCOgEdHdNueWFkrI3sZaoG2ZPn9EtM_UpLbzYgFQYLY1QOFpPdLKTU72AYnpWQAvmSCdmt5NFxfcTr8TwGsd_oZBEI24ZESHDsUfBkfHF8-WET34FtPdqgjiq5ky7An-ZxJWPYhcZYyDtcwd_aUwvNMfrRSPv5aSW6XR0cBEOkLqO1BbVq71RcBt2PJK_JyymqCaLwMOC5Gh1yScg784Tv8jPDtE644zYAUD5xGmgDzf2MVrdQEgxXMCXQ8");'>
+<div class="absolute inset-0 bg-primary/5 mix-blend-overlay"></div>
+<div class="flex flex-col p-4 relative z-10">
+<div class="inline-block bg-primary px-2 py-0.5 mb-2 w-fit">
+<p class="text-black text-[10px] font-black italic tracking-tighter">PREMIUM_MODULE</p>
+</div>
+<h1 class="text-white tracking-tight text-3xl font-bold leading-none mb-1">全身结构重组</h1>
+<p class="text-primary/80 text-xs font-mono uppercase">TOTAL_BODY_RECONSTRUCTION [V.1.0]</p>
+</div>
+</div>
+<!-- Technical Log Overlay (Bottom Right) -->
+<div class="absolute bottom-4 right-4 z-10 font-mono text-[8px] text-glitch-red text-right space-y-1 bg-black/40 p-1">
+<p>SYSTEM_STATUS: STABLE</p>
+<p>PRICE_INDEX: DECRYPTED</p>
+<p>OFFER_LIFETIME: CRITICAL</p>
+</div>
+</div>
+</div>
+<!-- Stats Section -->
+<div class="flex flex-wrap gap-3 p-4">
+<div class="flex min-w-[140px] flex-1 flex-col gap-1 rounded-sm p-4 bg-primary/5 border-l-2 border-primary">
+<p class="text-primary text-[10px] font-bold uppercase tracking-widest">System Status</p>
+<p class="text-white tracking-tighter text-lg font-bold">PRICE_DROPPED</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-glitch-red text-xs">trending_down</span>
+<p class="text-glitch-red text-sm font-bold">-33.4% OFF</p>
+</div>
+</div>
+<div class="flex min-w-[140px] flex-1 flex-col gap-1 rounded-sm p-4 bg-glitch-red/5 border-l-2 border-glitch-red">
+<p class="text-glitch-red text-[10px] font-bold uppercase tracking-widest">Network Load</p>
+<p class="text-white tracking-tighter text-lg font-bold">HIGH_DEMAND</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-xs">bolt</span>
+<p class="text-primary text-sm font-bold">CLAIMED: 88%</p>
+</div>
+</div>
+</div>
+<!-- Included Modules -->
+<div class="px-4">
+<h3 class="text-primary text-xs font-bold leading-tight tracking-[0.3em] pb-4 flex items-center gap-2">
+<span class="size-2 bg-primary"></span>
+                INCLUDED_MODULES
+            </h3>
+<div class="space-y-3 mb-6">
+<!-- Module 1 -->
+<div class="flex items-center justify-between p-3 bg-terminal-gray border border-white/10 hover:border-primary transition-all group cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="text-primary font-mono text-xs">01</span>
+<div>
+<p class="text-white text-sm font-bold">腰椎释压术</p>
+<p class="text-white/40 text-[10px] uppercase font-mono">Lower_Back_Relief</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Module 2 -->
+<div class="flex items-center justify-between p-3 bg-terminal-gray border border-white/10 hover:border-primary transition-all group cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="text-primary font-mono text-xs">02</span>
+<div>
+<p class="text-white text-sm font-bold">眼神经减压</p>
+<p class="text-white/40 text-[10px] uppercase font-mono">Eye_Nerve_Decomp</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Module 3 -->
+<div class="flex items-center justify-between p-3 bg-terminal-gray border border-white/10 hover:border-primary transition-all group cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="text-primary font-mono text-xs">03</span>
+<div>
+<p class="text-white text-sm font-bold">抗疲劳脉冲</p>
+<p class="text-white/40 text-[10px] uppercase font-mono">Anti-Fatigue_Pulse</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom CTA Section -->
+<div class="mt-auto p-4 border-t border-primary/20 bg-black/80 backdrop-blur-lg sticky bottom-0 z-50">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<p class="text-white/40 text-[10px] line-through decoration-glitch-red tracking-widest uppercase">Original: 1500 COINS</p>
+<div class="flex items-baseline gap-1">
+<p class="text-white text-2xl font-bold tracking-tighter glitch-text">999</p>
+<p class="text-primary text-xs font-bold uppercase">Coins</p>
+</div>
+</div>
+<div class="bg-glitch-red/20 px-2 py-1 border border-glitch-red">
+<p class="text-glitch-red text-[10px] font-bold">-33% FLASH SALE</p>
+</div>
+</div>
+<button class="w-full relative group h-14 bg-primary overflow-hidden hover:brightness-110 active:scale-[0.98] transition-all">
+<div class="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:250%_250%] group-hover:animate-pulse"></div>
+<div class="relative flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-white">download_for_offline</span>
+<span class="text-white font-bold tracking-[0.2em] text-sm uppercase">[ INSTALL_UPGRADE_NOW ]</span>
+</div>
+<!-- Button Accents -->
+<div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white"></div>
+<div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-white"></div>
+</button>
+<p class="text-center text-[8px] text-white/30 mt-3 font-mono tracking-widest">ENCRYPTION_KEY: X-77-ULTRA | NODE_04</p>
+</div>
+<div class="h-2 bg-primary/10"></div>
+</div>
+</body></html>

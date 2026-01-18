@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#53d22d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0a0c0a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .cyber-grid {
+            background-image: linear-gradient(to right, #1a2e15 1px, transparent 1px),
+                              linear-gradient(to bottom, #1a2e15 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(83, 210, 45, 0.7), 0 0 20px rgba(83, 210, 45, 0.4);
+        }
+        .glitch-border {
+            border: 1px solid rgba(83, 210, 45, 0.3);
+            box-shadow: inset 0 0 15px rgba(83, 210, 45, 0.1);
+        }
+        .scanner-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #53d22d, transparent);
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            opacity: 0.5;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+<!-- Main Container -->
+<div class="relative min-h-screen w-full flex flex-col overflow-hidden max-w-[430px] mx-auto bg-background-dark">
+<!-- Technical Overlay: Background Grid -->
+<div class="absolute inset-0 cyber-grid opacity-20 pointer-events-none"></div>
+<!-- Top App Bar Component -->
+<header class="relative z-10 flex items-center p-6 justify-between bg-transparent">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center border border-primary/30 rounded-full bg-primary/5" data-icon="terminal">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] text-primary tracking-[0.3em] font-bold opacity-70">SYSTEM_STATUS</span>
+<h2 class="text-white text-xs font-bold leading-tight tracking-[0.2em] uppercase">Module Activated</h2>
+</div>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full bg-primary/10 border border-primary/20 text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings_input_component">settings_input_component</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="relative flex-1 flex flex-col items-center px-6">
+<!-- Corner Technical Decoration -->
+<div class="absolute top-0 left-6 text-[9px] text-primary/40 font-mono tracking-tighter">
+                SEC_INIT_9921-X<br/>
+                BUFFER_STABLE_0x8F
+            </div>
+<div class="absolute top-0 right-6 text-[9px] text-primary/40 font-mono text-right tracking-tighter">
+                LINK: ESTABLISHED<br/>
+                CORE: v4.2.0
+            </div>
+<!-- Central 3D Visual Area (HeaderImage logic) -->
+<div class="relative w-full aspect-square mt-4 flex items-center justify-center">
+<!-- Neon Explosion Backdrop -->
+<div class="absolute w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute w-32 h-32 bg-primary/40 rounded-full blur-[40px]"></div>
+<!-- Central Asset Container -->
+<div class="relative z-10 w-full h-full flex items-center justify-center">
+<div class="w-72 h-72 rounded-full border border-primary/10 flex items-center justify-center p-4 relative">
+<!-- Floating Data Nodes -->
+<div class="absolute top-1/4 right-1/4 w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px_#53d22d]"></div>
+<div class="absolute bottom-1/3 left-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_#53d22d]"></div>
+<!-- Main 3D Model Placeholder -->
+<div class="w-full h-full bg-center bg-no-repeat bg-contain" data-alt="3D wireframe render of a human wrist with glowing cybernetic implants" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAU23FiGilNbPJyCxtM3233mcqn4O77hMAuO5oqLcYruIIzTjJErqtkbUE7XPUPmXbE_8BNyeZc7jr50w10d6qhKuMWoyWVYiFlhWfvEtTSR9hnpyop814Ojr_0UVnfJBpaBNG8NGlPwU4qhPVm89arI19mil5wvdIHxfyGzYNYQnvwTA42CgapOcayOr3LPAWSztAO5DHeYKAEu9BIO4W9mfsYgjEaYVBKA777aciJRsjtbKrYoBQE23i55sKEB--rIB33OPsmsF8");'>
+</div>
+<!-- Rotating Circular Data Ring -->
+<div class="absolute inset-0 border-2 border-dashed border-primary/20 rounded-full"></div>
+</div>
+</div>
+<!-- Scan Line Decoration -->
+<div class="scanner-line"></div>
+</div>
+<!-- Headline Text Component -->
+<div class="text-center mt-6 relative z-10 w-full">
+<p class="text-primary text-[10px] font-bold tracking-[0.4em] mb-1">NEW_ASSET_UNLOCKED</p>
+<h1 class="text-white text-3xl font-extrabold tracking-tight px-4 neon-glow italic">
+                    新模块已上线: <span class="text-primary">[手腕修复]</span>
+</h1>
+</div>
+<!-- Meta Text Component -->
+<div class="mt-4 w-full">
+<p class="text-primary/60 text-[10px] font-mono leading-normal text-center bg-primary/5 py-1 border-y border-primary/10 uppercase tracking-widest">
+                    KERNEL_UPDATE_SUCCESS_UID_8293-X // SYNCING_NEURAL_NODES
+                </p>
+</div>
+<!-- Description List Component (Terminal Log Style) -->
+<div class="w-full mt-6 space-y-px">
+<div class="flex items-center justify-between p-3 bg-primary/5 glitch-border rounded-t-lg">
+<div class="flex items-center gap-2">
+<span class="text-primary font-mono text-xs">&gt;</span>
+<p class="text-primary/60 text-xs font-bold uppercase tracking-wider">[PRECISION]</p>
+</div>
+<p class="text-white text-sm font-bold font-mono">99.98%</p>
+</div>
+<div class="flex items-center justify-between p-3 bg-primary/5 glitch-border">
+<div class="flex items-center gap-2">
+<span class="text-primary font-mono text-xs">&gt;</span>
+<p class="text-primary/60 text-xs font-bold uppercase tracking-wider">[BIO-SYNC]</p>
+</div>
+<p class="text-primary text-sm font-bold font-mono">STABLE</p>
+</div>
+<div class="flex items-center justify-between p-3 bg-primary/5 glitch-border rounded-b-lg">
+<div class="flex items-center gap-2">
+<span class="text-primary font-mono text-xs">&gt;</span>
+<p class="text-primary/60 text-xs font-bold uppercase tracking-wider">[TOXIC LEVEL]</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_#ef4444]"></span>
+<p class="text-red-500 text-sm font-bold font-mono">EXTREME</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Footer Action -->
+<footer class="p-8 relative z-20">
+<button class="w-full bg-primary text-background-dark py-5 rounded-full font-extrabold text-lg flex items-center justify-center gap-3 shadow-[0_0_25px_rgba(83,210,45,0.4)] hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined font-bold" data-icon="bolt">bolt</span>
+                立即开始首次修复
+            </button>
+<p class="text-center text-primary/40 text-[9px] mt-4 font-mono uppercase tracking-[0.2em]">
+                Secure Protocol: High_Priority_Execution
+            </p>
+</footer>
+<!-- Decorative Bottom Scanning Elements -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+<div class="absolute bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-[60px]"></div>
+</div>
+</body></html>

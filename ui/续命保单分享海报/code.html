@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>续命保单分享海报</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38ff14",
+                        "glitch-red": "#ff2a2a",
+                        "background-light": "#f5f5f5",
+                        "background-dark": "#0a0a0a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-border {
+            box-shadow: 1px 1px 0px #ff2a2a, -1px -1px 0px #38ff14;
+        }
+        .scan-line {
+            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+        .confidential-stamp {
+            transform: rotate(-15deg);
+            border: 4px solid #ff2a2a;
+            color: #ff2a2a;
+            mix-blend-mode: hard-light;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white selection:bg-primary selection:text-black overflow-x-hidden">
+<div class="relative min-h-screen w-full flex flex-col max-w-[430px] mx-auto border-x border-primary/20 bg-background-dark scan-line">
+<!-- Header Section -->
+<div class="p-6 pt-10 relative overflow-hidden">
+<div class="flex items-center justify-between mb-2">
+<span class="text-primary text-[10px] tracking-[0.3em] font-bold">SYS_PROTOCOL_XUMING_V1.0</span>
+<span class="material-symbols-outlined text-primary text-xl">terminal</span>
+</div>
+<div class="relative">
+<h1 class="text-[64px] font-bold leading-none tracking-tighter uppercase break-words">
+                    续命<br/>保单
+                </h1>
+<div class="absolute top-4 right-0 confidential-stamp px-4 py-1 text-2xl font-bold tracking-widest opacity-80 pointer-events-none">
+                    CONFIDENTIAL
+                </div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="h-[1px] flex-1 bg-primary/30"></div>
+<span class="text-[10px] text-primary/60 uppercase">Survival Insurance Policy</span>
+<div class="h-[1px] flex-1 bg-primary/30"></div>
+</div>
+</div>
+<!-- Biometric Visualization Section -->
+<div class="px-6 flex flex-col items-center">
+<div class="relative w-full aspect-[4/5] bg-black/40 border border-primary/10 rounded flex items-center justify-center overflow-hidden">
+<!-- Mock 3D Skeletal Scan -->
+<div class="absolute inset-0 opacity-40 mix-blend-screen" data-alt="3D wireframe skeletal scan highlighting spine in neon green" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSY0ucWLhlf4Y3_PA6vV6loDQ15sgjrIl_ERVGI4OJve0Xs3CsRpGsZA3u37LFX6aD0VOryQXTrxqAb6YJThPaihMgDeLuTphlhMPLnS0wfj0Gr7c9mSeqVPfxSSwMeH7MLOBpuKpYZMQlB0YObS8wD0pVjpj-NmZSO6YnuRRHmIUcamOhaCj4ClcFu_OG9ENqBFqIs7aUDYQCF9PyW9wpq2ajH-Qz3ozEeNVs_RR3Rb8Xbki0uvEN0Rc2kiBMLzJpmlcEzj9l3dg'); background-size: contain; background-repeat: no-repeat; background-position: center;">
+</div>
+<!-- Overlay Diagnostics -->
+<div class="absolute inset-0 p-4 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start">
+<div class="text-[8px] text-primary leading-tight font-mono">
+                            SPINE_ALIGNMENT: CRITICAL<br/>
+                            LUMBAR_STRESS: 88%<br/>
+                            CERVICAL_STATUS: DEGRADED
+                        </div>
+<div class="text-[8px] text-glitch-red leading-tight font-mono text-right">
+                            WAR_ID: 99283-X<br/>
+                            LOC: GRID_SECTOR_7
+                        </div>
+</div>
+<!-- Progress Bar Component -->
+<div class="w-full bg-black/60 backdrop-blur-sm p-4 border-t border-primary/20">
+<div class="flex justify-between mb-2">
+<span class="text-xs font-bold tracking-widest text-primary">REPAIR LEVEL</span>
+<span class="text-xs font-bold text-primary">85%</span>
+</div>
+<div class="h-1.5 w-full bg-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_10px_#38ff14]" style="width: 85%;"></div>
+</div>
+<div class="mt-2 flex justify-between">
+<span class="text-[8px] text-primary/50 font-mono italic">SYS_DIAGNOSTIC_COMPLETE</span>
+<span class="text-[8px] text-primary/50 font-mono">EST_TIME: 00:04:12</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="p-6 grid grid-cols-3 gap-3">
+<div class="bg-primary/5 border border-primary/20 p-3 flex flex-col gap-1">
+<span class="text-[8px] text-primary/60 uppercase">Sitting Time</span>
+<span class="text-xl font-bold">12h</span>
+<span class="text-[8px] text-glitch-red font-bold">+12% RISK</span>
+</div>
+<div class="bg-primary/10 border border-primary p-3 flex flex-col gap-1 glitch-border">
+<span class="text-[8px] text-primary/60 uppercase">Life Extended</span>
+<span class="text-xl font-bold text-primary">+15m</span>
+<span class="text-[8px] text-primary font-bold">RECOVERED</span>
+</div>
+<div class="bg-primary/5 border border-primary/20 p-3 flex flex-col gap-1">
+<span class="text-[8px] text-primary/60 uppercase">Status</span>
+<span class="text-[10px] font-bold leading-tight mt-1">TEMP_FUNC</span>
+<span class="text-[8px] text-primary/40 font-bold">STABLE_V3</span>
+</div>
+</div>
+<!-- Toxic Quote Card -->
+<div class="px-6 pb-6">
+<div class="relative bg-primary text-black p-5">
+<div class="absolute -top-2 -right-2 bg-glitch-red text-white text-[8px] font-bold px-2 py-0.5 uppercase tracking-tighter">
+                    Warning: Truth
+                </div>
+<p class="text-sm font-bold leading-relaxed">
+                    “恭喜，你又成功躲过了一次脊椎结构的崩塌。现在，回去当你的数字工蜂吧。”
+                </p>
+<div class="mt-4 flex items-center justify-between opacity-70">
+<span class="text-[8px] font-mono">ID: X-9012_SYSTEM_MESSAGE</span>
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</div>
+</div>
+</div>
+<!-- Terminal Footer -->
+<div class="mt-auto p-6 bg-primary/5 border-t border-primary/20">
+<div class="flex justify-between items-end">
+<div class="flex flex-col gap-1 font-mono">
+<div class="flex items-center gap-2">
+<span class="bg-primary text-black text-[8px] px-1 font-bold">EXP_DATE</span>
+<span class="text-[10px] text-primary">2024.12.31</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-primary/20 text-primary text-[8px] px-1 font-bold">SYS_SEC</span>
+<span class="text-[10px] text-primary/60">ENCRYPTED_AUTH</span>
+</div>
+<div class="text-[8px] text-primary/30 mt-2">
+                        HASH: 0x8823FB...991A<br/>
+                        NODE: TOKYO_SERVER_04
+                    </div>
+</div>
+<!-- QR Code Placeholder -->
+<div class="relative group">
+<div class="absolute -inset-1 border border-primary/40 animate-pulse"></div>
+<div class="w-20 h-20 bg-primary/10 border border-primary flex items-center justify-center p-1">
+<div class="w-full h-full bg-primary/20 flex flex-wrap gap-0.5 p-1 overflow-hidden" data-alt="Stylized neon green QR code with technical border" style="background-image: radial-gradient(#38ff14 1px, transparent 0); background-size: 4px 4px;">
+</div>
+</div>
+<div class="absolute -bottom-4 right-0 text-[8px] text-primary font-mono tracking-widest">
+                        SCAN_TO_REPAIR
+                    </div>
+</div>
+</div>
+<div class="mt-8 flex justify-center opacity-20">
+<div class="w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+</div>
+</div>
+</div>
+</body></html>
