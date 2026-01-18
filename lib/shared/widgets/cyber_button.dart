@@ -16,6 +16,8 @@ class CyberButton extends StatefulWidget {
     this.height = 56,
     this.isLoading = false,
     this.isOutlined = false,
+    this.icon,
+    this.textColor,
   });
 
   /// 按钮文字
@@ -38,6 +40,12 @@ class CyberButton extends StatefulWidget {
   
   /// 是否为边框样式
   final bool isOutlined;
+  
+  /// 图标
+  final IconData? icon;
+
+  /// 文字颜色
+  final Color? textColor;
 
   @override
   State<CyberButton> createState() => _CyberButtonState();
@@ -91,11 +99,24 @@ class _CyberButtonState extends State<CyberButton> {
                     color: widget.isOutlined ? widget.color : AppColors.void_,
                   ),
                 )
-              : Text(
-                  widget.text.toUpperCase(),
-                  style: AppTypography.monoButton.copyWith(
-                    color: widget.isOutlined ? widget.color : AppColors.void_,
-                  ),
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (widget.icon != null) ...[
+                      Icon(
+                        widget.icon,
+                         size: 20,
+                        color: widget.textColor ?? (widget.isOutlined ? widget.color : AppColors.void_),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+                    Text(
+                      widget.text.toUpperCase(),
+                      style: AppTypography.monoButton.copyWith(
+                        color: widget.textColor ?? (widget.isOutlined ? widget.color : AppColors.void_),
+                      ),
+                    ),
+                  ],
                 ),
         ),
       ),

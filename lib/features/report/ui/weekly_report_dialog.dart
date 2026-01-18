@@ -305,7 +305,13 @@ class WeeklyReportDialog extends StatelessWidget {
                 text: '分享日志',
                 isOutlined: true,
                 onPressed: () {
-                  // TODO: 实现分享逻辑
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('分享功能开发中... SYSTEM_LOG_EXPORT_PENDING'),
+                      backgroundColor: AppColors.void_,
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
                 },
               ),
             ),

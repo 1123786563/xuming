@@ -15,6 +15,20 @@ import '../../features/exercise/ui/exercise_execution_page.dart';
 import '../../features/exercise/ui/bone_reset_page.dart';
 import '../../features/exercise/ui/pressure_report_page.dart';
 import '../../features/exercise/ui/boss_mode_page.dart';
+import '../../features/exercise/ui/spinal_spiral_alignment_page.dart';
+import '../../features/exercise/ui/neck_first_aid_page.dart'; // Add import
+import '../../features/exercise/ui/neck_stretch_page.dart'; // Add import
+import '../../features/exercise/ui/neck_stretch_page.dart'; // Add import
+import '../../features/exercise/ui/visual_neural_reset_page.dart';
+import '../../features/reward/ui/coin_injection_page.dart';
+import '../../features/mission/ui/mission_center_page.dart';
+import '../../features/stealth/ui/stealth_survival_page.dart';
+import '../../features/stealth/ui/stealth_survival_page.dart';
+import '../../features/profile/ui/medal_wall_page.dart';
+import '../../features/reward/ui/hp_recovery_success_page.dart';
+
+import '../../features/statistics/ui/statistics_page.dart';
+import '../../features/widget/ui/widgets_page.dart'; // Add import
 
 /// 路由路径常量
 class AppRoutes {
@@ -24,6 +38,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String diagnostic = '/diagnostic';
   static const String dashboard = '/dashboard';
+  static const String statistics = '/statistics'; // Add route constant
   static const String claimFailed = '/claim-failed';
 
   static const String recoveryRecommendation = '/recovery-recommendation';
@@ -35,6 +50,17 @@ class AppRoutes {
   static const String boneReset = '/bone-reset';
   static const String pressureReport = '/pressure-report';
   static const String bossMode = '/boss-mode';
+  static const String spinalAlignment = '/spinal-alignment';
+  static const String neckFirstAid = '/neck-first-aid'; // Add route constant
+  static const String neckStretch = '/neck-stretch'; // Add route constant
+  static const String neckStretch = '/neck-stretch'; // Add route constant
+  static const String visualNeuralReset = '/visual-neural-reset';
+  static const String coinInjection = '/coin-injection';
+  static const String missionCenter = '/mission-center';
+  static const String stealthSurvival = '/stealth-survival';
+  static const String medalWall = '/medal-wall';
+  static const String hpRecoverySuccess = '/hp-recovery-success';
+  static const String widgets = '/widgets';
 }
 
 /// GoRouter Provider
@@ -65,6 +91,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.dashboard,
         builder: (context, state) => const DashboardPage(),
+      ),
+
+      // 统计页 (生命监控中心)
+      GoRoute(
+        path: AppRoutes.statistics,
+        builder: (context, state) => const StatisticsPage(),
       ),
 
       // 索赔失败页
@@ -117,7 +149,70 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const BossModePage(),
       ),
 
-      // TODO: 添加更多路由
+      // 脊柱螺旋对齐指引页
+      GoRoute(
+        path: AppRoutes.spinalAlignment,
+        builder: (context, state) => const SpinalSpiralAlignmentPage(),
+      ),
+
+      // 金币注入特效页
+      GoRoute(
+        path: AppRoutes.coinInjection,
+        builder: (context, state) => const CoinInjectionPage(),
+      ),
+
+      // 视觉神经重置 (Variant 1)
+      GoRoute(
+        path: AppRoutes.visualNeuralReset,
+        builder: (context, state) => const VisualNeuralResetPage(),
+      ),
+
+      // 颈椎急救指引 (男)
+      GoRoute(
+        path: AppRoutes.neckFirstAid,
+        builder: (context, state) => const NeckFirstAidPage(),
+      ),
+
+      // 颈椎急救 (女) - 侧向颈部拉伸
+      GoRoute(
+        path: AppRoutes.neckStretch,
+        builder: (context, state) => const NeckStretchPage(),
+      ),
+
+      // Mission Center
+      GoRoute(
+        path: AppRoutes.missionCenter,
+        builder: (context, state) => const MissionCenterPage(),
+      ),
+
+      // 潜行模式 - 桌下动作指引
+      GoRoute(
+        path: AppRoutes.stealthSurvival,
+        builder: (context, state) => const StealthSurvivalPage(),
+      ),
+
+      // 勋章墙 - 生存成就
+      GoRoute(
+        path: AppRoutes.medalWall,
+        builder: (context, state) => const MedalWallPage(),
+      ),
+
+      // 生命值回复成功页
+      GoRoute(
+        path: AppRoutes.hpRecoverySuccess,
+        builder: (context, state) => const HpRecoverySuccessPage(),
+      ),
+
+      // Widgets Preview
+      GoRoute(
+        path: AppRoutes.widgets,
+        builder: (context, state) => const WidgetsPage(),
+      ),
+      GoRoute(
+        path: '/exercise/wrist_restructure',
+        name: 'wristRestructure',
+        builder: (context, state) => const WristRestructurePage(),
+      ),
     ],
   );
 });

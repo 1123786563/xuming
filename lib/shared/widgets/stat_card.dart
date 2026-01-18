@@ -8,6 +8,7 @@ class StatCard extends StatelessWidget {
   final String value;
   final String? subValue;
   final bool fullWidth;
+  final Color? color;
 
   const StatCard({
     super.key,
@@ -15,6 +16,7 @@ class StatCard extends StatelessWidget {
     required this.value,
     this.subValue,
     this.fullWidth = false,
+    this.color,
   });
 
   @override
@@ -23,7 +25,7 @@ class StatCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.void_,
-        border: Border.all(color: const Color(0xFF3E5639), width: 1),
+        border: Border.all(color: (color ?? AppColors.lifeSignal).withOpacity(0.3), width: 1),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Stack(
@@ -35,7 +37,7 @@ class StatCard extends StatelessWidget {
             bottom: 0,
             child: Container(
               width: 4,
-              color: AppColors.lifeSignal.withOpacity(0.5),
+              color: (color ?? AppColors.lifeSignal).withOpacity(0.5),
             ),
           ),
           Padding(
@@ -46,7 +48,7 @@ class StatCard extends StatelessWidget {
                 Text(
                   label.toUpperCase(),
                   style: AppTypography.monoLabel.copyWith(
-                    color: const Color(0xFFA0BC9A),
+                    color: (color ?? AppColors.lifeSignal).withOpacity(0.7),
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
@@ -60,7 +62,7 @@ class StatCard extends StatelessWidget {
                       value,
                       style: AppTypography.pixelData.copyWith(
                         fontSize: 24,
-                        color: AppColors.lifeSignal,
+                        color: color ?? AppColors.lifeSignal,
                       ),
                     ),
                     if (subValue != null) ...[
@@ -68,7 +70,7 @@ class StatCard extends StatelessWidget {
                       Text(
                         subValue!,
                         style: AppTypography.monoLabel.copyWith(
-                          color: const Color(0xFFA0BC9A),
+                          color: (color ?? AppColors.lifeSignal).withOpacity(0.7),
                           fontSize: 12,
                         ),
                       ),

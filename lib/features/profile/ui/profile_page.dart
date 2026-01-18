@@ -371,6 +371,21 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         
         const SizedBox(height: 8),
+
+        // 勋章墙
+        ProfileMenuItem(
+          icon: Icons.military_tech,
+          title: '生存成就',
+          subtitle: 'MEDALS',
+          description: 'LEVEL: SENIOR TECH',
+          statusTag: 'NEW',
+          statusTagColor: AppColors.nuclearWarning,
+          onTap: () {
+            context.push('/medal-wall');
+          },
+        ),
+        
+        const SizedBox(height: 8),
         
         // 数据导出
         ProfileMenuItem(

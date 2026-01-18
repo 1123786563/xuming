@@ -35,6 +35,22 @@ class AppColors {
   /// 用于：索赔失败页面的警告图标、统计卡片
   static const Color warningOrange = Color(0xFFFF8C00);
 
+  /// Industrial Yellow - 工业黄
+  /// 用于：脊柱螺旋对齐指引页面 (variant_3)
+  static const Color industrialYellow = Color(0xFFFFBF00);
+
+  /// Visual Reset Green - 视觉神经重置绿
+  /// 用于：视觉神经重置指引页面 (variant_1)
+  static const Color visualResetGreen = Color(0xFF38FF14);
+
+  /// Primary - Neon Green / 主色
+  /// Matches design 'primary': #38ff14
+  static const Color primary = visualResetGreen;
+  
+  /// Alert - Cyberpunk Red / 警报红
+  /// Matches design 'alert': #FF004E
+  static const Color alert = Color(0xFFFF004E);
+
   // ============================================
   // 辅助色彩
   // ============================================

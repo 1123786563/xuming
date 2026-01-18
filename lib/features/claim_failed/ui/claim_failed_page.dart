@@ -124,13 +124,21 @@ class ClaimFailedPage extends ConsumerWidget {
                         // CTA 按钮
                         _buildCTAButton(),
                         
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 120), // Extra space for bottom nav
                       ],
                     ),
                   ),
                 ),
               ],
             ),
+          ),
+          
+          // 底部导航栏
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: _buildBottomNavBar(),
           ),
         ],
       ),
@@ -167,50 +175,92 @@ class ClaimFailedPage extends ConsumerWidget {
     );
   }
 
+
   Widget _buildVisualZone() {
     return SizedBox(
-      height: 240,
+      height: 320, // Increased height to match design
       width: double.infinity,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // 核心骨骼/视觉背景
+          // 核心背景光晕
           Container(
-            width: 200,
-            height: 200,
+            width: 280,
+            height: 280,
             decoration: BoxDecoration(
               color: AppColors.nuclearWarning.withOpacity(0.05),
               shape: BoxShape.circle,
+              boxShadow: [
+                 BoxShadow(
+                  color: AppColors.nuclearWarning.withOpacity(0.1),
+                  blurRadius: 40,
+                  spreadRadius: 10,
+                ),
+              ],
             ),
           ),
           
-          // 这里可以使用图片或者 CustomPaint 画一些抽象线条
-          // 暂时用占位符文字和装饰线模拟
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'fractured_biometric_spine_3d',
-                style: AppTypography.monoDecorative.copyWith(
-                  color: AppColors.nuclearWarning.withOpacity(0.5),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Container(
-                width: 100,
-                height: 2,
-                decoration: const BoxDecoration(
-                  color: AppColors.warningOrange,
-                  boxShadow: [BoxShadow(color: AppColors.warningOrange, blurRadius: 10)],
-                ),
-              ),
-              const SizedBox(height: 40),
-              Container(
-                width: 150,
-                height: 1,
-                color: AppColors.nuclearWarning.withOpacity(0.5),
-              ),
-            ],
+          // 模拟脊柱视觉 (使用 CustomPaint 或更复杂的组合)
+          // 这里使用多个 Container 和 Transform 模拟破碎的脊柱段
+          ...List.generate(6, (index) {
+             final isGlitch = index == 2 || index == 4;
+             final offset = isGlitch ? const Offset(5, 0) : Offset.zero;
+             final color = isGlitch ? AppColors.nuclearWarning : AppColors.nuclearWarning.withOpacity(0.5);
+             
+             return Positioned(
+               top: 60.0 + (index * 35),
+               child: Transform.translate(
+                 offset: offset,
+                 child: Container(
+                   width: 60 - (index * 5.0),
+                   height: 20,
+                   decoration: BoxDecoration(
+                     color: Colors.transparent,
+                     border: Border.all(
+                       color: color,
+                       width: 2,
+                     ),
+                     borderRadius: BorderRadius.circular(4),
+                     boxShadow: isGlitch ? [
+                       BoxShadow(color: AppColors.nuclearWarning.withOpacity(0.5), blurRadius: 8)
+                     ] : [],
+                   ),
+                   child: Center(
+                     child: Container(
+                       width: 4, 
+                       height: 12, 
+                       color: color.withOpacity(0.8)
+                     ),
+                   ),
+                 ),
+               ),
+             );
+          }),
+
+          // Glitch accents (横向扫描线)
+          Positioned(
+             top: 100,
+             left: 80,
+             child: Container(
+               width: 50,
+               height: 2,
+               decoration: BoxDecoration(
+                 color: AppColors.warningOrange,
+                 boxShadow: [BoxShadow(color: AppColors.warningOrange, blurRadius: 5)],
+               ),
+             ),
+          ),
+          Positioned(
+             bottom: 120,
+             right: 90,
+             child: Container(
+               width: 80,
+               height: 1,
+               decoration: BoxDecoration(
+                 color: AppColors.nuclearWarning,
+                 boxShadow: [BoxShadow(color: AppColors.nuclearWarning, blurRadius: 5)],
+               ),
+             ),
           ),
           
           // 漂浮标签
@@ -218,7 +268,7 @@ class ClaimFailedPage extends ConsumerWidget {
             top: 20,
             right: 40,
             child: Transform.rotate(
-              angle: 0.1,
+              angle: 0.05,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 color: AppColors.nuclearWarning,
@@ -238,7 +288,7 @@ class ClaimFailedPage extends ConsumerWidget {
             bottom: 40,
             left: 20,
             child: Transform.rotate(
-              angle: -0.05,
+              angle: -0.03,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
@@ -248,7 +298,7 @@ class ClaimFailedPage extends ConsumerWidget {
                   'STRUCTURAL_INTEGRITY_0%',
                   style: AppTypography.monoDecorative.copyWith(
                     color: AppColors.warningOrange,
-                    fontSize: 8,
+                    fontSize: 10, // Slightly larger
                   ),
                 ),
               ),
@@ -269,6 +319,7 @@ class ClaimFailedPage extends ConsumerWidget {
             subLabel: '-100% LOSS',
             icon: Icons.trending_down,
             color: AppColors.nuclearWarning,
+            glitchEffect: true,
           ),
         ),
         const SizedBox(width: 12),
@@ -277,8 +328,9 @@ class ClaimFailedPage extends ConsumerWidget {
             label: 'VITAL_SIGNS',
             value: 'FAILING',
             subLabel: 'CRITICAL',
-            icon: Icons.emergency_share,
+            icon: Icons.emergency_share, // emergency icon
             color: AppColors.warningOrange,
+            glitchEffect: true,
           ),
         ),
       ],
@@ -309,6 +361,7 @@ class ClaimFailedPage extends ConsumerWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
+                height: 1.2,
               ),
               children: [
                 const TextSpan(text: '"Your spine has surrendered before your career did. '),
@@ -357,19 +410,23 @@ class ClaimFailedPage extends ConsumerWidget {
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                     // 交互逻辑 TODO: 重置惩罚或导航
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.power_settings_new, color: Colors.white),
                       const SizedBox(width: 12),
                       Text(
-                        'RE-ACTIVATE SURVIVAL GEAR',
+                        'Re-activate Survival Gear', // Mixed Case as in design
                         style: AppTypography.monoButton.copyWith(
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.w900,
+                          letterSpacing: 1.0,
+                          color: Colors.white,
                         ),
-                      ),
+                      ).toUpperCase(), // Force Upper if needed, but design has mixed case in button but UPPER in CSS. Let's stick to UPPER for technical feel.
                     ],
                   ),
                 ),
@@ -388,6 +445,54 @@ class ClaimFailedPage extends ConsumerWidget {
       ],
     );
   }
+
+  Widget _buildBottomNavBar() {
+    return Container(
+      height: 80, // slightly taller to accommodate floating action button illusion
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      decoration: BoxDecoration(
+        color: AppColors.void_.withOpacity(0.9),
+        border: Border(
+          top: BorderSide(color: AppColors.nuclearWarning.withOpacity(0.2)),
+        ),
+        backgroundBlendMode: BlendMode.srcOver,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+           // Icons are purely visual as per design
+           _buildNavIcon(Icons.grid_view, false),
+           _buildNavIcon(Icons.analytics_outlined, true), // Active-ish
+           
+           // Central FAB illusion
+           Container(
+             width: 48,
+             height: 48,
+             decoration: BoxDecoration(
+               color: AppColors.nuclearWarning,
+               shape: BoxShape.circle,
+               border: Border.all(color: AppColors.void_, width: 4),
+               boxShadow: [
+                 BoxShadow(color: AppColors.nuclearWarning.withOpacity(0.4), blurRadius: 10, offset: const Offset(0, 4))
+               ],
+             ),
+             child: const Icon(Icons.bolt, color: Colors.white),
+           ),
+
+           _buildNavIcon(Icons.notifications_none, false),
+           _buildNavIcon(Icons.person_outline, false),
+        ],
+      ),
+    );
+  }
+  
+  Widget _buildNavIcon(IconData icon, bool isActive) {
+     return Icon(
+       icon,
+       color: isActive ? AppColors.nuclearWarning : AppColors.nuclearWarning.withOpacity(0.4),
+       size: 28,
+     );
+  }
 }
 
 /// 页面专用的惩罚统计卡片
@@ -398,6 +503,7 @@ class _PunishmentStatCard extends StatelessWidget {
     required this.subLabel,
     required this.icon,
     required this.color,
+    this.glitchEffect = false,
   });
 
   final String label;
@@ -405,6 +511,7 @@ class _PunishmentStatCard extends StatelessWidget {
   final String subLabel;
   final IconData icon;
   final Color color;
+  final bool glitchEffect;
 
   @override
   Widget build(BuildContext context) {
@@ -414,42 +521,51 @@ class _PunishmentStatCard extends StatelessWidget {
         color: color.withOpacity(0.1),
         border: Border.all(color: color.withOpacity(0.4)),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(height: 1, width: double.infinity, color: color.withOpacity(0.2)),
-          const SizedBox(height: 8),
-          Text(
-            label,
-            style: AppTypography.monoDecorative.copyWith(
-              color: color.withOpacity(0.7),
-              fontWeight: FontWeight.bold,
-              fontSize: 10,
-              letterSpacing: 1.5,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            value,
-            style: AppTypography.pixelData.copyWith(
-              fontSize: 24,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Row(
+      child: Stack(
+         children: [
+           if (glitchEffect)
+             Positioned(
+               top: 0, left: 0, right: 0, height: 2,
+               child: Container(color: color.withOpacity(0.3)),
+             ),
+           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, color: color, size: 14),
-              const SizedBox(width: 4),
+              const SizedBox(height: 8),
               Text(
-                subLabel,
-                style: AppTypography.monoLabel.copyWith(color: color, fontSize: 10),
+                label,
+                style: AppTypography.monoDecorative.copyWith(
+                  color: color.withOpacity(0.7),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                value,
+                style: AppTypography.pixelData.copyWith(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(icon, color: color, size: 14),
+                  const SizedBox(width: 4),
+                  Text(
+                    subLabel,
+                    style: AppTypography.monoLabel.copyWith(color: color, fontSize: 10),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+         ],
       ),
     );
   }
 }
+

@@ -71,18 +71,18 @@ class SedentaryReminderPage extends StatelessWidget {
                           children: [
                             Expanded(
                               child: StatCard(
-                                title: "LIFE_REDUCED",
+                                label: "LIFE_REDUCED",
                                 value: "-45MIN",
-                                subtitle: "-15.4% TOTAL",
+                                subValue: "-15.4% TOTAL",
                                 color: AppColors.nuclearWarning,
                               ),
                             ),
                             const SizedBox(width: 8),
                             Expanded(
                               child: StatCard(
-                                title: "BIO_SIGNS",
+                                label: "BIO_SIGNS",
                                 value: "FADING",
-                                subtitle: "CRITICAL_STATE",
+                                subValue: "CRITICAL_STATE",
                                 color: AppColors.nuclearWarning,
                               ),
                             ),

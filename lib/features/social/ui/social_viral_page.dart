@@ -13,9 +13,25 @@ class SocialViralPage extends StatefulWidget {
   State<SocialViralPage> createState() => _SocialViralPageState();
 }
 
-class _SocialViralPageState extends State<SocialViralPage> {
+class _SocialViralPageState extends State<SocialViralPage> with TickerProviderStateMixin {
   int _selectedTargetIndex = 1; // Sarah Chen by default
   int _selectedWarheadIndex = 2; // Level 3: Reality Check by default
+  late AnimationController _pulseController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +41,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
         children: [
           // Main Content
           CustomScrollView(
+            physics: const BouncingScrollPhysics(),
             slivers: [
               // Custom AppBar
               SliverToBoxAdapter(
@@ -44,12 +61,13 @@ class _SocialViralPageState extends State<SocialViralPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, top: 24, bottom: 8),
                   child: Text(
-                    'COLLEAGUE_HP_STATUS',
+                    'Colleague_HP_Status',
                     style: AppTypography.monoLabel.copyWith(
                       color: AppColors.lifeSignal.withOpacity(0.7),
                       letterSpacing: 4,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'ZpixFont',
                     ),
                   ),
                 ),
@@ -57,7 +75,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
 
               // Colleague List
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     _buildColleagueItem(
@@ -70,7 +88,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                       dist: '12m',
                       statusColor: AppColors.nuclearWarning,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     _buildColleagueItem(
                       index: 1,
                       name: 'Sarah Chen (Product)',
@@ -81,7 +99,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                       dist: 'TARGET_LOCKED',
                       statusColor: AppColors.cautionYellow,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     _buildColleagueItem(
                       index: 2,
                       name: '张强 (Backend)',
@@ -102,12 +120,13 @@ class _SocialViralPageState extends State<SocialViralPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, top: 32, bottom: 8),
                   child: Text(
-                    '\$ELECT_WARHEAD_TYPE',
+                    'Select_Warhead_Type',
                     style: AppTypography.monoLabel.copyWith(
                       color: AppColors.lifeSignal.withOpacity(0.7),
                       letterSpacing: 4,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'ZpixFont',
                     ),
                   ),
                 ),
@@ -142,7 +161,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                       color: AppColors.lifeSignal,
                       isFatal: true,
                     ),
-                    const SizedBox(height: 120), // Bottom padding for sticky footer
+                    const SizedBox(height: 160), // Bottom padding for sticky footer
                   ]),
                 ),
               ),
@@ -150,7 +169,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
           ),
 
           // CRT Overlay
-          const ScanlineOverlay(opacity: 0.05),
+          const ScanlineOverlay(opacity: 0.15),
 
           // Bottom Bar
           Positioned(
@@ -173,68 +192,83 @@ class _SocialViralPageState extends State<SocialViralPage> {
           bottom: BorderSide(color: AppColors.lifeSignal.withOpacity(0.2)),
         ),
       ),
-      child: Row(
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          const SizedBox(width: 16),
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: AppColors.lifeSignal),
-            onPressed: () => context.pop(),
-            style: IconButton.styleFrom(
-              backgroundColor: AppColors.lifeSignal.withOpacity(0.1),
+          Positioned(
+            left: 16,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back, color: AppColors.lifeSignal),
+              onPressed: () => context.pop(),
+              style: IconButton.styleFrom(
+                backgroundColor: AppColors.lifeSignal.withOpacity(0.1),
+              ),
             ),
           ),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  '投放生物能量弹',
-                  style: GoogleFonts.jetbrainsMono(
-                    textStyle: AppTypography.pixelHeadline.copyWith(
-                      fontSize: 18,
-                      color: AppColors.lifeSignal,
-                      shadows: [
-                        const Shadow(
-                          blurRadius: 10,
-                          color: AppColors.lifeSignalGlow,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 6,
-                      height: 6,
-                      decoration: const BoxDecoration(
-                        color: AppColors.lifeSignal,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'SYSTEM_READY // ENERGIZE_COWORKER',
-                      style: AppTypography.monoDecorative.copyWith(
-                        color: AppColors.lifeSignal.withOpacity(0.7),
-                        fontSize: 8,
-                      ),
-                    ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '投放生物能量弹',
+                style: AppTypography.pixelHeadline.copyWith(
+                  fontSize: 18,
+                  color: AppColors.lifeSignal,
+                  shadows: [
+                    const Shadow(
+                      blurRadius: 10,
+                      color: AppColors.lifeSignalGlow,
+                    )
                   ],
                 ),
-              ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AnimatedBuilder(
+                    animation: _pulseController,
+                    builder: (context, child) {
+                      return Container(
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: AppColors.lifeSignal.withOpacity(_pulseController.value * 0.7 + 0.3),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.lifeSignal.withOpacity(_pulseController.value * 0.5),
+                              blurRadius: 4,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'SYSTEM_READY // ENERGIZE_COWORKER',
+                    style: AppTypography.monoDecorative.copyWith(
+                      color: AppColors.lifeSignal.withOpacity(0.7),
+                      fontSize: 8,
+                      fontFamily: 'ZpixFont',
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Positioned(
+            right: 16,
+            child: IconButton(
+              icon: const Icon(Icons.settings_accessibility, color: AppColors.lifeSignal, size: 20),
+              onPressed: () {},
+              style: IconButton.styleFrom(
+                backgroundColor: AppColors.lifeSignal.withOpacity(0.1),
+                side: BorderSide(color: AppColors.lifeSignal.withOpacity(0.2)),
+              ),
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.settings_accessibility, color: AppColors.lifeSignal, size: 20),
-            onPressed: () {},
-            style: IconButton.styleFrom(
-              backgroundColor: AppColors.lifeSignal.withOpacity(0.1),
-              side: BorderSide(color: AppColors.lifeSignal.withOpacity(0.2)),
-            ),
-          ),
-          const SizedBox(width: 16),
         ],
       ),
     );
@@ -263,7 +297,8 @@ class _SocialViralPageState extends State<SocialViralPage> {
             children: [
               Text(
                 'TARGET_LOCKED: SCANNING_OFFICE_NETWORK',
-                style: GoogleFonts.jetbrainsMono(
+                style: TextStyle(
+                  fontFamily: 'ZpixFont',
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   color: AppColors.lifeSignal,
@@ -304,8 +339,9 @@ class _SocialViralPageState extends State<SocialViralPage> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          margin: const EdgeInsets.symmetric(vertical: 4),
           decoration: BoxDecoration(
-            color: isSelected ? AppColors.lifeSignal.withOpacity(0.2) : AppColors.lifeSignal.withOpacity(0.05),
+            color: isSelected ? AppColors.lifeSignal.withOpacity(0.15) : AppColors.lifeSignal.withOpacity(0.05),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: isSelected ? AppColors.lifeSignal : AppColors.lifeSignal.withOpacity(0.1),
@@ -314,7 +350,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
             boxShadow: isSelected ? [
               BoxShadow(
                 color: AppColors.lifeSignal.withOpacity(0.2),
-                blurRadius: 10,
+                blurRadius: 15,
               )
             ] : null,
           ),
@@ -348,6 +384,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                           fontSize: 8,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'ZpixFont',
                         ),
                       ),
                     ),
@@ -373,6 +410,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                         color: statusColor,
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
+                        letterSpacing: -0.5,
                       ),
                     ),
                   ],
@@ -424,6 +462,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                     style: AppTypography.monoDecorative.copyWith(
                       color: isSelected ? AppColors.lifeSignal : AppColors.lifeSignal.withOpacity(0.4),
                       fontSize: 9,
+                      fontFamily: 'ZpixFont',
                     ),
                   ),
                 ],
@@ -451,12 +490,18 @@ class _SocialViralPageState extends State<SocialViralPage> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(isSelected ? 16 : 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.lifeSignal.withOpacity(0.2) : Colors.white.withOpacity(0.05),
+          color: isSelected ? AppColors.lifeSignal.withOpacity(0.15) : Colors.white.withOpacity(0.05),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected ? AppColors.lifeSignal : Colors.white.withOpacity(0.1),
             width: isSelected ? 2 : 1,
           ),
+          boxShadow: isSelected ? [
+            BoxShadow(
+              color: AppColors.lifeSignal.withOpacity(0.1),
+              blurRadius: 20,
+            )
+          ] : null,
         ),
         child: Row(
           children: [
@@ -504,6 +549,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                               color: Colors.black,
                               fontSize: 8,
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'ZpixFont',
                             ),
                           ),
                         ),
@@ -516,6 +562,7 @@ class _SocialViralPageState extends State<SocialViralPage> {
                     style: TextStyle(
                       color: isSelected ? AppColors.lifeSignal.withOpacity(0.7) : Colors.white54,
                       fontSize: 12,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                 ],
@@ -544,14 +591,36 @@ class _SocialViralPageState extends State<SocialViralPage> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CyberButton(
+          ElevatedButton(
             onPressed: () {
               // TODO: Trigger deployment animation/logic
             },
-            width: double.infinity,
-            height: 64,
-            text: 'DEPLOY_BOMB',
-            color: AppColors.lifeSignal,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.lifeSignal,
+              foregroundColor: Colors.black,
+              minimumSize: const Size(double.infinity, 64),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32),
+              ),
+              elevation: 20,
+              shadowColor: AppColors.lifeSignal.withOpacity(0.5),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.rocket_launch, weight: 900),
+                const SizedBox(width: 8),
+                Text(
+                  'DEPLOY_BOMB',
+                  style: TextStyle(
+                    fontFamily: 'ZpixFont',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 2,
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -581,15 +650,23 @@ class _MarqueeTextState extends State<_MarqueeText> with SingleTickerProviderSta
 
   void _startAnimation() async {
     while (mounted) {
-      await Future.delayed(const Duration(seconds: 1));
-      if (!mounted) return;
-      await _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(seconds: 20),
-        curve: Curves.linear,
-      );
-      if (!mounted) return;
-      _scrollController.jumpTo(0);
+      if (!_scrollController.hasClients) {
+        await Future.delayed(const Duration(milliseconds: 100));
+        continue;
+      }
+      
+      final maxExtent = _scrollController.position.maxScrollExtent;
+      if (maxExtent > 0) {
+        await _scrollController.animateTo(
+          maxExtent,
+          duration: const Duration(seconds: 15),
+          curve: Curves.linear,
+        );
+        if (!mounted) return;
+        _scrollController.jumpTo(0);
+      } else {
+        await Future.delayed(const Duration(milliseconds: 500));
+      }
     }
   }
 
@@ -604,6 +681,7 @@ class _MarqueeTextState extends State<_MarqueeText> with SingleTickerProviderSta
     final textStyle = AppTypography.monoDecorative.copyWith(
       color: AppColors.lifeSignal.withOpacity(0.5),
       fontSize: 10,
+      fontFamily: 'ZpixFont',
     );
 
     return ListView(
@@ -611,17 +689,21 @@ class _MarqueeTextState extends State<_MarqueeText> with SingleTickerProviderSta
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        Text('CALCULATING_POSTURE_DEVIATION...', style: textStyle),
-        const SizedBox(width: 40),
-        Text('BYPASSING_OFFICE_FIREWALL...', style: textStyle),
-        const SizedBox(width: 40),
-        Text('TARGETing_HUMAN_RESOURCES_WIFI...', style: textStyle),
-        const SizedBox(width: 40),
-        Text('SENDING_OXYGEN_REMINDER...', style: textStyle),
-        const SizedBox(width: 40),
-        Text('CALCULATING_POSTURE_DEVIATION...', style: textStyle),
-        const SizedBox(width: 1000), // Ensure it can scroll a lot
+        _buildMarqueeItem('CALCULATING_POSTURE_DEVIATION...', textStyle),
+        _buildMarqueeItem('BYPASSING_OFFICE_FIREWALL...', textStyle),
+        _buildMarqueeItem('TARGETing_HUMAN_RESOURCES_WIFI...', textStyle),
+        _buildMarqueeItem('SENDING_OXYGEN_REMINDER...', textStyle),
+        _buildMarqueeItem('CALCULATING_POSTURE_DEVIATION...', textStyle),
+        _buildMarqueeItem('SCANNING_BIOMETRIC_DATA...', textStyle),
+        _buildMarqueeItem('OPTIMIZING_NEURAL_INTERFACE...', textStyle),
       ],
+    );
+  }
+
+  Widget _buildMarqueeItem(String text, TextStyle style) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 40),
+      child: Text(text, style: style),
     );
   }
 }
