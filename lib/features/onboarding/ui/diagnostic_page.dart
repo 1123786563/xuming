@@ -5,6 +5,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/router/app_router.dart';
 import '../../../shared/widgets/cyber_button.dart';
+import '../../../shared/widgets/survival_assessment_dialog.dart';
 
 /// 身体系统初始化诊断页
 /// 
@@ -28,8 +29,31 @@ class _DiagnosticPageState extends State<DiagnosticPage> {
   ];
 
   void _startDiagnosis() {
-    // TODO: 保存诊断数据并生成评估报告
-    context.go(AppRoutes.dashboard);
+    // 显示评估报告弹窗
+    SurvivalAssessmentDialog.show(
+      context,
+      healthScore: 24, // 模拟低评分
+      metrics: const [
+        HealthMetric(
+          icon: Icons.timer,
+          title: '累计久坐时长',
+          subtitle: 'SEDENTARY_LIMIT_EXCEEDED',
+          value: '8.5h',
+        ),
+        HealthMetric(
+          icon: Icons.warning,
+          title: '脊椎由于高压形变',
+          subtitle: 'STRUCTURAL_DISTORTION',
+          value: 'CRITICAL',
+        ),
+      ],
+      warningMessage: '警告：目标生物体征极其微弱，脊髓纤维化程度达 42%，系统即将进入强制报废流程。',
+      actionButtonText: '立即续命',
+      onActionPressed: () {
+        Navigator.of(context).pop();
+        context.go(AppRoutes.dashboard);
+      },
+    );
   }
 
   @override

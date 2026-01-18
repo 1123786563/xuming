@@ -30,6 +30,10 @@ class AppColors {
   /// Caution Yellow - Warning Yellow / 工业黄
   /// 用于：生存评估弹窗、中度压力提醒
   static const Color cautionYellow = Color(0xFFF2FF00);
+  
+  /// Warning Orange - Amber / 警告橙
+  /// 用于：索赔失败页面的警告图标、统计卡片
+  static const Color warningOrange = Color(0xFFFF8C00);
 
   // ============================================
   // 辅助色彩

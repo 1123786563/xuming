@@ -5,6 +5,8 @@ import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/energy_bar.dart';
 import '../../../shared/widgets/cyber_button.dart';
 import '../../../shared/widgets/glitch_text.dart';
+import '../../../shared/widgets/survival_assessment_dialog.dart';
+import '../../report/ui/weekly_report_dialog.dart';
 
 /// 生存仪表盘主页
 /// 
@@ -266,7 +268,7 @@ class _DashboardPageState extends State<DashboardPage> {
           child: CyberButton(
             text: '紧急抢修',
             onPressed: () {
-              // TODO: 跳转到动作选择页
+              context.push(AppRoutes.recoveryRecommendation);
             },
             color: AppColors.nuclearWarning,
             height: 48,
@@ -278,6 +280,18 @@ class _DashboardPageState extends State<DashboardPage> {
             text: '潜行模式',
             onPressed: () {
               // TODO: 开启潜行协议
+            },
+            isOutlined: true,
+            height: 48,
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: CyberButton(
+            text: '查看周报',
+            onPressed: () {
+               // 显示上周生存周报弹窗
+               WeeklyReportDialog.show(context);
             },
             isOutlined: true,
             height: 48,
@@ -341,7 +355,23 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget _buildNavItem(IconData icon, String label, bool isActive) {
     return GestureDetector(
       onTap: () {
-        // TODO: 导航
+        switch (label) {
+          case '仪表盘':
+            context.go(AppRoutes.dashboard);
+            break;
+          case '修复':
+            context.push(AppRoutes.recoveryRecommendation);
+            break;
+          case '档案':
+            context.push(AppRoutes.profile);
+            break;
+          case '成就':
+            // TODO: 跳转成就页
+            break;
+          case '商店':
+            // TODO: 跳转商店页
+            break;
+        }
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,

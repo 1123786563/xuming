@@ -80,4 +80,13 @@ class AppTypography {
     fontWeight: FontWeight.w500,
     color: AppColors.textSecondary,
   );
+
+  /// 提示性展示文字 - 18pt Italic
+  static TextStyle get displaySubscribed => GoogleFonts.jetBrainsMono(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.italic,
+    height: 1.3,
+    color: AppColors.textPrimary,
+  );
 }
