@@ -81,12 +81,11 @@ class DashboardBottomNav extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             label.toUpperCase(),
-            style: TextStyle(
+            style: AppTypography.monoDecorative.copyWith(
               color: color,
               fontSize: 10,
               letterSpacing: 1.5,
               fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
-              fontFamily: 'Space Grotesk',
             ),
           ),
           const SizedBox(height: 4),

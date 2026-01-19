@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 
 class DashboardVisualizer extends StatelessWidget {
   final double hp;
@@ -105,11 +106,9 @@ class DashboardVisualizer extends StatelessWidget {
             children: [
               Text(
                 'SYS_STATUS',
-                style: TextStyle(
+                style: AppTypography.monoDecorative.copyWith(
                   color: AppColors.primary.withOpacity(0.6),
-                  fontSize: 10,
                   letterSpacing: 2.0,
-                  fontFamily: 'Space Grotesk',
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -132,13 +131,11 @@ class DashboardVisualizer extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Text(
+                  Text(
                     'ONLINE',
-                    style: TextStyle(
+                    style: AppTypography.monoBody.copyWith(
                       color: Colors.white,
-                      fontSize: 14,
                       letterSpacing: 1.5,
-                      fontFamily: 'Space Grotesk',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -157,25 +154,20 @@ class DashboardVisualizer extends StatelessWidget {
             children: [
               Text(
                 'SESSION UPTIME',
-                style: TextStyle(
+                style: AppTypography.monoDecorative.copyWith(
                   color: AppColors.primary.withOpacity(0.6),
-                  fontSize: 10,
                   letterSpacing: 2.0,
-                  fontFamily: 'Space Grotesk',
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
+              Text(
                 '04:22:15',
-                style: TextStyle(
+                style: AppTypography.pixelHeadline.copyWith(
                   color: Colors.white,
                   fontSize: 20,
-                  letterSpacing: 2.0,
-                  fontFamily: 'Space Grotesk',
-                  fontWeight: FontWeight.bold,
                   shadows: [
-                    BoxShadow(
+                    const BoxShadow(
                       color: Colors.black54,
                       offset: Offset(0, 2),
                       blurRadius: 4,
@@ -211,17 +203,15 @@ class DashboardVisualizer extends StatelessWidget {
                       ),
                   ],
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.medical_services_outlined, color: Colors.white, size: 20),
-                     SizedBox(width: 12),
+                    const Icon(Icons.medical_services_outlined, color: Colors.white, size: 20),
+                     const SizedBox(width: 12),
                      Text(
                       '紧急抢修',
-                      style: TextStyle(
+                      style: AppTypography.monoButton.copyWith(
                         color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
                       ),
                     ),
@@ -253,17 +243,17 @@ class _Corner extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         border: Border(
-          top: isTop ? BorderSide(color: color, width: thickness) : BorderSide.none,
-          bottom: !isTop ? BorderSide(color: color, width: thickness) : BorderSide.none,
-          left: isLeft ? BorderSide(color: color, width: thickness) : BorderSide.none,
-          right: !isLeft ? BorderSide(color: color, width: thickness) : BorderSide.none,
+          top: isTop ? const BorderSide(color: color, width: thickness) : BorderSide.none,
+          bottom: !isTop ? const BorderSide(color: color, width: thickness) : BorderSide.none,
+          left: isLeft ? const BorderSide(color: color, width: thickness) : BorderSide.none,
+          right: !isLeft ? const BorderSide(color: color, width: thickness) : BorderSide.none,
         ),
       ),
     );
   }
 }
 
-class _HeatMapIndicator extends StatelessWidget {
+class _HeatMapIndicator extends StatefulWidget {
   final double size;
   final Color color;
   final bool isLarge;
@@ -271,49 +261,86 @@ class _HeatMapIndicator extends StatelessWidget {
   const _HeatMapIndicator({required this.size, required this.color, this.isLarge = false});
 
   @override
+  State<_HeatMapIndicator> createState() => _HeatMapIndicatorState();
+}
+
+class _HeatMapIndicatorState extends State<_HeatMapIndicator> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(begin: 0.8, end: 1.2).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
        return SizedBox(
-        width: size,
-        height: size,
+        width: widget.size,
+        height: widget.size,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            // Blob
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: color.withOpacity(isLarge ? 0.2 : 0.3),
-                boxShadow: [
-                  BoxShadow(color: color.withOpacity(0.5), blurRadius: size/2, spreadRadius: size/4),
-                ],
-              ),
+            // Animated Blob
+            AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child) {
+                return Container(
+                  width: widget.size * _animation.value,
+                  height: widget.size * _animation.value,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: widget.color.withOpacity((widget.isLarge ? 0.2 : 0.3) / _animation.value),
+                    boxShadow: [
+                      BoxShadow(
+                        color: widget.color.withOpacity(0.5),
+                        blurRadius: widget.size / 2,
+                        spreadRadius: widget.size / 4,
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
             // Core
             Container(
               width: 8,
               height: 8,
               decoration: BoxDecoration(
-                color: color,
+                color: widget.color,
                 shape: BoxShape.circle,
                 boxShadow: [
-                  BoxShadow(color: color, blurRadius: 10, spreadRadius: 2),
+                  BoxShadow(color: widget.color, blurRadius: 10, spreadRadius: 2),
                 ],
               ),
             ),
             // Decorative Ring (only for large)
-            if (isLarge)
+            if (widget.isLarge)
               Container(
-                width: size * 0.5,
-                height: size * 0.5,
+                width: widget.size * 0.5,
+                height: widget.size * 0.5,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: color.withOpacity(0.3)),
+                  border: Border.all(color: widget.color.withOpacity(0.3)),
                 ),
               ),
              // Crosshair (only for small)
-             if (!isLarge) ...[
-                Container(width: size * 0.6, height: 1, color: color.withOpacity(0.4)),
-                Container(width: 1, height: size * 0.6, color: color.withOpacity(0.4)),
+             if (!widget.isLarge) ...[
+                Container(width: widget.size * 0.6, height: 1, color: widget.color.withOpacity(0.4)),
+                Container(width: 1, height: widget.size * 0.6, color: widget.color.withOpacity(0.4)),
              ] 
           ],
         ),

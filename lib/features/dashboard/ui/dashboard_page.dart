@@ -8,7 +8,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/widgets/grid_background.dart';
-import '../../../shared/widgets/pixel_corner_container.dart'; // Keep if used or remove if unused, but adding GridBackground below
 import 'widgets/dashboard_bottom_nav.dart';
 import 'widgets/dashboard_visualizer.dart';
 import 'widgets/segmented_health_bar.dart';
@@ -49,17 +48,14 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
           label,
           style: AppTypography.monoDecorative.copyWith(
             color: color.withOpacity(0.7),
-            fontSize: 10,
             letterSpacing: 1.5,
           ),
         ),
         Text(
           value,
-          style: AppTypography.monoDecorative.copyWith(
+          style: AppTypography.pixelBody.copyWith(
             color: color,
-            fontSize: 16,
             fontWeight: FontWeight.bold,
-            letterSpacing: 1.5,
             shadows: [
               BoxShadow(
                 color: color.withOpacity(0.5),
@@ -122,12 +118,9 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                           Expanded(
                             child: Text(
                               _getBioStatusText(currentHP), // Dynamic Status
-                              style: TextStyle(
+                              style: AppTypography.pixelData.copyWith(
                                 color: _getHPColor(currentHP), // Dynamic Color
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 2.0,
-                                fontFamily: 'Space Grotesk',
                                 shadows: [
                                   BoxShadow(
                                     color: _getHPColor(currentHP).withOpacity(0.8),
