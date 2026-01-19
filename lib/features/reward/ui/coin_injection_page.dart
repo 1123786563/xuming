@@ -1,20 +1,16 @@
-import 'dart:math' as math;
-import 'package:flutter/material.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../shared/widgets/digital_rain_background.dart';
-import '../../../shared/widgets/hexagon_coin.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/router/app_router.dart';
+import '../../../shared/providers/user_state_provider.dart';
 
-class CoinInjectionPage extends StatefulWidget {
+class CoinInjectionPage extends ConsumerStatefulWidget {
   const CoinInjectionPage({super.key});
 
   @override
-  State<CoinInjectionPage> createState() => _CoinInjectionPageState();
+  ConsumerState<CoinInjectionPage> createState() => _CoinInjectionPageState();
 }
 
-class _CoinInjectionPageState extends State<CoinInjectionPage>
+class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
     with TickerProviderStateMixin {
   // 动画控制器
   late final AnimationController _pulseController;
@@ -268,7 +264,7 @@ class _CoinInjectionPageState extends State<CoinInjectionPage>
                 textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    '1,340',
+                    '${ref.watch(userStateProvider).coins}',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 32,

@@ -1,18 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../core/router/app_router.dart';
+import '../../../shared/providers/user_state_provider.dart';
 
-class HpRecoverySuccessPage extends StatefulWidget {
+class HpRecoverySuccessPage extends ConsumerStatefulWidget {
   const HpRecoverySuccessPage({super.key});
 
   @override
-  State<HpRecoverySuccessPage> createState() => _HpRecoverySuccessPageState();
+  ConsumerState<HpRecoverySuccessPage> createState() => _HpRecoverySuccessPageState();
 }
 
-class _HpRecoverySuccessPageState extends State<HpRecoverySuccessPage> with SingleTickerProviderStateMixin {
+class _HpRecoverySuccessPageState extends ConsumerState<HpRecoverySuccessPage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _pulseAnimation;
@@ -175,7 +176,7 @@ class _HpRecoverySuccessPageState extends State<HpRecoverySuccessPage> with Sing
           ),
           const SizedBox(height: 8),
           Text(
-            'Current HP: 100%',
+            'Current HP: ${ref.watch(userStateProvider).hp.toInt()}%',
             style: AppTypography.monoLabel.copyWith(
               color: AppColors.lifeSignal.withOpacity(0.8),
               letterSpacing: 4,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -6,18 +6,19 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/router/app_router.dart';
 import '../../../shared/widgets/cyber_button.dart';
 import '../../../shared/widgets/survival_assessment_dialog.dart';
+import '../../../shared/providers/user_state_provider.dart';
 
 /// 身体系统初始化诊断页
 /// 
 /// 收集用户久坐时长和身体状态数据
-class DiagnosticPage extends StatefulWidget {
+class DiagnosticPage extends ConsumerStatefulWidget {
   const DiagnosticPage({super.key});
 
   @override
-  State<DiagnosticPage> createState() => _DiagnosticPageState();
+  ConsumerState<DiagnosticPage> createState() => _DiagnosticPageState();
 }
 
-class _DiagnosticPageState extends State<DiagnosticPage> {
+class _DiagnosticPageState extends ConsumerState<DiagnosticPage> {
   double _sittingHours = 8;
   double _painLevel = 3;
   int _selectedPosture = 0;
@@ -29,25 +30,38 @@ class _DiagnosticPageState extends State<DiagnosticPage> {
   ];
 
   void _startDiagnosis() {
+    // 1. 计算初始 HP (公式: 100 - 久坐*3 - 疼痛*10)
+    final calculatedHp = (100 - (_sittingHours * 3) - (_painLevel * 10)).clamp(5.0, 100.0);
+    
+    // 2. 更新全局状态
+    ref.read(userStateProvider.notifier).setInitialHp(
+      hp: calculatedHp,
+      sittingHours: _sittingHours,
+      painLevel: _painLevel,
+      selectedPosture: _selectedPosture,
+    );
+
     // 显示评估报告弹窗
     SurvivalAssessmentDialog.show(
       context,
-      healthScore: 24, // 模拟低评分
-      metrics: const [
+      healthScore: calculatedHp.toInt(),
+      metrics: [
         HealthMetric(
           icon: Icons.timer,
           title: '累计久坐时长',
           subtitle: 'SEDENTARY_LIMIT_EXCEEDED',
-          value: '8.5h',
+          value: '${_sittingHours.toInt()}h',
         ),
         HealthMetric(
           icon: Icons.warning,
           title: '脊椎由于高压形变',
           subtitle: 'STRUCTURAL_DISTORTION',
-          value: 'CRITICAL',
+          value: _painLevel > 3 ? 'CRITICAL' : 'WARNING',
         ),
       ],
-      warningMessage: '警告：目标生物体征极其微弱，脊髓纤维化程度达 42%，系统即将进入强制报废流程。',
+      warningMessage: _painLevel > 3 
+          ? '警告：目标生物体征极其微弱，系统即将进入强制报废流程。'
+          : '警告：已检测到多处结构损伤，建议立即执行续命协议。',
       actionButtonText: '立即续命',
       onActionPressed: () {
         Navigator.of(context).pop();

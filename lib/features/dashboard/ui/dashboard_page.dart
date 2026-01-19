@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/router/app_router.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/pixel_corner_container.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
+import '../../../shared/providers/user_state_provider.dart';
 import '../../report/ui/weekly_report_dialog.dart';
 import 'widgets/segmented_health_bar.dart';
 import 'widgets/dashboard_visualizer.dart';
@@ -13,20 +18,69 @@ import 'widgets/dashboard_bottom_nav.dart';
 /// 
 /// 核心监控界面，展示 HP、人体模型热力图
 /// 采用赛博朋克风格，强调视觉冲击力和沉浸感
-class DashboardPage extends StatefulWidget {
+class DashboardPage extends ConsumerStatefulWidget {
   const DashboardPage({super.key});
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  ConsumerState<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
-  // 模拟数据
-  double _currentHP = 85;
+class _DashboardPageState extends ConsumerState<DashboardPage> {
+  // 移除硬编码的 _currentHP，改从 Provider 读取
   int _currentIndex = 0; // 0: Monitor, 1: Library, 2: Stats, 3: Profile
+
+  Color _getHPColor(double hp) {
+    if (hp > 60) return AppColors.lifeSignal;
+    if (hp > 30) return AppColors.accentYellow;
+    return AppColors.nuclearWarning;
+  }
+
+  String _getBioStatusText(double hp) {
+    if (hp > 80) return '${AppStrings.bioStatusLabel}: ${AppStrings.bioStatusOptimal}';
+    if (hp > 50) return '${AppStrings.bioStatusLabel}: ${AppStrings.bioStatusStable}';
+    if (hp > 20) return '${AppStrings.bioStatusLabel}: ${AppStrings.bioStatusWarning}';
+    return '${AppStrings.bioStatusLabel}: ${AppStrings.bioStatusCritical}';
+  }
+
+  Widget _buildStatItem(String label, String value, Color color) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: AppTypography.monoDecorative.copyWith(
+            color: color.withOpacity(0.7),
+            fontSize: 10,
+            letterSpacing: 1.5,
+          ),
+        ),
+        Text(
+          value,
+          style: AppTypography.monoDecorative.copyWith(
+            color: color,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+            shadows: [
+              BoxShadow(
+                color: color.withOpacity(0.5),
+                blurRadius: 5,
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    // 启动久坐监测服务
+    ref.read(sedentaryMonitorProvider);
+    
+    final userState = ref.watch(userStateProvider);
+    final currentHP = userState.hp;
+
     return Scaffold(
       backgroundColor: Colors.black, // Darkest background
       body: Stack(
@@ -65,34 +119,31 @@ class _DashboardPageState extends State<DashboardPage> {
                     children: [
                       // Label Row
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Changed to spaceBetween in design but spaceEvenly works nicely for 2 items
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: Text(
-                              'BIO_STATUS: STABLE',
+                              _getBioStatusText(currentHP), // Dynamic Status
                               style: TextStyle(
-                                color: AppColors.primary,
+                                color: _getHPColor(currentHP), // Dynamic Color
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 2.0,
                                 fontFamily: 'Space Grotesk',
                                 shadows: [
                                   BoxShadow(
-                                    color: AppColors.primary.withOpacity(0.8),
+                                    color: _getHPColor(currentHP).withOpacity(0.8),
                                     blurRadius: 5,
                                   )
                                 ]
                               ),
                             ),
                           ),
-                          Text(
-                            '${_currentHP.toInt()}%',
-                            style: const TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 16,
-                              fontFamily: 'Space Mono', // or decorative
-                            ),
-                          ),
+                          _buildStatItem(AppStrings.hpLabel, '${currentHP.toInt()}%', _getHPColor(currentHP)),
+                          const SizedBox(width: 12),
+                          _buildStatItem(AppStrings.coinsLabel, '${userState.coins}', AppColors.gluteOrange),
+                          const SizedBox(width: 12),
+                          _buildStatItem(AppStrings.levelLabel, '${userState.level}', AppColors.accentYellow),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -111,37 +162,9 @@ class _DashboardPageState extends State<DashboardPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Stack(
                       children: [
-                        const DashboardVisualizer(),
-                        // Temporary Test Buttons
-                        Positioned(
-                          bottom: 20,
-                          right: 20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              _TestButton(
-                                label: "TEST: STEALTH",
-                                icon: Icons.biotech,
-                                color: const Color(0xFF00BCD4),
-                                onTap: () => context.push(AppRoutes.stealthStomachVacuum),
-                              ),
-                              const SizedBox(height: 10),
-                              _TestButton(
-                                label: "SIMULATE ALERT",
-                                icon: Icons.warning_amber_rounded,
-                                color: AppColors.nuclearWarning,
-                                onTap: () => context.push(AppRoutes.sedentaryReminder),
-                              ),
-                              const SizedBox(height: 10),
-                              _TestButton(
-                                label: "TEST: WELCOME",
-                                icon: Icons.new_releases,
-                                color: AppColors.primary,
-                                onTap: () => context.push(AppRoutes.featureReadyWelcome),
-                              ),
-                            ],
-                          ),
-                        ),
+                        DashboardVisualizer(hp: currentHP),
+                        // Test Buttons Removed
+                        const SizedBox.shrink(),
                       ],
                     ),
                   ),
@@ -216,49 +239,4 @@ class _BackgroundGridPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
-class _TestButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _TestButton({
-    required this.label,
-    required this.icon,
-    required this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(color: color, width: 1),
-          boxShadow: [
-            BoxShadow(color: color.withOpacity(0.3), blurRadius: 10),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: color, size: 16),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: AppTypography.monoDecorative.copyWith(
-                color: Colors.white,
-                fontSize: 10,
-                letterSpacing: 2,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// _TestButton removed

@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'base_exercise_page.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../core/router/app_router.dart';
-import '../../../shared/widgets/grid_background.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
+import '../../../shared/widgets/cyber_decorations.dart';
 
-/// 视觉神经重置指引页 (Variant 1)
-class VisualNeuralResetPage extends StatefulWidget {
+/// 视觉神经重置指引页 (Variant 1) - 使用基类重构
+class VisualNeuralResetPage extends ConsumerWidget {
   const VisualNeuralResetPage({super.key});
 
   @override
-  State<VisualNeuralResetPage> createState() => _VisualNeuralResetPageState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    return const BaseExercisePage(
+      title: AppStrings.visualNeuralTitle,
+      taskName: AppStrings.visualNeuralTask,
+      procedureId: "VISUAL_RESET_01",
+      themeColor: AppColors.visualResetGreen,
+      quote: AppStrings.visualNeuralQuote,
+      durationSeconds: 45,
+      visualFeedback: _VisualNeuralVisuals(),
+    );
+  }
 }
 
-class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with SingleTickerProviderStateMixin {
+class _VisualNeuralVisuals extends StatefulWidget {
+  const _VisualNeuralVisuals();
+
+  @override
+  State<_VisualNeuralVisuals> createState() => _VisualNeuralVisualsState();
+}
+
+class _VisualNeuralVisualsState extends State<_VisualNeuralVisuals> with SingleTickerProviderStateMixin {
   late AnimationController _arrowController;
 
   @override
@@ -34,143 +51,15 @@ class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with Sing
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.void_,
-      body: Theme(
-        data: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: AppColors.void_,
-          primaryColor: AppColors.visualResetGreen,
-          iconTheme: const IconThemeData(color: AppColors.visualResetGreen),
-        ),
-        child: Stack(
-          children: [
-            // 1. Grid Background (Wireframe)
-            const GridBackground(
-              lineColor: AppColors.visualResetGreen,
-              gridSize: 20,
-              lineOpacity: 0.05,
-            ),
-
-            // 2. Scanline Overlay
-            ScanlineOverlay(
-              opacity: 0.2,
-              color: AppColors.visualResetGreen.withOpacity(0.1),
-            ),
-
-            // 3. Main Content
-            SafeArea(
-              child: Column(
-                children: [
-                  _buildTopBar(context),
-                  _buildHeadline(),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          _buildMainVisual(),
-                          _buildPhaseIndicator(),
-                          const SizedBox(height: 24),
-                          _buildQuote(),
-                          const SizedBox(height: 16),
-                          _buildStatsCards(),
-                          const SizedBox(height: 24),
-                          _buildProgressBar(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  _buildBottomNav(),
-                ],
-              ),
-            ),
-            
-            // Decorative corner glow/vignette could be added here if needed
-          ],
-        ),
+    return Theme(
+      data: ThemeData.dark().copyWith(
+        iconTheme: const IconThemeData(color: AppColors.visualResetGreen),
       ),
-    );
-  }
-
-  Widget _buildTopBar(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => context.pop(),
-            color: AppColors.visualResetGreen,
-          ),
-          Column(
-            children: [
-              Text(
-                "SYSTEM ACTIVE",
-                style: AppTypography.monoDecorative.copyWith(
-                  color: AppColors.visualResetGreen,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
-                  fontSize: 12,
-                  shadows: [
-                    Shadow(color: AppColors.visualResetGreen.withOpacity(0.8), blurRadius: 10),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 4),
-              Container(
-                width: 48,
-                height: 4,
-                color: AppColors.visualResetGreen,
-              ),
-            ],
-          ),
-          Container(
-            width: 48,
-            height: 48,
-            alignment: Alignment.center,
-            child: const Icon(Icons.memory, color: AppColors.visualResetGreen),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeadline() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "任务:\n视觉神经重置",
-            style: AppTypography.pixelHeadline.copyWith(
-              color: AppColors.visualResetGreen,
-              height: 1.1,
-              fontStyle: FontStyle.italic,
-              shadows: [
-                Shadow(color: AppColors.visualResetGreen.withOpacity(0.8), blurRadius: 10),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Container(
-                width: 8,
-                height: 8,
-                color: AppColors.visualResetGreen,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                "PROTOCOL: OCULAR_CALIBRATION_V1.0.4",
-                style: AppTypography.monoDecorative.copyWith(
-                  color: AppColors.visualResetGreen.withOpacity(0.8),
-                  fontSize: 10,
-                  letterSpacing: 1,
-                ),
-              ),
-            ],
-          ),
+          Expanded(child: _buildMainVisual()),
+          const SizedBox(height: 24),
+          _buildStatsCards(),
         ],
       ),
     );
@@ -178,16 +67,15 @@ class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with Sing
 
   Widget _buildMainVisual() {
     return Container(
-      height: 320,
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Stack(
         alignment: Alignment.center,
         children: [
           // Decorative Corners
-          Positioned(top: 20, left: 20, child: _buildCorner(true, true)),
-          Positioned(top: 20, right: 20, child: _buildCorner(true, false)),
-          Positioned(bottom: 20, left: 20, child: _buildCorner(false, true)),
-          Positioned(bottom: 20, right: 20, child: _buildCorner(false, false)),
+          const Positioned(top: 0, left: 0, child: CyberCorner(isTop: true, isLeft: true, size: 32, color: AppColors.visualResetGreen)),
+          const Positioned(top: 0, right: 0, child: CyberCorner(isTop: true, isLeft: false, size: 32, color: AppColors.visualResetGreen)),
+          const Positioned(bottom: 0, left: 0, child: CyberCorner(isTop: false, isLeft: true, size: 32, color: AppColors.visualResetGreen)),
+          const Positioned(bottom: 0, right: 0, child: CyberCorner(isTop: false, isLeft: false, size: 32, color: AppColors.visualResetGreen)),
 
           // Central Visual (Placeholder for 3D Head)
           Container(
@@ -210,96 +98,59 @@ class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with Sing
           
           // Directional Arrows
           Positioned(
-            top: 0,
+            top: 20,
             child: FadeTransition(
               opacity: _arrowController,
               child: const Icon(Icons.keyboard_double_arrow_up, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: 20,
             child: Opacity(
               opacity: 0.4,
               child: const Icon(Icons.keyboard_double_arrow_down, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
           Positioned(
-            left: 0,
+            left: 20,
             child: Opacity(
               opacity: 0.4,
               child: const Icon(Icons.keyboard_double_arrow_left, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
           Positioned(
-            right: 0,
+            right: 20,
             child: Opacity(
               opacity: 0.4,
               child: const Icon(Icons.keyboard_double_arrow_right, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
+
+          // Phase Indicator
+           Positioned(
+            bottom: 80,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+              decoration: BoxDecoration(
+                color: AppColors.visualResetGreen.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: AppColors.visualResetGreen.withOpacity(0.3)),
+              ),
+              child: Text(
+                "PHASE: LOOK UP",
+                style: AppTypography.monoDecorative.copyWith(
+                  color: AppColors.visualResetGreen,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2,
+                  fontSize: 12,
+                  shadows: [
+                    Shadow(color: AppColors.visualResetGreen.withOpacity(0.5), blurRadius: 5),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCorner(bool top, bool left) {
-    const double size = 32;
-    const double thickness = 2;
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        border: Border(
-          top: top ? const BorderSide(color: AppColors.visualResetGreen, width: thickness) : BorderSide.none,
-          bottom: !top ? const BorderSide(color: AppColors.visualResetGreen, width: thickness) : BorderSide.none,
-          left: left ? const BorderSide(color: AppColors.visualResetGreen, width: thickness) : BorderSide.none,
-          right: !left ? const BorderSide(color: AppColors.visualResetGreen, width: thickness) : BorderSide.none,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPhaseIndicator() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      decoration: BoxDecoration(
-        color: AppColors.visualResetGreen.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.visualResetGreen.withOpacity(0.3)),
-      ),
-      child: Text(
-        "PHASE: LOOK UP",
-        style: AppTypography.monoDecorative.copyWith(
-          color: AppColors.visualResetGreen,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 2,
-          fontSize: 12,
-          shadows: [
-            Shadow(color: AppColors.visualResetGreen.withOpacity(0.5), blurRadius: 5),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildQuote() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Container(
-        padding: const EdgeInsets.only(left: 16),
-        decoration: BoxDecoration(
-          border: Border(
-            left: BorderSide(color: AppColors.visualResetGreen.withOpacity(0.4), width: 2),
-          ),
-        ),
-        child: Text(
-          "\"Your eyes are frying from the blue light. Give them a break or buy a braille keyboard.\"",
-          style: AppTypography.monoBody.copyWith(
-            color: AppColors.visualResetGreen.withOpacity(0.7),
-            fontStyle: FontStyle.italic,
-            fontSize: 14,
-          ),
-        ),
       ),
     );
   }
@@ -309,9 +160,9 @@ class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with Sing
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Expanded(child: _buildStatCard("LATENCY", "0.04ms")),
+          Expanded(child: _buildStatCard(AppStrings.latencyLabel, "0.04ms")),
           const SizedBox(width: 8),
-          Expanded(child: _buildStatCard("REFRESH", "120HZ")),
+          Expanded(child: _buildStatCard(AppStrings.refreshLabel, "120HZ")),
         ],
       ),
     );
@@ -355,47 +206,6 @@ class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with Sing
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProgressBar() {
-    return Container(
-      height: 4,
-      width: double.infinity,
-      color: AppColors.visualResetGreen.withOpacity(0.1),
-      child: Stack(
-        children: [
-          FractionallySizedBox(
-            widthFactor: 0.66,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.visualResetGreen,
-                boxShadow: const [
-                  BoxShadow(color: AppColors.visualResetGreen, blurRadius: 5),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomNav() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.8),
-        border: Border(top: BorderSide(color: AppColors.visualResetGreen.withOpacity(0.2))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Icon(Icons.home, color: AppColors.visualResetGreen.withOpacity(0.4)),
-          Icon(Icons.grid_view, color: AppColors.visualResetGreen, size: 32, shadows: const [Shadow(color: AppColors.visualResetGreen, blurRadius: 10)]),
-          Icon(Icons.person, color: AppColors.visualResetGreen.withOpacity(0.4)),
         ],
       ),
     );

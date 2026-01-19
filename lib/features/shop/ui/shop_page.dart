@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:ui';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
@@ -10,11 +11,12 @@ import '../../../core/router/app_router.dart';
 /// 续命商店 - 资源解锁页
 /// 
 /// 赛博朋克风格的商店界面，展示可解锁的资源和任务
-class ShopPage extends StatelessWidget {
+class ShopPage extends ConsumerWidget {
   const ShopPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userState = ref.watch(userStateProvider);
     return Scaffold(
       backgroundColor: AppColors.void_,
       body: Stack(
@@ -33,9 +35,9 @@ class ShopPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildBalanceCard(),
+                        _buildBalanceCard(userState.coins),
                         const SizedBox(height: 24),
-                        _buildResourceMarketSection(),
+                        _buildResourceMarketSection(ref, userState),
                         const SizedBox(height: 24),
                         _buildMissionTerminalSection(),
                       ],
@@ -164,7 +166,7 @@ class ShopPage extends StatelessWidget {
   }
 
   /// 余额卡片
-  Widget _buildBalanceCard() {
+  Widget _buildBalanceCard(int balance) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Stack(
@@ -236,7 +238,7 @@ class ShopPage extends StatelessWidget {
                   textBaseline: TextBaseline.alphabetic,
                   children: [
                     Text(
-                      '2,500',
+                      balance.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
                       style: AppTypography.pixelHP.copyWith(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
@@ -293,7 +295,7 @@ class ShopPage extends StatelessWidget {
   }
 
   /// 资源市场区块头
-  Widget _buildResourceMarketSection() {
+  Widget _buildResourceMarketSection(WidgetRef ref, UserState userState) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -339,13 +341,13 @@ class ShopPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildResourceGrid(),
+        _buildResourceGrid(ref, userState),
       ],
     );
   }
 
   /// 资源网格
-  Widget _buildResourceGrid() {
+  Widget _buildResourceGrid(WidgetRef ref, UserState userState) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GridView.count(
@@ -357,22 +359,25 @@ class ShopPage extends StatelessWidget {
         childAspectRatio: 0.75,
         children: [
           _buildResourceCard(
-            type: ResourceCardType.owned,
-            scenarioId: 'SCENARIO_01',
-            title: 'Wall Stretching',
+            ref: ref,
+            owned: userState.ownedIds.contains('SPINE_ALIGN'),
+            scenarioId: 'SPINE_ALIGN',
+            title: '脊椎螺旋对齐',
             imageColor: AppColors.lifeSignal,
           ),
           _buildResourceCard(
-            type: ResourceCardType.premium,
-            scenarioId: 'SCENARIO_PRO',
-            title: 'Stealth Mode: Adv',
+            ref: ref,
+            owned: userState.ownedIds.contains('NECK_STRETCH'),
+            scenarioId: 'NECK_STRETCH',
+            title: '颈椎深度拉伸',
             price: 1200,
             imageColor: AppColors.bioUpgrade,
           ),
           _buildResourceCard(
-            type: ResourceCardType.normal,
-            scenarioId: 'ACTION_PACK',
-            title: 'CTS Recovery',
+            ref: ref,
+            owned: userState.ownedIds.contains('WRIST_FLUSH'),
+            scenarioId: 'WRIST_FLUSH',
+            title: '掌骨压力排空',
             price: 500,
             imageColor: AppColors.lifeSignal,
           ),
@@ -381,28 +386,32 @@ class ShopPage extends StatelessWidget {
     );
   }
 
-  /// 资源卡片
+  /// 资源卡片 (Variant)
   Widget _buildResourceCard({
-    required ResourceCardType type,
+    required WidgetRef ref,
+    required bool owned,
     required String scenarioId,
     required String title,
     int? price,
     required Color imageColor,
   }) {
-    final isPremium = type == ResourceCardType.premium;
-    final isOwned = type == ResourceCardType.owned;
+    final isPremium = price != null && price > 1000;
+    final isOwned = owned;
     final borderColor = isPremium 
         ? AppColors.bioUpgrade.withOpacity(0.5) 
         : AppColors.lifeSignal.withOpacity(isOwned ? 0.5 : 0.3);
     
     return Container(
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        border: Border.all(color: borderColor),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
+      child: InkWell(
+        onTap: isOwned ? null : () {
+          if (price != null) {
+            final success = ref.read(userStateProvider.notifier).spendCoins(price, unlockId: scenarioId);
+            if (!success) {
+              // TODO: 显示额度不足提示
+            }
+          }
+        },
+        child: Stack(
         children: [
           // 背景图片占位（使用渐变模拟）
           Positioned.fill(
@@ -515,6 +524,7 @@ class ShopPage extends StatelessWidget {
           ),
         ],
       ),
+     ),
     );
   }
 

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/cyber_button.dart';
+import '../../../shared/providers/user_state_provider.dart';
 
-class SocialViralPage extends StatefulWidget {
+class SocialViralPage extends ConsumerStatefulWidget {
   const SocialViralPage({super.key});
 
   @override
-  State<SocialViralPage> createState() => _SocialViralPageState();
+  ConsumerState<SocialViralPage> createState() => _SocialViralPageState();
 }
 
-class _SocialViralPageState extends State<SocialViralPage> with TickerProviderStateMixin {
+class _SocialViralPageState extends ConsumerState<SocialViralPage> with TickerProviderStateMixin {
   int _selectedTargetIndex = 1; // Sarah Chen by default
   int _selectedWarheadIndex = 2; // Level 3: Reality Check by default
   late AnimationController _pulseController;
@@ -593,7 +595,17 @@ class _SocialViralPageState extends State<SocialViralPage> with TickerProviderSt
         children: [
           ElevatedButton(
             onPressed: () {
-              // TODO: Trigger deployment animation/logic
+              // 触发投放逻辑
+              ref.read(userStateProvider.notifier).addCoins(50);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: AppColors.lifeSignal,
+                  content: Text(
+                    'BIOMASS_BOMB_DEPLOYED: +50 CREDITS',
+                    style: AppTypography.monoLabel.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.lifeSignal,

@@ -7,6 +7,10 @@ import '../../../core/router/app_router.dart';
 import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/cyber_button.dart';
+import '../widgets/spinal/spinal_hud_view.dart';
+import '../widgets/spinal/spinal_stats_card.dart';
+import '../widgets/spinal/mechanical_soundwave.dart';
+import '../widgets/spinal/warning_quote_panel.dart';
 
 /// 脊柱螺旋对齐指引页 (Variant 3)
 class SpinalSpiralAlignmentPage extends StatefulWidget {
@@ -83,17 +87,17 @@ class _SpinalSpiralAlignmentPageState extends State<SpinalSpiralAlignmentPage> w
                             child: Column(
                               children: [
                                 // HUD 引导区域
-                                _buildHUDView(),
+                                SpinalHudView(pulseAnimation: _pulseAnimation),
                                 
                                 const SizedBox(height: 16),
                                 
                                 // 统计卡片
-                                _buildStatsCards(),
+                                const SpinalStatsCard(),
                                 
                                 const SizedBox(height: 16),
                                 
                                 // 机械声波
-                                _buildMechanicalSoundwave(),
+                                MechanicalSoundwave(animation: _soundwaveController),
                                 
                                 const SizedBox(height: 16),
                                 
@@ -103,7 +107,7 @@ class _SpinalSpiralAlignmentPageState extends State<SpinalSpiralAlignmentPage> w
                                 const SizedBox(height: 16),
                                 
                                 // 警告引用
-                                _buildWarningQuote(),
+                                const WarningQuotePanel(),
                               ],
                             ),
                           ),
@@ -185,264 +189,7 @@ class _SpinalSpiralAlignmentPageState extends State<SpinalSpiralAlignmentPage> w
     );
   }
 
-  Widget _buildHUDView() {
-    return Container(
-      height: 340,
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.4),
-        border: Border.all(color: AppColors.industrialYellow, width: 2),
-      ),
-      child: Stack(
-        children: [
-          // 3D 角色图片 (替换为网络占位图，或本地资源)
-          Positioned.fill(
-            child: Image.network(
-              "https://lh3.googleusercontent.com/aida-public/AB6AXuByxAGLm9N4wQ2IJ5fg91hJchi-5bipwPHinFkIhF1MYgJfNhhCCHLtX0fMq1bH5w-CnAp7mlbA0OXj5iJt5E6erH4RxozHInvQbzy4FAqvm1_nWOSruarVhkxRHYZs8oZJI_I-hmkBmb0y8coCMXCTQQwaRxp_oLFxmOldNfdPmJC75pqNe5JrZAVNxn7yW2f42QtwJ4ilzShTjB9ZUvbg9yxJoRf9PG_1pJOEVVdJCKXXI93gvDERGDy6FZhzqxUIu4_HVj4bOGs",
-              fit: BoxFit.contain,
-              alignment: Alignment.bottomCenter,
-              errorBuilder: (context, error, stackTrace) => Center(
-                child: Icon(Icons.accessibility_new, size: 100, color: AppColors.industrialYellow.withOpacity(0.2)),
-              ),
-            ),
-          ),
-          
-          // HUD 左上角信息
-          Positioned(
-            top: 8,
-            left: 8,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(width: 8, height: 8, color: AppColors.industrialYellow),
-                    const SizedBox(width: 4),
-                    Text(
-                      "REC_MODE: DIAGNOSTIC",
-                      style: AppTypography.monoDecorative.copyWith(
-                        color: AppColors.industrialYellow,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                  "X: 124.52 Y: 88.01 Z: -4.10",
-                  style: AppTypography.monoDecorative.copyWith(
-                    color: AppColors.industrialYellow.withOpacity(0.6),
-                    fontSize: 9,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          
-          // HUD 右上角警告
-          Positioned(
-            top: 8,
-            right: 8,
-            child: AnimatedBuilder(
-              animation: _pulseAnimation,
-              builder: (context, child) {
-                return Opacity(
-                  opacity: _pulseAnimation.value,
-                  child: Text(
-                    "CALIBRATING SPINE...",
-                    style: AppTypography.monoDecorative.copyWith(
-                      color: AppColors.nuclearWarning,
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          
-          // 旋转图标叠加
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: 160,
-              height: 160,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.industrialYellow.withOpacity(0.2), width: 4),
-              ),
-              child: const Icon(
-                Icons.sync,
-                color: AppColors.industrialYellow,
-                size: 80,
-                
-              ),
-            ),
-          ),
-          
-          // 角落装饰
-          Positioned(bottom: 8, right: 8, child: _buildCornerBracket(false)),
-          Positioned(bottom: 8, left: 8, child: _buildCornerBracket(true)),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildCornerBracket(bool isLeft) {
-    return Container(
-      width: 24,
-      height: 24,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: const BorderSide(color: AppColors.industrialYellow, width: 2),
-          left: isLeft ? const BorderSide(color: AppColors.industrialYellow, width: 2) : BorderSide.none,
-          right: isLeft ? BorderSide.none : const BorderSide(color: AppColors.industrialYellow, width: 2),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStatsCards() {
-    return Row(
-      children: [
-        // Rotation Degree
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: const Color(0xFF26333b).withOpacity(0.2),
-              border: Border.all(color: const Color(0xFF26333b)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "ROTATION_DEGREE",
-                      style: AppTypography.monoDecorative.copyWith(
-                        color: AppColors.industrialYellow.withOpacity(0.6),
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Container(width: 8, height: 2, color: AppColors.industrialYellow),
-                  ],
-                ),
-                Text(
-                  "45°",
-                  style: AppTypography.pixelHeadline.copyWith(
-                    color: Colors.white,
-                    fontSize: 30,
-                  ),
-                ),
-                Row(
-                  children: [
-                    const Icon(Icons.keyboard_double_arrow_up, color: AppColors.industrialYellow, size: 12),
-                    const SizedBox(width: 4),
-                    Text(
-                      "MAX_TORQUE",
-                      style: AppTypography.monoDecorative.copyWith(
-                        color: AppColors.industrialYellow,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(width: 8),
-        // Torsion Level
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: const Color(0xFF26333b).withOpacity(0.2),
-              border: Border.all(color: const Color(0xFF26333b)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "TORSION_LEVEL",
-                  style: AppTypography.monoDecorative.copyWith(
-                    color: AppColors.industrialYellow.withOpacity(0.6),
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "HIGH",
-                  style: AppTypography.pixelHeadline.copyWith(
-                    color: AppColors.industrialYellow,
-                    fontSize: 30,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Expanded(child: Container(height: 4, color: AppColors.industrialYellow, margin: const EdgeInsets.only(right: 2))),
-                    Expanded(child: Container(height: 4, color: AppColors.industrialYellow, margin: const EdgeInsets.only(right: 2))),
-                    Expanded(child: Container(height: 4, color: AppColors.industrialYellow, margin: const EdgeInsets.only(right: 2))),
-                    Expanded(child: Container(height: 4, color: AppColors.industrialYellow.withOpacity(0.2))),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildMechanicalSoundwave() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(child: Container(height: 1, color: const Color(0xFF26333b))),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
-                "MECHANICAL SOUNDWAVE STATUS",
-                style: AppTypography.monoDecorative.copyWith(
-                  color: AppColors.industrialYellow,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
-                ),
-              ),
-            ),
-            Expanded(child: Container(height: 1, color: const Color(0xFF26333b))),
-          ],
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          height: 48,
-          child: AnimatedBuilder(
-            animation: _soundwaveController,
-            builder: (context, child) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: List.generate(20, (index) {
-                   final randomHeight = math.Random(index).nextDouble();
-                   final animatedHeight = (randomHeight + _soundwaveController.value) % 1.0;
-                   return Container(
-                     width: 3,
-                     height: 48 * (0.3 + 0.7 * animatedHeight),
-                     margin: const EdgeInsets.symmetric(horizontal: 1),
-                     color: AppColors.industrialYellow,
-                   );
-                }),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _buildProgressBar() {
     return Container(
@@ -510,58 +257,6 @@ class _SpinalSpiralAlignmentPageState extends State<SpinalSpiralAlignmentPage> w
                ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildWarningQuote() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.nuclearWarning.withOpacity(0.1),
-        border: const Border(
-          left: BorderSide(color: AppColors.nuclearWarning, width: 4),
-        ),
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Diagnostic Warning // Error_Code_404_SPINE",
-                style: AppTypography.monoDecorative.copyWith(
-                  color: AppColors.nuclearWarning,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: -0.5,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                "\"Your spine isn't a straight line anymore; it's a disaster. Twist it back.\"",
-                style: AppTypography.monoBody.copyWith(
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-           Positioned(
-             bottom: -16,
-             right: -16,
-             child: Transform.rotate(
-               angle: 12 * 3.14 / 180,
-               child: Icon(
-                 Icons.warning,
-                 size: 80,
-                 color: AppColors.nuclearWarning.withOpacity(0.2),
-               ),
-             ),
-           ),
         ],
       ),
     );

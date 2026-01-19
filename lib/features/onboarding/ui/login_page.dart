@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/router/app_router.dart';
 import '../../../shared/widgets/cyber_button.dart';
@@ -56,7 +57,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   void _sendCode() {
     if (_phoneController.text.length < 11) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('请输入正确的手机号')),
+        const SnackBar(content: Text(AppStrings.errorInvalidPhone)),
       );
       return;
     }
@@ -74,7 +75,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
     // 简单的本地验证演示
     if (_phoneController.text.isEmpty || _codeController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('请输入凭证进行初始化')),
+        const SnackBar(content: Text(AppStrings.errorEmptyCredentials)),
       );
       return;
     }
@@ -228,7 +229,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
           Column(
             children: [
               Text(
-                'USER_AUTH_PENDING',
+                AppStrings.userAuthPending,
                 style: GoogleFonts.jetBrainsMono(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -266,7 +267,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
       children: [
         // 使用 GlitchText 组件
         GlitchText(
-          text: 'XuMing',
+          text: AppStrings.appName,
           style: GoogleFonts.spaceGrotesk(
             fontSize: 64,
             fontWeight: FontWeight.bold,
@@ -282,7 +283,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
         Column(
           children: [
             Text(
-              '延缓报废 即刻续命',
+              AppStrings.appSlogan,
               style: GoogleFonts.notoSansSc(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -316,8 +317,8 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
         // 手机号输入
         CyberInput(
           controller: _phoneController,
-          label: 'Mobile_Entry',
-          hint: 'ENTER_DIGITS',
+          label: AppStrings.mobileEntryLabel,
+          hint: AppStrings.enterDigitsHint,
           keyboardType: TextInputType.phone,
           maxLength: 11,
           prefix: const CyberPrefix(text: '+86'),
@@ -332,8 +333,8 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
             Expanded(
               child: CyberInput(
                 controller: _codeController,
-                label: 'Validation_Protocol',
-                hint: '6-DIGIT_CODE',
+                label: AppStrings.validationProtocolLabel,
+                hint: AppStrings.codeHint,
                 keyboardType: TextInputType.number,
                 maxLength: 6,
               ),
@@ -352,7 +353,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   /// 构建登录按钮
   Widget _buildLoginButton() {
     return CyberButton(
-      text: 'INITIALIZE_LOGIN',
+      text: AppStrings.initializeLogin,
       onPressed: _login,
       icon: Icons.bolt,
       color: AppColors.primary,
@@ -376,7 +377,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                '其他方式注入生命值',
+                AppStrings.otherLoginMethods,
                 style: GoogleFonts.notoSansSc(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -402,14 +403,14 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
           children: [
             _buildSocialButton(
               icon: const Icon(Icons.wechat, size: 28, color: Color(0xFF07C160)),
-              label: 'WE_CHAT',
+              label: AppStrings.weChat,
               color: const Color(0xFF07C160),
               onTap: () {},
             ),
             const SizedBox(width: 40),
             _buildSocialButton(
               icon: const Icon(Icons.chat_bubble, size: 26, color: Color(0xFF12B7F5)),
-              label: 'SYSTEM_QQ',
+              label: AppStrings.systemQQ,
               color: const Color(0xFF12B7F5),
               onTap: () {},
             ),
@@ -420,7 +421,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                 size: 28,
                 color: AppColors.textPrimary.withOpacity(0.7),
               ),
-              label: 'BIOMETRIC',
+              label: AppStrings.biometric,
               color: Colors.white,
               onTap: () {},
             ),

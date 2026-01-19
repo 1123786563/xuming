@@ -4,10 +4,23 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class DashboardVisualizer extends StatelessWidget {
-  const DashboardVisualizer({super.key});
+  final double hp;
+
+  const DashboardVisualizer({
+    super.key,
+    required this.hp,
+  });
+
+  Color _getIndicatorColor() {
+    if (hp > 60) return AppColors.lifeSignal; // Green
+    if (hp > 30) return AppColors.accentYellow; // Yellow
+    return AppColors.nuclearWarning; // Red
+  }
 
   @override
   Widget build(BuildContext context) {
+    final indicatorColor = _getIndicatorColor();
+
     return Stack(
       children: [
         // Main Container Frame
@@ -41,35 +54,35 @@ class DashboardVisualizer extends StatelessWidget {
               ),
 
               // Heat Map: Neck
-              const Positioned(
-                top: 150, // Approximation for '25%' relative to center/size, better to use Alignment if possible but absolute px or align works
+              Positioned(
+                top: 150, 
                 left: 0, 
                 right: 0,
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 120), // move up
+                    padding: const EdgeInsets.only(bottom: 120),
                     child: _HeatMapIndicator(
                       size: 80,
-                      color: AppColors.nuclearWarning, // Alert red
+                      color: indicatorColor, // Dynamic color
                       isLarge: false,
                     ),
                   ),
                 ),
               ),
                // Better positioning using Align
-               const Align(
-                 alignment: Alignment(0, -0.6), // Neck area
+               Align(
+                 alignment: const Alignment(0, -0.6), // Neck area
                  child: _HeatMapIndicator(
                     size: 80,
-                    color: AppColors.nuclearWarning,
+                    color: indicatorColor, // Dynamic color
                     isLarge: false,
                  ),
                ),
-               const Align(
-                 alignment: Alignment(0, 0.4), // Lower back area
+               Align(
+                 alignment: const Alignment(0, 0.4), // Lower back area
                  child: _HeatMapIndicator(
                     size: 120,
-                    color: AppColors.nuclearWarning,
+                    color: indicatorColor, // Dynamic color
                     isLarge: true,
                  ),
                ),

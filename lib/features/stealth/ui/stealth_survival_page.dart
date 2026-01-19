@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
+import '../../../shared/providers/user_state_provider.dart';
+import '../../../core/router/app_router.dart';
 
-class StealthSurvivalPage extends StatefulWidget {
+class StealthSurvivalPage extends ConsumerStatefulWidget {
   const StealthSurvivalPage({super.key});
 
   @override
-  State<StealthSurvivalPage> createState() => _StealthSurvivalPageState();
+  ConsumerState<StealthSurvivalPage> createState() => _StealthSurvivalPageState();
 }
 
-class _StealthSurvivalPageState extends State<StealthSurvivalPage> with SingleTickerProviderStateMixin {
+class _StealthSurvivalPageState extends ConsumerState<StealthSurvivalPage> with SingleTickerProviderStateMixin {
   late AnimationController _radarController;
   late AnimationController _pulseController;
   
@@ -158,14 +161,28 @@ class _StealthSurvivalPageState extends State<StealthSurvivalPage> with SingleTi
             ],
           ),
 
-          // Right Icon
-          Container(
-            width: 40, height: 40,
-            decoration: BoxDecoration(
-              border: Border.all(color: stealthPrimary.withOpacity(0.3)),
-              borderRadius: BorderRadius.circular(8),
+          // Right Icon (Sync Button)
+          GestureDetector(
+            onTap: () {
+              final notifier = ref.read(userStateProvider.notifier);
+              notifier.addHp(5);
+              notifier.addCoins(100);
+              context.push(AppRoutes.hpRecoverySuccess);
+            },
+            child: Container(
+              width: 50, height: 40,
+              decoration: BoxDecoration(
+                color: stealthGreen.withOpacity(0.1),
+                border: Border.all(color: stealthGreen.withOpacity(0.3)),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Center(
+                child: Text(
+                  "SYNC",
+                  style: TextStyle(color: stealthGreen, fontWeight: FontWeight.bold, fontSize: 10),
+                ),
+              ),
             ),
-            child: const Icon(Icons.enhanced_encryption, color: stealthPrimary),
           ),
         ],
       ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
 import '../../../core/theme/app_colors.dart';
@@ -6,15 +6,18 @@ import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/glitch_text.dart';
 import '../../../core/router/app_router.dart';
+import '../../../shared/providers/exercise_provider.dart';
+import '../../../shared/models/exercise_model.dart';
 
 /// 极高压力针对性动作推荐页面
 /// 
 /// 紧急抢修任务 (Emergency Repair Task)
-class RecoveryRecommendationPage extends StatelessWidget {
+class RecoveryRecommendationPage extends ConsumerWidget {
   const RecoveryRecommendationPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final recommendation = ref.watch(topRecommendationProvider);
     return Scaffold(
       backgroundColor: AppColors.void_,
       body: Stack(
@@ -44,10 +47,10 @@ class RecoveryRecommendationPage extends StatelessWidget {
                 const _StatsSection(),
                 
                 // 推荐动作卡片
-                const _ProtocolCard(),
+                _ProtocolCard(protocol: recommendation),
                 
                 // 底部操作区
-                const _CTASection(),
+                _CTASection(protocol: recommendation),
               ],
             ),
           ),
@@ -398,7 +401,8 @@ class _StatsSection extends StatelessWidget {
 }
 
 class _ProtocolCard extends StatelessWidget {
-  const _ProtocolCard();
+  final ExerciseProtocol protocol;
+  const _ProtocolCard({required this.protocol});
 
   @override
   Widget build(BuildContext context) {
@@ -417,10 +421,10 @@ class _ProtocolCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Standing Back Extension", style: AppTypography.monoBody.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text(protocol.title, style: AppTypography.monoBody.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
                   Text(
-                    "Recommended Protocol: Level 5 Relief",
+                    "Recommended Protocol: ${protocol.technicalGuide}",
                     style: AppTypography.monoLabel.copyWith(color: AppColors.nuclearWarning.withOpacity(0.8), fontSize: 11),
                   ),
                   const SizedBox(height: 16),
@@ -454,8 +458,8 @@ class _ProtocolCard extends StatelessWidget {
                 color: Colors.grey[900],
                 borderRadius: BorderRadius.circular(4),
                 border: Border.all(color: Colors.white10),
-                image: const DecorationImage(
-                  image: NetworkImage("https://lh3.googleusercontent.com/aida-public/AB6AXuCeJKoccr-pifHeuOFMaukbeIKQhTKk_wiCw5Kc8DqeppWs1FbBKRdSyd8EptO0fD28EjL2mkITRgJnrtt7vlJpG9sVN1FnbQ7mai8-tdARUChexELhRMxbWwr-T43CUa7QIci81DKXGOPzWRzqemzwzfrQpe1x7Vvwf9QXw3ppkCdc_CWK0aEGa58S9dq4s6SAqOH_fS6aLJbXgqaKWnyyMXGo5gV0NLYBwciO2y_yG-awhOqnjq8igA83gWF9Zw4j_lkKl13ZCXI"),
+                image: DecorationImage(
+                  image: NetworkImage(protocol.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -468,7 +472,8 @@ class _ProtocolCard extends StatelessWidget {
 }
 
 class _CTASection extends StatefulWidget {
-  const _CTASection();
+  final ExerciseProtocol protocol;
+  const _CTASection({required this.protocol});
 
   @override
   State<_CTASection> createState() => _CTASectionState();
@@ -503,7 +508,7 @@ class _CTASectionState extends State<_CTASection> with SingleTickerProviderState
             builder: (context, child) {
               final double glow = _glowController.value;
               return GestureDetector(
-                onTap: () => context.push(AppRoutes.exercise),
+                onTap: () => context.push(widget.protocol.route),
                 child: Container(
                   height: 64,
                   decoration: BoxDecoration(

@@ -412,7 +412,11 @@ class ClaimFailedPage extends ConsumerWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: () {
-                     // 交互逻辑 TODO: 重置惩罚或导航
+                    // 惩罚重置逻辑：恢复至 20 HP，扣除所有金币作为罚金
+                    final notifier = ref.read(userStateProvider.notifier);
+                    notifier.setInitialHp(hp: 20, sittingHours: 0, painLevel: 0, selectedPosture: 0);
+                    // notifier.spendCoins(userState.coins); // Optional: clear coins
+                    context.go(AppRoutes.dashboard);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
