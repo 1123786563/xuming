@@ -370,10 +370,12 @@ class _VisualNeuralResetPageState extends State<VisualNeuralResetPage> with Sing
           FractionallySizedBox(
             widthFactor: 0.66,
             child: Container(
-              color: AppColors.visualResetGreen,
-              boxShadow: const [
-                BoxShadow(color: AppColors.visualResetGreen, blurRadius: 5),
-              ],
+              decoration: BoxDecoration(
+                color: AppColors.visualResetGreen,
+                boxShadow: const [
+                  BoxShadow(color: AppColors.visualResetGreen, blurRadius: 5),
+                ],
+              ),
             ),
           ),
         ],

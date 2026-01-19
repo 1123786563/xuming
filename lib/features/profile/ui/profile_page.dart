@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/grid_background.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 import 'widgets/avatar_ring.dart';
 import 'widgets/cyber_toggle.dart';
 import 'widgets/logout_button.dart';
@@ -26,11 +28,18 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.void_,
       body: Stack(
         children: [
+          // 赛博风格背景 (网格 + 渐变)
+          const Positioned.fill(
+            child: GridBackground(
+              gridSize: 40,
+              lineOpacity: 0.1,
+            ),
+          ),
+          
           // 扫描线效果背景
-          _buildScanlineOverlay(),
+          const ScanlineOverlay(opacity: 0.15),
           
           // 主内容
           SafeArea(
@@ -88,29 +97,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  /// 扫描线效果
-  Widget _buildScanlineOverlay() {
-    return Positioned.fill(
-      child: IgnorePointer(
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.transparent,
-              ],
-              stops: [0.0, 1.0],
-            ),
-          ),
-          child: CustomPaint(
-            painter: _ScanlinePainter(),
-          ),
-        ),
-      ),
-    );
-  }
 
   /// 顶部导航栏
   Widget _buildAppBar(BuildContext context) {
@@ -179,9 +165,9 @@ class _ProfilePageState extends State<ProfilePage> {
               // TODO: 打开设置
             },
             child: const Icon(
-              Icons.auto_fix_high,
+              Icons.settings_suggest,
               color: AppColors.lifeSignal,
-              size: 24,
+              size: 28,
             ),
           ),
         ],
@@ -521,74 +507,32 @@ class _ProfilePageState extends State<ProfilePage> {
     bool topRight = false,
   }) {
     return SizedBox(
-      width: 64,
-      height: 64,
+      width: 48,
+      height: 48,
       child: Stack(
         children: [
-          // 边框
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  top: const BorderSide(
-                    color: AppColors.lifeSignal,
-                    width: 1,
-                  ),
-                  left: topLeft
-                      ? const BorderSide(
-                          color: AppColors.lifeSignal,
-                          width: 1,
-                        )
-                      : BorderSide.none,
-                  right: topRight
-                      ? const BorderSide(
-                          color: AppColors.lifeSignal,
-                          width: 1,
-                        )
-                      : BorderSide.none,
-                ),
-              ),
-            ),
-          ),
-          // 角点
           if (topLeft) ...[
             Positioned(
               top: 0,
               left: 0,
-              child: Container(
-                width: 16,
-                height: 2,
-                color: AppColors.lifeSignal,
-              ),
+              child: Container(width: 16, height: 2, color: AppColors.lifeSignal.withOpacity(0.5)),
             ),
             Positioned(
               top: 0,
               left: 0,
-              child: Container(
-                width: 2,
-                height: 16,
-                color: AppColors.lifeSignal,
-              ),
+              child: Container(width: 2, height: 16, color: AppColors.lifeSignal.withOpacity(0.5)),
             ),
           ],
           if (topRight) ...[
             Positioned(
               top: 0,
               right: 0,
-              child: Container(
-                width: 16,
-                height: 2,
-                color: AppColors.lifeSignal,
-              ),
+              child: Container(width: 16, height: 2, color: AppColors.lifeSignal.withOpacity(0.5)),
             ),
             Positioned(
               top: 0,
               right: 0,
-              child: Container(
-                width: 2,
-                height: 16,
-                color: AppColors.lifeSignal,
-              ),
+              child: Container(width: 2, height: 16, color: AppColors.lifeSignal.withOpacity(0.5)),
             ),
           ],
         ],
@@ -601,33 +545,24 @@ class _ProfilePageState extends State<ProfilePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 64,
-          height: 64,
+          width: 48,
+          height: 48,
           child: Stack(
             children: [
-              // 边框装饰
               Positioned(
                 bottom: 0,
                 left: 0,
-                child: Container(
-                  width: 16,
-                  height: 2,
-                  color: AppColors.lifeSignal,
-                ),
+                child: Container(width: 16, height: 2, color: AppColors.lifeSignal.withOpacity(0.5)),
               ),
               Positioned(
                 bottom: 0,
                 left: 0,
-                child: Container(
-                  width: 2,
-                  height: 16,
-                  color: AppColors.lifeSignal,
-                ),
+                child: Container(width: 2, height: 16, color: AppColors.lifeSignal.withOpacity(0.5)),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 4),
         Text(
           'SYS_READY',
           style: TextStyle(
@@ -640,27 +575,4 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
-}
-
-/// 扫描线画笔
-class _ScanlinePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.black.withOpacity(0.1)
-      ..style = PaintingStyle.fill;
-    
-    const lineHeight = 2.0;
-    const gap = 2.0;
-    
-    for (double y = 0; y < size.height; y += lineHeight + gap) {
-      canvas.drawRect(
-        Rect.fromLTWH(0, y, size.width, lineHeight),
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

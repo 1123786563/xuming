@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 /// 扫描线覆盖效果组件
 class ScanlineOverlay extends StatelessWidget {
   final double opacity;
+  final Color color;
 
   const ScanlineOverlay({
     super.key,
     this.opacity = 0.1,
+    this.color = Colors.black,
   });
 
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
       child: CustomPaint(
-        painter: _ScanlinePainter(opacity: opacity),
+        painter: _ScanlinePainter(opacity: opacity, color: color),
         size: Size.infinite,
       ),
     );
@@ -22,13 +24,14 @@ class ScanlineOverlay extends StatelessWidget {
 
 class _ScanlinePainter extends CustomPainter {
   final double opacity;
+  final Color color;
 
-  _ScanlinePainter({required this.opacity});
+  _ScanlinePainter({required this.opacity, required this.color});
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.black.withOpacity(opacity)
+      ..color = color.withOpacity(opacity)
       ..strokeWidth = 1.0;
 
     // 绘制水平扫描线

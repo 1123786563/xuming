@@ -238,10 +238,13 @@ class _HpRecoverySuccessPageState extends State<HpRecoverySuccessPage> with Sing
                 const SizedBox(height: 2),
                 Container(
                   padding: const EdgeInsets.all(2),
-                  color: Colors.black.withOpacity(0.8),
-                  child: Text(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.8),
+                    border: Border.all(color: AppColors.lifeSignal.withOpacity(0.4)),
+                  ),
+                  child: const Text(
                     'OXY: 99.2%',
-                    style: TextStyle(fontSize: 8, color: AppColors.lifeSignal, border: Border.all(color: AppColors.lifeSignal.withOpacity(0.4))),
+                    style: TextStyle(fontSize: 8, color: AppColors.lifeSignal),
                   ),
                 ),
               ],
@@ -361,9 +364,9 @@ class _HpRecoverySuccessPageState extends State<HpRecoverySuccessPage> with Sing
           ),
           const SizedBox(height: 24),
           _buildActionButton(
-            text: 'Back to Dashboard',
-            icon: Icons.dashboard_customize,
-            onPressed: () => context.go(AppRoutes.dashboard),
+            text: 'INJECT BIO-COINS',
+            icon: Icons.token,
+            onPressed: () => context.push(AppRoutes.coinInjection),
             primary: true,
           ),
           const SizedBox(height: 12),

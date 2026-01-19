@@ -89,4 +89,23 @@ class AppTypography {
     height: 1.3,
     color: AppColors.textPrimary,
   );
+
+  static TextStyle get pixelBody => const TextStyle(
+    fontFamily: 'ZpixFont',
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle get bodySmall => GoogleFonts.jetBrainsMono(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondary,
+  );
+
+  static TextStyle get monoHead => GoogleFonts.jetBrainsMono(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textPrimary,
+  );
 }

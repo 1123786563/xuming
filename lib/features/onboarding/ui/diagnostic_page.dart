@@ -51,7 +51,7 @@ class _DiagnosticPageState extends State<DiagnosticPage> {
       actionButtonText: '立即续命',
       onActionPressed: () {
         Navigator.of(context).pop();
-        context.go(AppRoutes.dashboard);
+        context.push(AppRoutes.pressureReport);
       },
     );
   }

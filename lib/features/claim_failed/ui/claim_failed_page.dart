@@ -20,7 +20,8 @@ class ClaimFailedPage extends ConsumerWidget {
       body: Stack(
         children: [
           // 扫描线背景
-          const ScanlineOverlay(lineOpacity: 0.05, lineSpacing: 4),
+          // 扫描线背景
+          const ScanlineOverlay(opacity: 0.05),
           
           // 背景装饰文字
           Positioned(
@@ -426,7 +427,9 @@ class ClaimFailedPage extends ConsumerWidget {
                           letterSpacing: 1.0,
                           color: Colors.white,
                         ),
-                      ).toUpperCase(), // Force Upper if needed, but design has mixed case in button but UPPER in CSS. Let's stick to UPPER for technical feel.
+                        ),
+
+                      // Force Upper if needed
                     ],
                   ),
                 ),

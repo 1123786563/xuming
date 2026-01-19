@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yundong/core/theme/app_colors.dart';
-import 'package:yundong/shared/widgets/cyber_button.dart';
-import 'package:yundong/shared/widgets/scanline_overlay.dart';
+import 'package:xuming/core/theme/app_colors.dart';
+import 'package:xuming/shared/widgets/cyber_button.dart';
+import 'package:xuming/shared/widgets/scanline_overlay.dart';
 
 class HpWidgetLarge extends StatelessWidget {
   const HpWidgetLarge({super.key});
@@ -21,7 +21,7 @@ class HpWidgetLarge extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          const Positioned.fill(child: ScanlineOverlay()),
+          Positioned.fill(child: ScanlineOverlay()),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -205,10 +205,11 @@ class HpWidgetLarge extends StatelessWidget {
             right: 0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              gap: 16,
               children: [
                 _HudLine(),
+                const SizedBox(width: 16),
                 _HudLine(),
+                const SizedBox(width: 16),
                 _HudLine(),
               ],
             ),

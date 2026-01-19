@@ -530,12 +530,10 @@ class MissionCenterPage extends StatelessWidget {
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.4),
                 offset: Offset(-2, -2),
-                inset: true,
               ),
                BoxShadow(
                 color: Color.fromRGBO(255, 255, 255, 0.2),
                 offset: Offset(2, 2),
-                inset: true,
               ),
           ],
       ),

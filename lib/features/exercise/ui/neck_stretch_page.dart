@@ -60,7 +60,7 @@ class NeckStretchPage extends StatelessWidget {
                 _buildToxicQuote(),
 
                 // Bottom Control Panel
-                _buildBottomPanel(),
+                _buildBottomPanel(context),
               ],
             ),
           ),
@@ -310,7 +310,7 @@ class NeckStretchPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomPanel() {
+  Widget _buildBottomPanel(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
@@ -365,7 +365,6 @@ class NeckStretchPage extends StatelessWidget {
                 child: CyberButton(
                   text: "ABORT_TASK",
                   onPressed: () => context.pop(),
-                  primaryColor: Colors.white.withOpacity(0.1),
                   textColor: Colors.white,
                   icon: Icons.close,
                   isOutlined: true,
@@ -376,7 +375,6 @@ class NeckStretchPage extends StatelessWidget {
                 child: CyberButton(
                   text: "PAUSE_SYNC",
                   onPressed: () {},
-                  primaryColor: AppColors.primary,
                   textColor: Colors.black,
                   icon: Icons.pause,
                 ),

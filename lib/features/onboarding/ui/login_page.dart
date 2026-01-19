@@ -9,12 +9,12 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/router/app_router.dart';
 import '../../../shared/widgets/cyber_button.dart';
 import '../../../shared/widgets/cyber_input.dart';
-import '../../../shared/widgets/grid_background.dart';
+import '../../../shared/widgets/glitch_text.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 
 /// 系统认证登录页
 /// 
-/// 赛博朋克风格的登录界面
+/// 赛博朋克风格的登录界面，包含故障艺术 Logo、动态装饰和多重认证方式
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -22,22 +22,44 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
   final _phoneController = TextEditingController();
   final _codeController = TextEditingController();
   int _countdown = 0;
   Timer? _countdownTimer;
+  late AnimationController _fadeController;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+    _fadeAnimation = CurvedAnimation(
+      parent: _fadeController,
+      curve: Curves.easeOut,
+    );
+    _fadeController.forward();
+  }
 
   @override
   void dispose() {
     _phoneController.dispose();
     _codeController.dispose();
     _countdownTimer?.cancel();
+    _fadeController.dispose();
     super.dispose();
   }
 
   void _sendCode() {
-    // TODO: 实现发送验证码逻辑
+    if (_phoneController.text.length < 11) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('请输入正确的手机号')),
+      );
+      return;
+    }
     setState(() => _countdown = 60);
     _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_countdown > 0) {
@@ -49,7 +71,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _login() {
-    // TODO: 实现登录逻辑
+    // 简单的本地验证演示
+    if (_phoneController.text.isEmpty || _codeController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('请输入凭证进行初始化')),
+      );
+      return;
+    }
     context.go(AppRoutes.diagnostic);
   }
 
@@ -59,65 +87,120 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: AppColors.void_,
       body: Stack(
         children: [
-          // 背景点阵
-          const DotsBackground(),
+          // 背景扫描线
+          const ScanlineOverlay(),
           
-          // 角落装饰数据
-          _buildCornerDecorations(),
+          // 背景装饰比特位
+          _buildDecorativeDataBits(),
           
           // 主内容
           SafeArea(
-            child: Column(
-              children: [
-                // 顶部导航
-                _buildTopNav(),
-                
-                // 可滚动内容区
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 48),
-                        
-                        // Logo 区域
-                        _buildLogoSection(),
-                        
-                        const SizedBox(height: 48),
-                        
-                        // 表单区域
-                        _buildForm(),
-                        
-                        const SizedBox(height: 24),
-                        
-                        // 登录按钮
-                        _buildLoginButton(),
-                        
-                        const SizedBox(height: 48),
-                        
-                        // 第三方登录
-                        _buildSocialLogin(),
-                        
-                        const SizedBox(height: 48),
-                      ],
+            child: FadeTransition(
+              opacity: _fadeAnimation,
+              child: Column(
+                children: [
+                  // 顶部导航
+                  _buildTopNav(),
+                  
+                  // 分割线
+                  const SizedBox(height: 24),
+                  
+                  // 可滚动内容区
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 24),
+                          
+                          // Logo 区域 (带有故障效果)
+                          _buildLogoSection(),
+                          
+                          const SizedBox(height: 56),
+                          
+                          // 表单区域
+                          _buildForm(),
+                          
+                          const SizedBox(height: 32),
+                          
+                          // 登录按钮
+                          _buildLoginButton(),
+                          
+                          const SizedBox(height: 64),
+                          
+                          // 第三方登录
+                          _buildSocialLogin(),
+                          
+                          const SizedBox(height: 48),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           
-          // 角落装饰元素
+          // 角落装饰装饰元素
           _buildCornerBits(),
         ],
       ),
     );
   }
 
+  /// 构建装饰性数据位 (背景层)
+  Widget _buildDecorativeDataBits() {
+    return Stack(
+      children: [
+        // 左上角日志
+        Positioned(
+          top: 16,
+          left: 16,
+          child: Text(
+            'SYS_LOG: 0x4F2A\nOS_VER_2.0.42\nSTATUS: STABLE',
+            style: GoogleFonts.jetBrainsMono(
+              fontSize: 10,
+              height: 1.4,
+              letterSpacing: 1,
+              color: AppColors.primary.withOpacity(0.3),
+            ),
+          ),
+        ),
+        
+        // 右上角状态
+        Positioned(
+          top: 16,
+          right: 16,
+          child: Text(
+            'ENCRYPTION: ACTIVE\nLATENCY: 12ms\nLOC: 39.9042° N',
+            textAlign: TextAlign.right,
+            style: GoogleFonts.jetBrainsMono(
+              fontSize: 10,
+              height: 1.4,
+              letterSpacing: 1,
+              color: AppColors.primary.withOpacity(0.3),
+            ),
+          ),
+        ),
+        
+        // 点阵背景
+        const Positioned.fill(
+          child: IgnorePointer(
+            child: Opacity(
+              opacity: 0.05,
+              child: DotsBackground(),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   /// 构建顶部导航
   Widget _buildTopNav() {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -129,15 +212,14 @@ class _LoginPageState extends State<LoginPage> {
               height: 32,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: AppColors.lifeSignal.withOpacity(0.3),
-                  width: 1,
+                  color: AppColors.primary.withOpacity(0.3),
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.close,
-                size: 20,
-                color: AppColors.lifeSignal,
+                size: 18,
+                color: AppColors.primary,
               ),
             ),
           ),
@@ -151,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  color: AppColors.lifeSignal,
+                  color: AppColors.primary,
                 ),
               ),
               const SizedBox(height: 4),
@@ -159,10 +241,10 @@ class _LoginPageState extends State<LoginPage> {
                 width: 48,
                 height: 2,
                 decoration: BoxDecoration(
-                  color: AppColors.lifeSignal,
+                  color: AppColors.primary,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.lifeSignal.withOpacity(0.8),
+                      color: AppColors.primary.withOpacity(0.8),
                       blurRadius: 8,
                     ),
                   ],
@@ -172,47 +254,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
           
           // 占位
-          const SizedBox(width: 32, height: 32),
+          const SizedBox(width: 32),
         ],
       ),
-    );
-  }
-
-  /// 构建角落装饰数据
-  Widget _buildCornerDecorations() {
-    return Stack(
-      children: [
-        // 左上角
-        Positioned(
-          top: 16,
-          left: 16,
-          child: Text(
-            'SYS_LOG: 0x4F2A\nOS_VER_2.0.42\nSTATUS: STABLE',
-            style: GoogleFonts.jetBrainsMono(
-              fontSize: 10,
-              height: 1.4,
-              letterSpacing: 1,
-              color: AppColors.lifeSignal.withOpacity(0.4),
-            ),
-          ),
-        ),
-        
-        // 右上角
-        Positioned(
-          top: 16,
-          right: 16,
-          child: Text(
-            'ENCRYPTION: ACTIVE\nLATENCY: 12ms\nLOC: 39.9042° N',
-            textAlign: TextAlign.right,
-            style: GoogleFonts.jetBrainsMono(
-              fontSize: 10,
-              height: 1.4,
-              letterSpacing: 1,
-              color: AppColors.lifeSignal.withOpacity(0.4),
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -220,85 +264,43 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLogoSection() {
     return Column(
       children: [
-        // 主 Logo
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            // 故障效果层 - 红色
-            Positioned(
-              left: -2,
-              top: -1,
-              child: Text(
-                'XuMing',
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 56,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  color: const Color(0xFFFF3914).withOpacity(0.5),
-                ),
-              ),
-            ),
-            
-            // 主文字
-            Text(
-              'XuMing',
-              style: GoogleFonts.spaceGrotesk(
-                fontSize: 56,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                color: AppColors.lifeSignal,
-                shadows: [
-                  Shadow(
-                    color: const Color(0xFFFF3914),
-                    offset: const Offset(2, 0),
-                  ),
-                  Shadow(
-                    color: AppColors.lifeSignal,
-                    offset: const Offset(-2, 0),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        // 使用 GlitchText 组件
+        GlitchText(
+          text: 'XuMing',
+          style: GoogleFonts.spaceGrotesk(
+            fontSize: 64,
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+            color: AppColors.primary,
+          ),
+          glitchIntensity: 1.2,
         ),
         
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         
         // Slogan
         Column(
           children: [
             Text(
-              '延缓报废，即刻续命',
+              '延缓报废 即刻续命',
               style: GoogleFonts.notoSansSc(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                letterSpacing: 8,
-                color: AppColors.lifeSignal,
+                letterSpacing: 6,
+                color: AppColors.primary,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             
             // 装饰点
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 4,
-                  height: 4,
-                  color: AppColors.lifeSignal,
-                ),
+                Container(width: 4, height: 4, color: AppColors.primary),
                 const SizedBox(width: 8),
-                Container(
-                  width: 4,
-                  height: 4,
-                  color: AppColors.lifeSignal.withOpacity(0.4),
-                ),
+                Container(width: 4, height: 4, color: AppColors.primary.withOpacity(0.4)),
                 const SizedBox(width: 8),
-                Container(
-                  width: 4,
-                  height: 4,
-                  color: AppColors.lifeSignal.withOpacity(0.2),
-                ),
+                Container(width: 4, height: 4, color: AppColors.primary.withOpacity(0.2)),
               ],
             ),
           ],
@@ -321,7 +323,7 @@ class _LoginPageState extends State<LoginPage> {
           prefix: const CyberPrefix(text: '+86'),
         ),
         
-        const SizedBox(height: 16),
+        const SizedBox(height: 20),
         
         // 验证码输入
         Row(
@@ -336,7 +338,7 @@ class _LoginPageState extends State<LoginPage> {
                 maxLength: 6,
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             GetCodeButton(
               onPressed: _sendCode,
               countdown: _countdown,
@@ -349,43 +351,12 @@ class _LoginPageState extends State<LoginPage> {
 
   /// 构建登录按钮
   Widget _buildLoginButton() {
-    return GestureDetector(
-      onTap: _login,
-      child: Container(
-        width: double.infinity,
-        height: 56,
-        decoration: BoxDecoration(
-          color: AppColors.lifeSignal,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.lifeSignal.withOpacity(0.4),
-              blurRadius: 20,
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'INITIALIZE_LOGIN',
-              style: GoogleFonts.jetBrainsMono(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2,
-                color: AppColors.void_,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Icon(
-              Icons.bolt,
-              size: 20,
-              color: AppColors.void_,
-            ),
-          ],
-        ),
-      ),
+    return CyberButton(
+      text: 'INITIALIZE_LOGIN',
+      onPressed: _login,
+      icon: Icons.bolt,
+      color: AppColors.primary,
+      width: double.infinity,
     );
   }
 
@@ -399,7 +370,7 @@ class _LoginPageState extends State<LoginPage> {
             Expanded(
               child: Container(
                 height: 1,
-                color: AppColors.lifeSignal.withOpacity(0.2),
+                color: AppColors.primary.withOpacity(0.1),
               ),
             ),
             Padding(
@@ -410,14 +381,14 @@ class _LoginPageState extends State<LoginPage> {
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  color: AppColors.lifeSignal.withOpacity(0.4),
+                  color: AppColors.primary.withOpacity(0.4),
                 ),
               ),
             ),
             Expanded(
               child: Container(
                 height: 1,
-                color: AppColors.lifeSignal.withOpacity(0.2),
+                color: AppColors.primary.withOpacity(0.1),
               ),
             ),
           ],
@@ -430,45 +401,32 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildSocialButton(
-              icon: _buildWeChatIcon(),
+              icon: const Icon(Icons.wechat, size: 28, color: Color(0xFF07C160)),
               label: 'WE_CHAT',
               color: const Color(0xFF07C160),
               onTap: () {},
             ),
-            const SizedBox(width: 32),
+            const SizedBox(width: 40),
             _buildSocialButton(
-              icon: Icon(
-                Icons.chat_bubble_outline,
-                size: 28,
-                color: const Color(0xFF12B7F5),
-              ),
+              icon: const Icon(Icons.chat_bubble, size: 26, color: Color(0xFF12B7F5)),
               label: 'SYSTEM_QQ',
               color: const Color(0xFF12B7F5),
               onTap: () {},
             ),
-            const SizedBox(width: 32),
+            const SizedBox(width: 40),
             _buildSocialButton(
               icon: Icon(
                 Icons.fingerprint,
                 size: 28,
-                color: AppColors.textPrimary.withOpacity(0.8),
+                color: AppColors.textPrimary.withOpacity(0.7),
               ),
               label: 'BIOMETRIC',
-              color: AppColors.textPrimary.withOpacity(0.3),
+              color: Colors.white,
               onTap: () {},
             ),
           ],
         ),
       ],
-    );
-  }
-
-  /// 微信图标
-  Widget _buildWeChatIcon() {
-    return Icon(
-      Icons.wechat,
-      size: 28,
-      color: const Color(0xFF07C160),
     );
   }
 
@@ -489,21 +447,28 @@ class _LoginPageState extends State<LoginPage> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: color.withOpacity(0.5),
+                color: color.withOpacity(0.3),
                 width: 1,
               ),
               color: color.withOpacity(0.05),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withOpacity(0.1),
+                  blurRadius: 12,
+                  spreadRadius: 0,
+                ),
+              ],
             ),
             child: Center(child: icon),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             label,
             style: GoogleFonts.jetBrainsMono(
               fontSize: 9,
               fontWeight: FontWeight.bold,
               letterSpacing: 1,
-              color: AppColors.lifeSignal.withOpacity(0.4),
+              color: AppColors.primary.withOpacity(0.4),
             ),
           ),
         ],
@@ -511,7 +476,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  /// 构建角落装饰元素
+  /// 构建角落装饰装饰元素
   Widget _buildCornerBits() {
     return Stack(
       children: [
@@ -523,10 +488,10 @@ class _LoginPageState extends State<LoginPage> {
             width: 8,
             height: 8,
             decoration: BoxDecoration(
-              color: AppColors.lifeSignal.withOpacity(0.2),
+              color: AppColors.primary.withOpacity(0.2),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.lifeSignal.withOpacity(0.2),
+                  color: AppColors.primary.withOpacity(0.2),
                   blurRadius: 4,
                 ),
               ],
@@ -539,11 +504,11 @@ class _LoginPageState extends State<LoginPage> {
           child: Container(
             width: 4,
             height: 4,
-            color: AppColors.nuclearWarning.withOpacity(0.4),
+            color: AppColors.nuclearWarning.withOpacity(0.3),
           ),
         ),
         
-        // 右下角装饰
+        // 右下角装饰条
         Positioned(
           right: 16,
           bottom: 16,
@@ -553,13 +518,13 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 width: 32,
                 height: 4,
-                color: AppColors.lifeSignal.withOpacity(0.2),
+                color: AppColors.primary.withOpacity(0.1),
               ),
               const SizedBox(height: 4),
               Container(
                 width: 16,
                 height: 4,
-                color: AppColors.lifeSignal.withOpacity(0.2),
+                color: AppColors.primary.withOpacity(0.1),
               ),
             ],
           ),
@@ -567,4 +532,36 @@ class _LoginPageState extends State<LoginPage> {
       ],
     );
   }
+}
+
+/// 点阵背景组件
+class DotsBackground extends StatelessWidget {
+  const DotsBackground({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _DotsPainter(),
+      size: Size.infinite,
+    );
+  }
+}
+
+class _DotsPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppColors.primary.withOpacity(0.4)
+      ..strokeWidth = 1.0;
+
+    const spacing = 30.0;
+    for (double x = 0; x < size.width; x += spacing) {
+      for (double y = 0; y < size.height; y += spacing) {
+        canvas.drawCircle(Offset(x, y), 0.5, paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

@@ -4,6 +4,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/digital_rain_background.dart';
 import '../../../shared/widgets/hexagon_coin.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
+import 'package:go_router/go_router.dart';
+import '../../../core/router/app_router.dart';
 
 class CoinInjectionPage extends StatefulWidget {
   const CoinInjectionPage({super.key});
@@ -411,12 +413,6 @@ class _CoinInjectionPageState extends State<CoinInjectionPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.sentiment_very_dissatisfied, // Skull replacement as per plan if skull not perfect, 
-                                                               // but let's try to stick to something skeletal or similar.
-                                                               // Icons.skull is not standard Material. 
-                                                               // Using 'dangerous' or similar?
-                                                               // Design says 'skull'. Flutter might not have it by default.
-                                                               // Using a placeholder icon that looks intense.
                             Icons.dangerous, 
                             color: _primaryColor,
                             size: 64,
@@ -564,7 +560,7 @@ class _CoinInjectionPageState extends State<CoinInjectionPage>
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pop();
+                context.go(AppRoutes.store);
               },
               borderRadius: BorderRadius.circular(8),
               child: Container(

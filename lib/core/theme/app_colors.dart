@@ -43,6 +43,10 @@ class AppColors {
   /// 用于：视觉神经重置指引页面 (variant_1)
   static const Color visualResetGreen = Color(0xFF38FF14);
 
+  /// Glute Orange - 臀部机能唤醒橙
+  /// 用于：臀部机能唤醒页面 (variant_3)
+  static const Color gluteOrange = Color(0xFFFF4400);
+
   /// Primary - Neon Green / 主色
   /// Matches design 'primary': #38ff14
   static const Color primary = visualResetGreen;
@@ -50,6 +54,16 @@ class AppColors {
   /// Alert - Cyberpunk Red / 警报红
   /// Matches design 'alert': #FF004E
   static const Color alert = Color(0xFFFF004E);
+
+  /// Secondary - Cyber Blue / 辅助色
+  /// Matches design 'secondary': #00E5FF
+  static const Color secondary = Color(0xFF00E5FF);
+
+  /// Surface Dark - 深色表面
+  static const Color surface_dark = Color(0xFF121212);
+  
+  static const Color backgroundLight = Color(0xFFFFFFFF);
+  static const Color backgroundDark = Color(0xFF000000);
 
   // ============================================
   // 辅助色彩

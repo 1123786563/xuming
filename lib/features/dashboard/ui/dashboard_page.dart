@@ -109,7 +109,41 @@ class _DashboardPageState extends State<DashboardPage> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: const DashboardVisualizer(),
+                    child: Stack(
+                      children: [
+                        const DashboardVisualizer(),
+                        // Temporary Test Buttons
+                        Positioned(
+                          bottom: 20,
+                          right: 20,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              _TestButton(
+                                label: "TEST: STEALTH",
+                                icon: Icons.biotech,
+                                color: const Color(0xFF00BCD4),
+                                onTap: () => context.push(AppRoutes.stealthStomachVacuum),
+                              ),
+                              const SizedBox(height: 10),
+                              _TestButton(
+                                label: "SIMULATE ALERT",
+                                icon: Icons.warning_amber_rounded,
+                                color: AppColors.nuclearWarning,
+                                onTap: () => context.push(AppRoutes.sedentaryReminder),
+                              ),
+                              const SizedBox(height: 10),
+                              _TestButton(
+                                label: "TEST: WELCOME",
+                                icon: Icons.new_releases,
+                                color: AppColors.primary,
+                                onTap: () => context.push(AppRoutes.featureReadyWelcome),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -144,8 +178,7 @@ class _DashboardPageState extends State<DashboardPage> {
         break;
       case 1:
         // Library -> Recovery / Exercise
-        // context.push(AppRoutes.recoveryRecommendation); // Or a specific Library page
-        // For demo, maybe just show a snackbar or navigate if route exists
+        context.push(AppRoutes.recoveryRecommendation);
         break;
       case 2:
         // Stats
@@ -181,4 +214,51 @@ class _BackgroundGridPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class _TestButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _TestButton({
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: color, width: 1),
+          boxShadow: [
+            BoxShadow(color: color.withOpacity(0.3), blurRadius: 10),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: color, size: 16),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: AppTypography.monoDecorative.copyWith(
+                color: Colors.white,
+                fontSize: 10,
+                letterSpacing: 2,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

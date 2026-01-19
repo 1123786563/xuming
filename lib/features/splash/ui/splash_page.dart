@@ -97,12 +97,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           const ScanlineOverlay(),
           
           // 扫描光条
-          if (_showLogo) const ScanBeam(position: 0.35),
+          if (_showLogo) const _ScanBeam(),
           
           // 主内容
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
               child: Column(
                 children: [
                   // 顶部状态栏
@@ -113,7 +113,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   // 中央 Logo 区域
                   if (_showLogo) _buildLogoSection(),
                   
-                  const SizedBox(height: 48),
+                  const Spacer(), // 使用 Spacer 灵活分配空间
                   
                   // 终端日志区域
                   _buildTerminalLogs(),
@@ -221,69 +221,48 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   /// 构建中央 Logo 区域
   Widget _buildLogoSection() {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        // 故障效果层 - 品红色切片
-        Positioned(
-          left: -3,
-          child: Text(
-            '续命',
+    return Center(
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          // 故障艺术 Logo
+          GlitchText(
+            text: '续命',
             style: AppTypography.pixelHeadline.copyWith(
-              fontSize: 72,
-              color: const Color(0xFFFF00FF).withOpacity(0.8),
-            ),
-          ),
-        ),
-        
-        // 故障效果层 - 青色切片
-        Positioned(
-          left: 3,
-          child: Text(
-            '续命',
-            style: AppTypography.pixelHeadline.copyWith(
-              fontSize: 72,
-              color: const Color(0xFF00BFFF).withOpacity(0.8),
-            ),
-          ),
-        ),
-        
-        // 主文字
-        Text(
-          '续命',
-          style: AppTypography.pixelHeadline.copyWith(
-            fontSize: 72,
-            color: AppColors.lifeSignal,
-            shadows: [
-              Shadow(
-                color: AppColors.lifeSignal.withOpacity(0.8),
-                blurRadius: 5,
-              ),
-            ],
-          ),
-        ),
-        
-        // 版本标签
-        Positioned(
-          right: -16,
-          bottom: -8,
-          child: Transform.rotate(
-            angle: -0.035, // -2 度
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              fontSize: 84,
               color: AppColors.lifeSignal,
-              child: Text(
-                'v.1.0.4_RC',
-                style: GoogleFonts.jetBrainsMono(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.void_,
+              shadows: [
+                Shadow(
+                  color: AppColors.lifeSignal.withOpacity(0.8),
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+          ),
+          
+          // 版本标签
+          Positioned(
+            right: -24,
+            bottom: -8,
+            child: Transform.rotate(
+              angle: -0.035, // 约 -2 度
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                color: AppColors.lifeSignal,
+                child: Text(
+                  'v.1.0.4_RC',
+                  style: GoogleFonts.jetBrainsMono(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.void_,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -508,4 +487,38 @@ class _BootLogItem {
   final double opacity;
   final bool showNeon;
   final bool isHighlight;
+}
+
+/// 扫描光条组件
+/// 
+/// 模拟 CRT 显示器的水平扫描线干扰效果
+class _ScanBeam extends StatelessWidget {
+  const _ScanBeam();
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: MediaQuery.of(context).size.height * 0.35,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: 120,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.white.withOpacity(0.0),
+              AppColors.lifeSignal.withOpacity(0.05),
+              AppColors.lifeSignal.withOpacity(0.15),
+              AppColors.lifeSignal.withOpacity(0.05),
+              Colors.white.withOpacity(0.0),
+            ],
+            stops: const [0.0, 0.4, 0.5, 0.6, 1.0],
+          ),
+        ),
+      ),
+    );
+  }
 }

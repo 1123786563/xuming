@@ -51,6 +51,7 @@ class _ExerciseExecutionPageState extends State<ExerciseExecutionPage> with Tick
               _seconds = 0;
               _hundredths = 0;
               timer.cancel();
+              context.push(AppRoutes.hpRecoverySuccess);
             }
           }
         });
@@ -470,11 +471,14 @@ class _ExerciseExecutionPageState extends State<ExerciseExecutionPage> with Tick
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "SKIP_PROCEDURE",
-                style: AppTypography.monoDecorative.copyWith(
-                  color: Colors.white.withOpacity(0.3),
-                  decoration: TextDecoration.underline,
+              GestureDetector(
+                onTap: () => context.push(AppRoutes.hpRecoverySuccess),
+                child: Text(
+                  "SKIP_PROCEDURE",
+                  style: AppTypography.monoDecorative.copyWith(
+                    color: Colors.white.withOpacity(0.3),
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
               Row(

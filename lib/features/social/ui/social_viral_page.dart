@@ -157,7 +157,7 @@ class _SocialViralPageState extends State<SocialViralPage> with TickerProviderSt
                       index: 2,
                       title: 'Level 3: Reality Check',
                       subtitle: '"Your spine is a question mark, and so is your future. MOVE!"',
-                      icon: Icons.skull,
+                      icon: Icons.dangerous,
                       color: AppColors.lifeSignal,
                       isFatal: true,
                     ),
@@ -406,7 +406,7 @@ class _SocialViralPageState extends State<SocialViralPage> with TickerProviderSt
                     const SizedBox(height: 2),
                     Text(
                       'HP: $statusDesc',
-                      style: GoogleFonts.jetbrainsMono(
+                      style: GoogleFonts.jetBrainsMono(
                         color: statusColor,
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
@@ -448,7 +448,7 @@ class _SocialViralPageState extends State<SocialViralPage> with TickerProviderSt
                       const SizedBox(width: 8),
                       Text(
                         '$hp',
-                        style: GoogleFonts.jetbrainsMono(
+                        style: GoogleFonts.jetBrainsMono(
                           color: statusColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -488,7 +488,7 @@ class _SocialViralPageState extends State<SocialViralPage> with TickerProviderSt
       onTap: () => setState(() => _selectedWarheadIndex = index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(isSelected ? 16 : 12),
+        padding: EdgeInsets.all(isSelected ? 16 : 12),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.lifeSignal.withOpacity(0.15) : Colors.white.withOpacity(0.05),
           borderRadius: BorderRadius.circular(12),

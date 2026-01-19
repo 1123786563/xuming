@@ -40,8 +40,7 @@ class _NeckFirstAidPageState extends State<NeckFirstAidPage> with SingleTickerPr
         children: [
           // 1. 背景网格
           const GridBackground(
-            gridColor: Color(0xFF00FF40), // Primary Green with low opacity handled by widget if customizable, here we might need to adjust or use default
-            backgroundColor: Colors.transparent,
+            // backgroundColor removed
           ),
           
           // Custom Grid overlay for the specific look if needed, or rely on GridBackground
@@ -341,8 +340,8 @@ class _NeckFirstAidPageState extends State<NeckFirstAidPage> with SingleTickerPr
             // Markers
             // Spine Alignment Marker (Center-ish)
             Positioned(
-              top: '34%', 
-              left: '52%',
+              top: 120, 
+              left: 180,
               child: FractionalTranslation(
                 translation: const Offset(-0.5, -0.5),
                 child: Stack(
@@ -429,8 +428,8 @@ class _NeckFirstAidPageState extends State<NeckFirstAidPage> with SingleTickerPr
 
             // Scapula Marker
             Positioned(
-               top: '48%',
-               left: '45%',
+               top: 160,
+               left: 160,
                child: FractionalTranslation(
                  translation: const Offset(-0.5, 0),
                  child: Stack(
@@ -595,7 +594,9 @@ class _NeckFirstAidPageState extends State<NeckFirstAidPage> with SingleTickerPr
       height: 32,
       color: Colors.black,
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      decoration: Border(top: BorderSide(color: Colors.white.withOpacity(0.05))),
+      decoration: BoxDecoration(
+        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.05))),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

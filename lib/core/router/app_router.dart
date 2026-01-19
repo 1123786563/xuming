@@ -17,18 +17,27 @@ import '../../features/exercise/ui/pressure_report_page.dart';
 import '../../features/exercise/ui/boss_mode_page.dart';
 import '../../features/exercise/ui/spinal_spiral_alignment_page.dart';
 import '../../features/exercise/ui/neck_first_aid_page.dart'; // Add import
-import '../../features/exercise/ui/neck_stretch_page.dart'; // Add import
-import '../../features/exercise/ui/neck_stretch_page.dart'; // Add import
+import '../../features/exercise/ui/neck_stretch_page.dart';
 import '../../features/exercise/ui/visual_neural_reset_page.dart';
+import '../../features/exercise/ui/metacarpal_pressure_flush_page.dart';
 import '../../features/reward/ui/coin_injection_page.dart';
 import '../../features/mission/ui/mission_center_page.dart';
 import '../../features/stealth/ui/stealth_survival_page.dart';
-import '../../features/stealth/ui/stealth_survival_page.dart';
 import '../../features/profile/ui/medal_wall_page.dart';
+import '../../features/profile/ui/profile_page.dart';
 import '../../features/reward/ui/hp_recovery_success_page.dart';
+import '../../features/share/ui/share_poster_page.dart';
+import '../../features/exercise/ui/stealth_stomach_vacuum_page.dart';
+
 
 import '../../features/statistics/ui/statistics_page.dart';
 import '../../features/widget/ui/widgets_page.dart'; // Add import
+import '../../features/shop/ui/shop_page.dart';
+import '../../features/shop/ui/special_offer_detail_page.dart';
+import '../../features/exercise/ui/wrist_restructure_page.dart';
+import '../../features/exercise/ui/glute_activation_page.dart';
+import '../../features/exercise/ui/plugin_injection_loading_page.dart';
+import '../../features/exercise/ui/feature_ready_welcome_page.dart';
 
 /// 路由路径常量
 class AppRoutes {
@@ -52,8 +61,7 @@ class AppRoutes {
   static const String bossMode = '/boss-mode';
   static const String spinalAlignment = '/spinal-alignment';
   static const String neckFirstAid = '/neck-first-aid'; // Add route constant
-  static const String neckStretch = '/neck-stretch'; // Add route constant
-  static const String neckStretch = '/neck-stretch'; // Add route constant
+  static const String neckStretch = '/neck-stretch';
   static const String visualNeuralReset = '/visual-neural-reset';
   static const String coinInjection = '/coin-injection';
   static const String missionCenter = '/mission-center';
@@ -61,7 +69,15 @@ class AppRoutes {
   static const String medalWall = '/medal-wall';
   static const String hpRecoverySuccess = '/hp-recovery-success';
   static const String widgets = '/widgets';
+  static const String metacarpalPressureFlush = '/metacarpal-pressure-flush';
+  static const String specialOfferDetail = '/special-offer-detail';
+  static const String sharePoster = '/share-poster';
+  static const String pluginInjection = '/plugin-injection';
+  static const String gluteActivation = '/glute-activation';
+  static const String stealthStomachVacuum = '/stealth-stomach-vacuum';
+  static const String featureReadyWelcome = '/feature-ready-welcome';
 }
+
 
 /// GoRouter Provider
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -212,6 +228,60 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/exercise/wrist_restructure',
         name: 'wristRestructure',
         builder: (context, state) => const WristRestructurePage(),
+      ),
+
+      // 掌骨压力排空 (Variant 2)
+      GoRoute(
+        path: AppRoutes.metacarpalPressureFlush,
+        builder: (context, state) => const MetacarpalPressureFlushPage(),
+      ),
+
+      // 续命商店 - 资源解锁页
+      GoRoute(
+        path: AppRoutes.store,
+        builder: (context, state) => const ShopPage(),
+      ),
+
+      // 限时特惠 - 高级动作包详情页
+      GoRoute(
+        path: AppRoutes.specialOfferDetail,
+        builder: (context, state) => const SpecialOfferDetailPage(),
+      ),
+
+      // 臀部机能唤醒
+      GoRoute(
+        path: AppRoutes.gluteActivation,
+        builder: (context, state) => const GluteActivationPage(),
+      ),
+
+      // 系统档案 - 个人设置页
+      GoRoute(
+        path: AppRoutes.profile,
+        builder: (context, state) => const ProfilePage(),
+      ),
+
+      // 续命保单分享海报
+      GoRoute(
+        path: AppRoutes.sharePoster,
+        builder: (context, state) => const SharePosterPage(),
+      ),
+
+      // 新功能就绪欢迎页
+      GoRoute(
+        path: AppRoutes.featureReadyWelcome,
+        builder: (context, state) => const FeatureReadyWelcomePage(),
+      ),
+
+      // 隐形练腹指引 (Variant 2)
+      GoRoute(
+        path: AppRoutes.stealthStomachVacuum,
+        builder: (context, state) => const StealthStomachVacuumPage(),
+      ),
+
+      // 系统插件注入加载页
+      GoRoute(
+        path: AppRoutes.pluginInjection,
+        builder: (context, state) => const PluginInjectionLoadingPage(),
       ),
     ],
   );

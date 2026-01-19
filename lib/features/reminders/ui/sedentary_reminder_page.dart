@@ -31,7 +31,7 @@ class SedentaryReminderPage extends StatelessWidget {
 
           // 2. 扫描线叠加层 (Red scanlines)
           const ScanlineOverlay(
-            lineOpacity: 0.05,
+            opacity: 0.05,
           ),
 
           // 3. 装饰性技术背景文字 (Background Noise)

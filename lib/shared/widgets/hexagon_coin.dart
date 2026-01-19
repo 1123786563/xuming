@@ -57,7 +57,7 @@ class HexagonCoin extends StatelessWidget {
                 child: Center(
                   child: child ??
                       const Icon(
-                        Icons.skull,
+                        Icons.dangerous,
                         color: AppColors.lifeSignal,
                         size: 80,
                       ),
@@ -112,13 +112,7 @@ class _HexagonShape extends StatelessWidget {
 
 class _HexagonClipper extends CustomClipper<Path> {
   @override
-  Path getMaterial(_Size size) {
-    // 这种写法虽然不是标准的但为了兼容我会用更标准的 Path
-    return Path();
-  }
-
-  @override
-  Path getPath(Size size) {
+  Path getClip(Size size) {
     final path = Path();
     final width = size.width;
     final height = size.height;

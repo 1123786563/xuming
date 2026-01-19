@@ -112,9 +112,9 @@ class SharePosterPage extends StatelessWidget {
                 '续命\n保单',
                 style: TextStyle(
                   fontFamily: 'ZpixFont',
-                  fontSize: 56,
+                  fontSize: 64, // Matches 64px in design
                   fontWeight: FontWeight.bold,
-                  height: 1.0,
+                  height: 0.9,
                   letterSpacing: -2,
                   color: AppColors.textPrimary,
                 ),
@@ -122,26 +122,29 @@ class SharePosterPage extends StatelessWidget {
               
               // CONFIDENTIAL 印章
               Positioned(
-                top: 8,
-                right: 0,
+                top: 0,
+                right: -10,
                 child: Transform.rotate(
                   angle: -0.26, // 约-15度
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.nuclearWarning,
-                        width: 3,
+                  child: Opacity(
+                    opacity: 0.8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.nuclearWarning,
+                          width: 4,
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      'CONFIDENTIAL',
-                      style: TextStyle(
-                        fontFamily: 'ZpixFont',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                        color: AppColors.nuclearWarning,
+                      child: Text(
+                        'CONFIDENTIAL',
+                        style: TextStyle(
+                          fontFamily: 'ZpixFont',
+                          fontSize: 24, // Matches text-2xl
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 4,
+                          color: AppColors.nuclearWarning,
+                        ),
                       ),
                     ),
                   ),
@@ -149,6 +152,7 @@ class SharePosterPage extends StatelessWidget {
               ),
             ],
           ),
+
           
           const SizedBox(height: 16),
           
@@ -217,14 +221,38 @@ class SharePosterPage extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                  child: Icon(
-                    Icons.accessibility_new,
-                    size: 200,
-                    color: AppColors.lifeSignal.withOpacity(0.3),
+                  child: Opacity(
+                    opacity: 0.4,
+                    child: Icon(
+                      Icons.accessibility_new,
+                      size: 240,
+                      color: AppColors.lifeSignal,
+                    ),
                   ),
                 ),
               ),
             ),
+            
+            // 背景装饰线条 (模拟数据波动)
+            ...List.generate(5, (index) => Positioned(
+              left: 0,
+              right: 0,
+              top: 40.0 + index * 80,
+              child: Container(
+                height: 1,
+                color: AppColors.lifeSignal.withOpacity(0.05),
+              ),
+            )),
+            ...List.generate(5, (index) => Positioned(
+              top: 0,
+              bottom: 0,
+              left: 40.0 + index * 80,
+              child: Container(
+                width: 1,
+                color: AppColors.lifeSignal.withOpacity(0.05),
+              ),
+            )),
+
             
             // 诊断信息覆盖层
             Positioned.fill(
@@ -453,15 +481,16 @@ class SharePosterPage extends StatelessWidget {
         ),
         boxShadow: isHighlighted ? [
           BoxShadow(
-            color: AppColors.nuclearWarning.withOpacity(0.3),
+            color: AppColors.nuclearWarning.withOpacity(0.5),
             offset: const Offset(1, 1),
           ),
           BoxShadow(
-            color: AppColors.lifeSignal.withOpacity(0.3),
+            color: AppColors.lifeSignal.withOpacity(0.5),
             offset: const Offset(-1, -1),
           ),
         ] : null,
       ),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

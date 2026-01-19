@@ -5,6 +5,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/glitch_text.dart';
+import '../../../core/router/app_router.dart';
 
 /// 极高压力针对性动作推荐页面
 /// 
@@ -22,7 +23,7 @@ class RecoveryRecommendationPage extends StatelessWidget {
           const _BackgroundHUD(),
           
           // 扫描线叠加层
-          const ScanlineOverlay(lineOpacity: 0.05),
+          const ScanlineOverlay(opacity: 0.05),
           
           SafeArea(
             child: Column(
@@ -502,7 +503,7 @@ class _CTASectionState extends State<_CTASection> with SingleTickerProviderState
             builder: (context, child) {
               final double glow = _glowController.value;
               return GestureDetector(
-                onTap: () => context.push('/exercise'),
+                onTap: () => context.push(AppRoutes.exercise),
                 child: Container(
                   height: 64,
                   decoration: BoxDecoration(

@@ -103,7 +103,7 @@ class WeeklyReportDialog extends StatelessWidget {
         border: Border(bottom: BorderSide(color: Color(0xFF3E5639), width: 1)),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Icon(Icons.terminal, color: AppColors.lifeSignal, size: 28),
           Text(
@@ -201,7 +201,7 @@ class WeeklyReportDialog extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.between,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Column(

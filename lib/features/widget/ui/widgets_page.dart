@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yundong/core/theme/app_colors.dart';
-import 'package:yundong/features/widget/ui/hp_widget_large.dart';
-import 'package:yundong/features/widget/ui/hp_widget_medium.dart';
-import 'package:yundong/features/widget/ui/hp_widget_small.dart';
-import 'package:yundong/shared/widgets/grid_background.dart';
+import 'package:xuming/core/theme/app_colors.dart';
+import 'package:xuming/features/widget/ui/hp_widget_large.dart';
+import 'package:xuming/features/widget/ui/hp_widget_medium.dart';
+import 'package:xuming/features/widget/ui/hp_widget_small.dart';
+import 'package:xuming/shared/widgets/grid_background.dart';
 
 class WidgetsPage extends StatelessWidget {
   const WidgetsPage({super.key});
@@ -14,7 +14,7 @@ class WidgetsPage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          const Positioned.fill(child: GridBackground()),
+          Positioned.fill(child: GridBackground()),
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(24),

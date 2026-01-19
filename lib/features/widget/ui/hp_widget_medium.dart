@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yundong/core/theme/app_colors.dart';
-import 'package:yundong/shared/widgets/energy_bar.dart';
-import 'package:yundong/shared/widgets/scanline_overlay.dart';
+import 'package:xuming/core/theme/app_colors.dart';
+import 'package:xuming/shared/widgets/energy_bar.dart';
+import 'package:xuming/shared/widgets/scanline_overlay.dart';
 
 class HpWidgetMedium extends StatelessWidget {
   const HpWidgetMedium({super.key});
@@ -21,7 +21,7 @@ class HpWidgetMedium extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          const Positioned.fill(child: ScanlineOverlay()),
+          Positioned.fill(child: ScanlineOverlay()),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -45,7 +45,7 @@ class HpWidgetMedium extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4),
-                        const EnergyBar(
+                        EnergyBar(
                           value: 30, // 3/8 filled approx
                           maxValue: 80,
                           segments: 8,
