@@ -6,7 +6,8 @@ import '../../../core/router/app_router.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/pixel_corner_container.dart';
+import '../../../shared/widgets/pixel_corner_container.dart'; // Keep if used or remove if unused, but adding GridBackground below
+import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/providers/user_state_provider.dart';
 import '../../report/ui/weekly_report_dialog.dart';
@@ -31,7 +32,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
 
   Color _getHPColor(double hp) {
     if (hp > 60) return AppColors.lifeSignal;
-    if (hp > 30) return AppColors.accentYellow;
+    if (hp > 30) return AppColors.cautionYellow;
     return AppColors.nuclearWarning;
   }
 
@@ -98,12 +99,11 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
             ),
           ),
            // Background Grid Effect (Full Screen)
-          Positioned.fill(
-            child: Opacity(
-              opacity: 0.3,
-              child: CustomPaint(
-                painter: _BackgroundGridPainter(),
-              ),
+          const Positioned.fill(
+            child: GridBackground(
+              gridSize: 40,
+              lineColor: AppColors.primary,
+              lineOpacity: 0.05,
             ),
           ),
 
@@ -143,12 +143,12 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                           const SizedBox(width: 12),
                           _buildStatItem(AppStrings.coinsLabel, '${userState.coins}', AppColors.gluteOrange),
                           const SizedBox(width: 12),
-                          _buildStatItem(AppStrings.levelLabel, '${userState.level}', AppColors.accentYellow),
+                            _buildStatItem(AppStrings.levelLabel, '${userState.level}', AppColors.cautionYellow),
                         ],
                       ),
                       const SizedBox(height: 8),
                       // Segmented HP Bar
-                      SegmentedHealthBar(current: _currentHP),
+                      SegmentedHealthBar(current: currentHP),
                     ],
                   ),
                 ),
@@ -213,30 +213,6 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
         break;
     }
   }
-}
-
-class _BackgroundGridPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Only paint a subtle grid in the background
-    final paint = Paint()
-      ..color = AppColors.primary.withOpacity(0.05)
-      ..strokeWidth = 1;
-
-    // Use larger grid for background
-    const gridSize = 40.0;
-    
-    for (var x = 0.0; x < size.width; x += gridSize) {
-      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
-    }
-    
-    for (var y = 0.0; y < size.height; y += gridSize) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 // _TestButton removed

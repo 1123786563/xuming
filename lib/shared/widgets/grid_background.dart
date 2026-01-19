@@ -32,12 +32,14 @@ class GridBackground extends StatelessWidget {
     
     return Stack(
       children: [
-        // 网格图案
+        // 网格图案 - 使用 RepaintBoundary 隔离，避免动画触发重绘
         Positioned.fill(
-          child: CustomPaint(
-            painter: _GridPainter(
-              gridSize: gridSize,
-              lineColor: color.withOpacity(lineOpacity),
+          child: RepaintBoundary(
+            child: CustomPaint(
+              painter: _GridPainter(
+                gridSize: gridSize,
+                lineColor: color.withOpacity(lineOpacity),
+              ),
             ),
           ),
         ),
@@ -135,11 +137,13 @@ class DotsBackground extends StatelessWidget {
     return Positioned.fill(
       child: Opacity(
         opacity: opacity,
-        child: CustomPaint(
-          painter: _DotsPainter(
-            dotSpacing: dotSpacing,
-            dotSize: dotSize,
-            dotColor: dotColor ?? AppColors.lifeSignal,
+        child: RepaintBoundary(
+          child: CustomPaint(
+            painter: _DotsPainter(
+              dotSpacing: dotSpacing,
+              dotSize: dotSize,
+              dotColor: dotColor ?? AppColors.lifeSignal,
+            ),
           ),
         ),
       ),

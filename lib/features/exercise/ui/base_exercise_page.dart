@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:async';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_typography.dart';
@@ -10,6 +9,7 @@ import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/services/audio_service.dart';
+import '../widgets/timer_display.dart';
 
 /// 动作执行基类
 /// 
@@ -49,16 +49,13 @@ class BaseExercisePage extends ConsumerStatefulWidget {
 }
 
 class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with TickerProviderStateMixin {
-  late int _remainingSeconds;
-  int _hundredths = 0;
-  Timer? _timer;
   late AnimationController _pulseController;
   double _progress = 0.0;
+  final GlobalKey<TimerDisplayState> _timerKey = GlobalKey<TimerDisplayState>();
 
   @override
   void initState() {
     super.initState();
-    _remainingSeconds = widget.durationSeconds;
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -66,41 +63,22 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
 
     // 播放背景氛围音
     ref.read(audioServiceProvider).startAmbience();
-    
-    _startTimer();
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     _pulseController.dispose();
     // 停止背景音
     ref.read(audioServiceProvider).stopAmbience();
     super.dispose();
   }
 
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
-      if (mounted) {
-        setState(() {
-          _hundredths--;
-          if (_hundredths < 0) {
-            _hundredths = 99;
-            _remainingSeconds--;
-            
-            // 更新进度条
-            _progress = 1.0 - (_remainingSeconds / widget.durationSeconds);
-
-            if (_remainingSeconds < 0) {
-              _remainingSeconds = 0;
-              _hundredths = 0;
-              timer.cancel();
-              _onComplete();
-            }
-          }
-        });
-      }
-    });
+  void _onProgress(double progress) {
+    if (mounted) {
+      setState(() {
+        _progress = progress;
+      });
+    }
   }
 
   void _onComplete() {
@@ -135,7 +113,13 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
             child: Column(
               children: [
                 const SizedBox(height: 80),
-                _buildTimerDisplay(),
+                TimerDisplay(
+                  key: _timerKey,
+                  durationSeconds: widget.durationSeconds,
+                  themeColor: widget.themeColor,
+                  onComplete: _onComplete,
+                  onProgress: _onProgress,
+                ),
                 const SizedBox(height: 20),
                 Expanded(child: widget.visualFeedback),
                 _buildTaskInfo(),
@@ -237,29 +221,6 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildTimerDisplay() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          textBaseline: TextBaseline.alphabetic,
-          children: [
-            Text(
-              "00:${_remainingSeconds.toString().padLeft(2, '0')}",
-              style: const TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(width: 4),
-            Text(
-              _hundredths.toString().padLeft(2, '0'),
-              style: TextStyle(color: widget.themeColor.withOpacity(0.8), fontSize: 30),
-            ),
-          ],
-        ),
-      ],
     );
   }
 

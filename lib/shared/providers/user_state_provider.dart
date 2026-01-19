@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'dart:async';
 import '../models/user_data.dart';
 import 'isar_service.dart';
 
