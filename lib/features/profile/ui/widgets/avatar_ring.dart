@@ -219,13 +219,13 @@ class _ScanRingPainter extends CustomPainter {
     final paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2
-      ..shader = SweepGradient(
+      ..shader = const SweepGradient(
         colors: [
           Colors.transparent,
           AppColors.lifeSignal,
           Colors.transparent,
         ],
-        stops: const [0.0, 0.1, 0.3],
+        stops: [0.0, 0.1, 0.3],
       ).createShader(Rect.fromCircle(center: center, radius: radius));
     
     canvas.drawCircle(center, radius, paint);

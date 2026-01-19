@@ -141,7 +141,7 @@ class MissionCenterPage extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Positioned(
+                  const Positioned(
                     top: 0,
                     right: 0,
                     child: Icon(

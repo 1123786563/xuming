@@ -451,7 +451,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   /// 底部版权信息
   Widget _buildFooter() {
-    return Center(
+    return const Center(
       child: Column(
         children: [
           Text(
@@ -463,7 +463,7 @@ class _ProfilePageState extends State<ProfilePage> {
               color: AppColors.textDecorative,
             ),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Text(
             'COPYRIGHT © 2024 CYBER_HEALTH_CORP',
             style: TextStyle(

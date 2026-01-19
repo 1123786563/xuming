@@ -21,10 +21,10 @@ class PressureReportPage extends StatelessWidget {
       body: Stack(
         children: [
           // 背景扫描线效果
-          Positioned.fill(
+          const Positioned.fill(
             child: Opacity(
               opacity: 0.2,
-              child: const ScanlineOverlay(),
+              child: ScanlineOverlay(),
             ),
           ),
           // CRT 覆盖效果
@@ -92,7 +92,7 @@ class PressureReportPage extends StatelessWidget {
             child: Transform.rotate(
               angle: -1.5708, // -90 degrees
               alignment: Alignment.centerRight,
-              child: Opacity(
+              child: const Opacity(
                 opacity: 0.2,
                 child: Text(
                   'PROJECT_REANIMATION_v4.2',
@@ -158,9 +158,9 @@ class PressureReportPage extends StatelessWidget {
       child: Column(
         children: [
           // 上排两个统计卡片
-          Row(
+          const Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: ReportStatCard(
                   label: 'Pressure Relieved',
                   value: '-42%',
@@ -168,8 +168,8 @@ class PressureReportPage extends StatelessWidget {
                   icon: Icons.trending_down,
                 ),
               ),
-              const SizedBox(width: 8),
-              const Expanded(
+              SizedBox(width: 8),
+              Expanded(
                 child: ReportStatCard(
                   label: 'HP Recovered',
                   value: '+12%',
@@ -204,7 +204,7 @@ class PressureReportPage extends StatelessWidget {
             child: Container(
               width: 8,
               height: 8,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(color: AppColors.primary),
                   right: BorderSide(color: AppColors.primary),
@@ -212,10 +212,10 @@ class PressureReportPage extends StatelessWidget {
               ),
             ),
           ),
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'CERVICAL INTEGRITY STATUS',
                 style: TextStyle(
                   color: AppColors.primary,
@@ -223,11 +223,11 @@ class PressureReportPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'IMPROVED',
                     style: TextStyle(
                       color: Colors.white,
@@ -272,7 +272,7 @@ class PressureReportPage extends StatelessWidget {
               child: Container(
                 width: 16,
                 height: 16,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     top: BorderSide(color: AppColors.primary, width: 2),
                     left: BorderSide(color: AppColors.primary, width: 2),
@@ -287,7 +287,7 @@ class PressureReportPage extends StatelessWidget {
               child: Container(
                 width: 16,
                 height: 16,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(color: AppColors.primary, width: 2),
                     right: BorderSide(color: AppColors.primary, width: 2),

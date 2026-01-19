@@ -88,7 +88,7 @@ class UserStateNotifier extends StateNotifier<UserState> {
 
   Future<void> _loadFromDb() async {
     if (_isarService == null) return;
-    final data = await _isarService!.getUserData();
+    final data = await _isarService.getUserData();
     if (data != null) {
       state = UserState.fromData(data);
     }

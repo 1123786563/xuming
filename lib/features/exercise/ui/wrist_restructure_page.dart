@@ -175,9 +175,9 @@ class _WristVisualsState extends State<_WristVisuals> with SingleTickerProviderS
   Widget _buildPulseRing(double scaleBase, double delay) {
     // simple ring simplified
     // Actually using AnimationController
-    double value = (_pulseController.value + delay) % 1.0;
-    double scale = 1.0 + (value * 0.1); // 1.0 to 1.1
-    double opacity = 1.0 - value; // 1.0 to 0.0
+    final double value = (_pulseController.value + delay) % 1.0;
+    final double scale = 1.0 + (value * 0.1); // 1.0 to 1.1
+    final double opacity = 1.0 - value; // 1.0 to 0.0
 
     return Transform.scale(
       scale: scale,
@@ -197,17 +197,27 @@ class _WristVisualsState extends State<_WristVisuals> with SingleTickerProviderS
 }
 
 class _GlowingDot extends StatelessWidget {
-    // simpler approach: Draw 1px lines every 4px
-    
-    final linePaint = Paint()
-      ..color = const Color(0x0D00FF41)
-      ..strokeWidth = 1;
-      
-    for (double y = 0; y < size.height; y += 4) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), linePaint);
-    }
-  }
+  final double size;
+  final Color color;
+  
+  const _GlowingDot({required this.size, required this.color});
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
+        boxShadow: [
+          BoxShadow(
+            color: color.withOpacity(0.8),
+            blurRadius: size,
+            spreadRadius: size * 0.3,
+          ),
+        ],
+      ),
+    );
+  }
 }

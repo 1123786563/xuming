@@ -110,12 +110,12 @@ class _LogoutButtonState extends State<LogoutButton>
               ),
               
               // 角落装饰
-              Positioned(
+              const Positioned(
                 top: 0,
                 left: 0,
                 child: _CornerDecor(isTopLeft: true),
               ),
-              Positioned(
+              const Positioned(
                 bottom: 0,
                 right: 0,
                 child: _CornerDecor(isTopLeft: false),

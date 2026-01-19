@@ -245,7 +245,7 @@ class ClaimFailedPage extends ConsumerWidget {
              child: Container(
                width: 50,
                height: 2,
-               decoration: BoxDecoration(
+               decoration: const BoxDecoration(
                  color: AppColors.warningOrange,
                  boxShadow: [BoxShadow(color: AppColors.warningOrange, blurRadius: 5)],
                ),
@@ -257,7 +257,7 @@ class ClaimFailedPage extends ConsumerWidget {
              child: Container(
                width: 80,
                height: 1,
-               decoration: BoxDecoration(
+               decoration: const BoxDecoration(
                  color: AppColors.nuclearWarning,
                  boxShadow: [BoxShadow(color: AppColors.nuclearWarning, blurRadius: 5)],
                ),
@@ -311,7 +311,7 @@ class ClaimFailedPage extends ConsumerWidget {
   }
 
   Widget _buildStatsGrid() {
-    return Row(
+    return const Row(
       children: [
         Expanded(
           child: _PunishmentStatCard(
@@ -323,7 +323,7 @@ class ClaimFailedPage extends ConsumerWidget {
             glitchEffect: true,
           ),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: _PunishmentStatCard(
             label: 'VITAL_SIGNS',

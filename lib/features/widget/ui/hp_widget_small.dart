@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xuming/core/theme/app_colors.dart';
-import 'package:xuming/shared/widgets/scanline_overlay.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 class HpWidgetSmall extends StatelessWidget {
   const HpWidgetSmall({super.key});
@@ -21,7 +21,7 @@ class HpWidgetSmall extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Positioned.fill(child: ScanlineOverlay()),
+          const Positioned.fill(child: ScanlineOverlay()),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Row(
@@ -136,7 +136,7 @@ class HpWidgetSmall extends StatelessWidget {
                       // Warning
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.warning_amber_rounded,
                             color: AppColors.nuclearWarning,
                             size: 20,

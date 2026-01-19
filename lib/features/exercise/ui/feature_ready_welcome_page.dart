@@ -10,41 +10,41 @@ class FeatureReadyWelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.void_,
       body: Stack(
         children: [
           // 赛博网格背景
-          const _CyberGridBackground(),
+          _CyberGridBackground(),
           
           // 扫描线滤镜
-          const ScanlineOverlay(),
+          ScanlineOverlay(),
           
           SafeArea(
             child: Column(
               children: [
-                const _HeaderAppBar(),
+                _HeaderAppBar(),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
                         children: [
-                          const SizedBox(height: 10),
-                          const _TopDecorationLabels(),
-                          const _CenterVisualArea(),
-                          const _HeadlineText(),
-                          const SizedBox(height: 16),
-                          const _KernelStatusBanner(),
-                          const SizedBox(height: 24),
-                          const _TechnicalStatsLogs(),
-                          const SizedBox(height: 40),
+                          SizedBox(height: 10),
+                          _TopDecorationLabels(),
+                          _CenterVisualArea(),
+                          _HeadlineText(),
+                          SizedBox(height: 16),
+                          _KernelStatusBanner(),
+                          SizedBox(height: 24),
+                          _TechnicalStatsLogs(),
+                          SizedBox(height: 40),
                         ],
                       ),
                     ),
                   ),
                 ),
-                const _FooterAction(),
+                _FooterAction(),
               ],
             ),
           ),

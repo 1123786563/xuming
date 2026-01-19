@@ -7,6 +7,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/glitch_text.dart';
 import '../../../core/router/app_router.dart';
+import '../../../shared/providers/user_state_provider.dart';
 
 /// 续命商店 - 资源解锁页
 /// 
@@ -92,7 +93,7 @@ class ShopPage extends ConsumerWidget {
             children: [
               GestureDetector(
                 onTap: () => context.go(AppRoutes.dashboard),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back_ios,
                   color: AppColors.lifeSignal,
                   size: 20,
@@ -152,7 +153,7 @@ class ShopPage extends ConsumerWidget {
                   border: Border.all(color: AppColors.lifeSignal.withOpacity(0.4)),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.qr_code_scanner,
                   color: AppColors.lifeSignal,
                   size: 20,
@@ -273,7 +274,7 @@ class ShopPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                             color: AppColors.lifeSignal,
                             borderRadius: BorderRadius.circular(2),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: AppColors.lifeSignal,
                                 blurRadius: 8,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xuming/core/theme/app_colors.dart';
-import 'package:xuming/shared/widgets/energy_bar.dart';
-import 'package:xuming/shared/widgets/scanline_overlay.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/energy_bar.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 class HpWidgetMedium extends StatelessWidget {
   const HpWidgetMedium({super.key});
@@ -21,7 +21,7 @@ class HpWidgetMedium extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Positioned.fill(child: ScanlineOverlay()),
+          const Positioned.fill(child: ScanlineOverlay()),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -45,7 +45,7 @@ class HpWidgetMedium extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4),
-                        EnergyBar(
+                        const EnergyBar(
                           value: 30, // 3/8 filled approx
                           maxValue: 80,
                           segments: 8,
@@ -55,7 +55,7 @@ class HpWidgetMedium extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
@@ -66,7 +66,7 @@ class HpWidgetMedium extends StatelessWidget {
                             fontFamily: 'monospace',
                           ),
                         ),
-                        const Text(
+                        Text(
                           'MK.III',
                           style: TextStyle(
                             color: Colors.white,
@@ -81,8 +81,8 @@ class HpWidgetMedium extends StatelessWidget {
                 ),
                 // Body Quote
                 RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
+                  text: const TextSpan(
+                    style: TextStyle(
                       fontFamily: 'Space Grotesk', // or default
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -90,7 +90,7 @@ class HpWidgetMedium extends StatelessWidget {
                       color: Colors.white,
                     ),
                     children: [
-                      const TextSpan(text: '"Don\'t just sit there like a '),
+                      TextSpan(text: '"Don\'t just sit there like a '),
                       TextSpan(
                         text: 'digital fossil.',
                         style: TextStyle(
@@ -98,7 +98,7 @@ class HpWidgetMedium extends StatelessWidget {
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      const TextSpan(text: '"'),
+                      TextSpan(text: '"'),
                     ],
                   ),
                 ),
@@ -122,7 +122,7 @@ class HpWidgetMedium extends StatelessWidget {
                           Container(
                             width: 6,
                             height: 6,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: AppColors.lifeSignal,
                               shape: BoxShape.circle,
                             ),

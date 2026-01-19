@@ -83,9 +83,9 @@ class _MedalWallPageState extends State<MedalWallPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: AppColors.void_.withOpacity(0.9),
-        border: Border(
+        border: const Border(
           bottom: BorderSide(
-            color: const Color(0xFF333333),
+            color: Color(0xFF333333),
           ),
         ),
       ),
@@ -124,7 +124,7 @@ class _MedalWallPageState extends State<MedalWallPage> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: 40,
             height: 40,
             child: const Icon(
@@ -208,9 +208,9 @@ class _MedalWallPageState extends State<MedalWallPage> {
                   Expanded(
                     flex: 85,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppColors.lifeSignal,
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
                             color: AppColors.lifeSignal,
                             blurRadius: 10,
@@ -275,11 +275,11 @@ class _MedalWallPageState extends State<MedalWallPage> {
     return Container(
       height: 1,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
             Colors.transparent,
-            const Color(0xFF333333),
+            Color(0xFF333333),
             Colors.transparent,
           ],
         ),

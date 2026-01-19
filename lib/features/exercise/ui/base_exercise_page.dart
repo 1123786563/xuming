@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/theme/app_colors.dart';
+
 import '../../../core/constants/app_strings.dart';
-import '../../../core/theme/app_typography.dart';
 import '../../../core/router/app_router.dart';
-import '../../../shared/widgets/grid_background.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/services/audio_service.dart';
+import '../../../shared/widgets/grid_background.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 import '../widgets/timer_display.dart';
 
 /// 动作执行基类
@@ -84,7 +85,7 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
   void _onComplete() {
     // 更新全局状态：奖励 HP 和金币
     final notifier = ref.read(userStateProvider.notifier);
-    notifier.addHp(widget.hpReward);
+    notifier.addHp(widget.hpReward.toDouble());
     notifier.addCoins(widget.coinReward);
     
     // 播放完成音效

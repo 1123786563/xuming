@@ -307,10 +307,10 @@ class _StatisticsPageState extends State<StatisticsPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
-                      const Icon(Icons.timer, color: AppColors.primary, size: 14),
-                      const SizedBox(width: 8),
+                      Icon(Icons.timer, color: AppColors.primary, size: 14),
+                      SizedBox(width: 8),
                       Text(
                         '累计续命时长',
                         style: TextStyle(
@@ -380,10 +380,10 @@ class _StatisticsPageState extends State<StatisticsPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Icon(Icons.warning, color: AppColors.nuclearWarning, size: 14),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         '脊椎预警频率',
                         style: TextStyle(
@@ -426,7 +426,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                   ),
                 ],
               ),
-              Positioned(
+              const Positioned(
                 bottom: -8,
                 right: -8,
                 child: Opacity(
@@ -461,7 +461,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
       children: [
         Row(
           children: [
-            Text(
+            const Text(
               'SURVIVAL ACHIEVEMENT',
               style: TextStyle(
                 color: Colors.white,
@@ -567,19 +567,19 @@ class _StatisticsPageState extends State<StatisticsPage> {
                 ),
                 const SizedBox(height: 4),
                 RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
+                  text: const TextSpan(
+                    style: TextStyle(
                       color: Colors.white70,
                       fontSize: 12,
                       height: 1.5,
                     ),
                     children: [
-                      const TextSpan(text: '检测到脊椎 S3 区域压力过载。建议执行 '),
+                      TextSpan(text: '检测到脊椎 S3 区域压力过载。建议执行 '),
                       TextSpan(
                         text: '"深海呼吸"',
                         style: TextStyle(color: AppColors.primary),
                       ),
-                      const TextSpan(text: ' 序列以恢复 HP 稳定性。'),
+                      TextSpan(text: ' 序列以恢复 HP 稳定性。'),
                     ],
                   ),
                 ),

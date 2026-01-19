@@ -297,7 +297,7 @@ class _SocialViralPageState extends ConsumerState<SocialViralPage> with TickerPr
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'TARGET_LOCKED: SCANNING_OFFICE_NETWORK',
                 style: TextStyle(
                   fontFamily: 'ZpixFont',
@@ -617,11 +617,11 @@ class _SocialViralPageState extends ConsumerState<SocialViralPage> with TickerPr
               elevation: 20,
               shadowColor: AppColors.lifeSignal.withOpacity(0.5),
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.rocket_launch, weight: 900),
-                const SizedBox(width: 8),
+                Icon(Icons.rocket_launch, weight: 900),
+                SizedBox(width: 8),
                 Text(
                   'DEPLOY_BOMB',
                   style: TextStyle(

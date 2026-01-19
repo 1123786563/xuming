@@ -1,8 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'app_router.dart';
-import '../../features/splash/ui/splash_page.dart';
-import '../../features/onboarding/ui/login_page.dart';
+
 import '../../features/onboarding/ui/diagnostic_page.dart';
+import '../../features/onboarding/ui/login_page.dart';
+import '../../features/splash/ui/splash_page.dart';
+import 'app_router.dart';
 
 /// 认证相关路由
 /// 

@@ -1,7 +1,9 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
-import 'dart:math' as math;
 
 class MechanicalSoundwave extends StatelessWidget {
   final Animation<double> animation;

@@ -59,9 +59,9 @@ class ExerciseExecutionPage extends ConsumerWidget {
               ),
 
               // 热力点
-              _Heatpoint(top: 150, left: 140, color: AppColors.nuclearWarning),
-              _Heatpoint(top: 100, left: 160, color: AppColors.warningOrange),
-              _Heatpoint(bottom: 100, right: 140, color: AppColors.lifeSignal),
+              const _Heatpoint(top: 150, left: 140, color: AppColors.nuclearWarning),
+              const _Heatpoint(top: 100, left: 160, color: AppColors.warningOrange),
+              const _Heatpoint(bottom: 100, right: 140, color: AppColors.lifeSignal),
 
               // 边角文字
               Positioned(

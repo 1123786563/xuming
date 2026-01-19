@@ -153,7 +153,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             children: [
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.wifi_tethering,
                     size: 16,
                     color: AppColors.lifeSignal,
@@ -197,7 +197,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Icon(
+                  const Icon(
                     Icons.bolt,
                     size: 16,
                     color: AppColors.lifeSignal,
@@ -289,7 +289,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             bottom: 0,
             width: 32,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -325,7 +325,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         decoration: BoxDecoration(
           color: AppColors.lifeSignal.withOpacity(0.1),
-          border: Border(
+          border: const Border(
             right: BorderSide(
               color: AppColors.lifeSignal,
               width: 4,
@@ -335,7 +335,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.terminal,
               size: 14,
               color: AppColors.textPrimary,

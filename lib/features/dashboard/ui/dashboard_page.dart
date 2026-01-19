@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/router/app_router.dart';
 import '../../../core/constants/app_strings.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/pixel_corner_container.dart'; // Keep if used or remove if unused, but adding GridBackground below
-import '../../../shared/widgets/grid_background.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/providers/user_state_provider.dart';
-import '../../report/ui/weekly_report_dialog.dart';
-import 'widgets/segmented_health_bar.dart';
-import 'widgets/dashboard_visualizer.dart';
+import '../../../shared/widgets/grid_background.dart';
+import '../../../shared/widgets/pixel_corner_container.dart'; // Keep if used or remove if unused, but adding GridBackground below
 import 'widgets/dashboard_bottom_nav.dart';
+import 'widgets/dashboard_visualizer.dart';
+import 'widgets/segmented_health_bar.dart';
 
 /// 生存仪表盘主页 - 终极版
 /// 

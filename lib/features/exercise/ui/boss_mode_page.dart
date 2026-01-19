@@ -77,9 +77,9 @@ class _BossModePageState extends State<BossModePage> {
           height: 22,
           color: const Color(0xFF007ACC),
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text("Main*  UTF-8  Dart", style: TextStyle(color: Colors.white, fontSize: 11)),
               Text("Ln 14, Col 32", style: TextStyle(color: Colors.white, fontSize: 11)),
             ],
@@ -97,9 +97,9 @@ class _BossModePageState extends State<BossModePage> {
           height: 80,
           color: const Color(0xFF217346),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
+          child: const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
+            children: [
               Text("Home  Insert  Page Layout  Formulas  Data", style: TextStyle(color: Colors.white, fontSize: 14)),
             ],
           ),
@@ -139,8 +139,8 @@ class _BossModePageState extends State<BossModePage> {
           height: 30,
           color: const Color(0xFFF3F3F3),
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            children: const [
+          child: const Row(
+            children: [
               Text("Sheet1  Sheet2  Sheet3", style: TextStyle(color: Colors.black, fontSize: 12)),
             ],
           ),

@@ -111,7 +111,7 @@ class _WarningPanelState extends State<WarningPanel> {
                       value: _isAcknowledged,
                       onChanged: (v) => setState(() => _isAcknowledged = v),
                       activeTrackColor: AppColors.nuclearWarning.withOpacity(0.2),
-                      activeColor: AppColors.nuclearWarning,
+                      activeThumbColor: AppColors.nuclearWarning,
                       inactiveThumbColor: Colors.white,
                       inactiveTrackColor: Colors.grey[800],
                     ),

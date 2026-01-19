@@ -222,9 +222,9 @@ class _SpecialOfferDetailPageState extends State<SpecialOfferDetailPage> {
             decoration: BoxDecoration(
               color: const Color(0xFF1A1A1A),
               borderRadius: BorderRadius.circular(2),
-              border: Border(
-                top: const BorderSide(color: AppColors.bioUpgrade, width: 1),
-                right: const BorderSide(color: AppColors.bioUpgrade, width: 4),
+              border: const Border(
+                top: BorderSide(color: AppColors.bioUpgrade, width: 1),
+                right: BorderSide(color: AppColors.bioUpgrade, width: 4),
               ),
             ),
             child: ClipRRect(
@@ -591,7 +591,7 @@ class _SpecialOfferDetailPageState extends State<SpecialOfferDetailPage> {
   }
 
   Widget _buildUpgradeButton() {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 56,
       child: Stack(

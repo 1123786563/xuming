@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'base_exercise_page.dart';
+
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_typography.dart';
+import 'base_exercise_page.dart';
 
 /// 臀部机能唤醒指引页 (Variant 3) - 使用基类重构
 class GluteActivationPage extends ConsumerWidget {

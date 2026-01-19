@@ -322,8 +322,8 @@ class _PluginInjectionLoadingPageState extends State<PluginInjectionLoadingPage>
                 fontSize: 28,
                 fontStyle: FontStyle.italic,
               ),
-              children: [
-                const TextSpan(text: '插件注入中: '),
+              children: const [
+                TextSpan(text: '插件注入中: '),
                 TextSpan(
                   text: '[手腕修复模块]',
                   style: TextStyle(color: AppColors.lifeSignal),
@@ -452,8 +452,8 @@ class _PluginInjectionLoadingPageState extends State<PluginInjectionLoadingPage>
               RichText(
                 text: TextSpan(
                   style: _footerMetaStyle(Colors.white30),
-                  children: [
-                    const TextSpan(text: 'SECURE_LINK: '),
+                  children: const [
+                    TextSpan(text: 'SECURE_LINK: '),
                     TextSpan(
                       text: 'ENCRYPTED',
                       style: TextStyle(color: AppColors.bioUpgrade),

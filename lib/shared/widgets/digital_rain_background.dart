@@ -129,7 +129,7 @@ class _DigitalRainPainter extends CustomPainter {
             color: AppColors.lifeSignal.withOpacity(charOpacity),
             shadows: i == 0
                 ? [
-                    Shadow(
+                    const Shadow(
                       color: AppColors.lifeSignal,
                       blurRadius: 10,
                     )

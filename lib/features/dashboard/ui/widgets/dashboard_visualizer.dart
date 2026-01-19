@@ -13,7 +13,7 @@ class DashboardVisualizer extends StatelessWidget {
 
   Color _getIndicatorColor() {
     if (hp > 60) return AppColors.lifeSignal; // Green
-    if (hp > 30) return AppColors.accentYellow; // Yellow
+    if (hp > 30) return AppColors.cautionYellow; // Yellow
     return AppColors.nuclearWarning; // Red
   }
 
@@ -119,7 +119,7 @@ class DashboardVisualizer extends StatelessWidget {
                   Container(
                     width: 8,
                     height: 8,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.primary,
                       shape: BoxShape.circle,
                       boxShadow: [
@@ -211,9 +211,9 @@ class DashboardVisualizer extends StatelessWidget {
                       ),
                   ],
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
+                  children: [
                     Icon(Icons.medical_services_outlined, color: Colors.white, size: 20),
                      SizedBox(width: 12),
                      Text(
@@ -246,7 +246,7 @@ class _Corner extends StatelessWidget {
   Widget build(BuildContext context) {
     const double size = 32;
     const double thickness = 2;
-    final color = AppColors.primary;
+    const color = AppColors.primary;
 
     return Container(
       width: size,

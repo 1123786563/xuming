@@ -40,12 +40,12 @@ class HexagonCoin extends StatelessWidget {
           // 核心硬币
           _HexagonShape(
             size: size * 0.85,
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
                 AppColors.lifeSignal,
-                const Color(0xFF04A68B),
+                Color(0xFF04A68B),
                 AppColors.void_,
               ],
             ),

@@ -98,7 +98,7 @@ class DashboardBottomNav extends StatelessWidget {
               color: isActive ? AppColors.primary : Colors.transparent,
               shape: BoxShape.circle,
               boxShadow: isActive ? [
-                BoxShadow(
+                const BoxShadow(
                   color: AppColors.primary,
                   blurRadius: 4,
                   spreadRadius: 1,

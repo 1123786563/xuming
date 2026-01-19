@@ -67,7 +67,7 @@ class SedentaryReminderPage extends StatelessWidget {
                         const SizedBox(height: 32),
                         
                         // 数据卡片网格
-                        Row(
+                        const Row(
                           children: [
                             Expanded(
                               child: StatCard(
@@ -77,7 +77,7 @@ class SedentaryReminderPage extends StatelessWidget {
                                 color: AppColors.nuclearWarning,
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            SizedBox(width: 8),
                             Expanded(
                               child: StatCard(
                                 label: "BIO_SIGNS",
@@ -119,32 +119,32 @@ class SedentaryReminderPage extends StatelessWidget {
       height: 1.2,
     );
 
-    return Positioned.fill(
+    return const Positioned.fill(
       child: IgnorePointer(
         child: Opacity(
           opacity: 0.1,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("SYSTEM_FAIL_IMMINENT // SYSTEM_FAIL_IMMINENT //", style: textStyle),
                     Text("ERROR_CODE: 0x800421 //", style: textStyle),
                   ],
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("BIO_SIGNS_FADING // SEDENTARY_LOCKDOWN //", style: textStyle),
                     Text("LEVEL_3_STRIKE //", style: textStyle),
                   ],
                 ),
-                const Text("SPINE_CRITICAL_FAILURE // SPINE_CRITICAL_FAILURE //", style: textStyle),
-                const Row(
+                Text("SPINE_CRITICAL_FAILURE // SPINE_CRITICAL_FAILURE //", style: textStyle),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("ESTIMATED_LIFE_REDUCED_BY_45MIN //", style: textStyle),

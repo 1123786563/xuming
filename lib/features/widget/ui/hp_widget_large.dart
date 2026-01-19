@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xuming/core/theme/app_colors.dart';
-import 'package:xuming/shared/widgets/cyber_button.dart';
-import 'package:xuming/shared/widgets/scanline_overlay.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/cyber_button.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 class HpWidgetLarge extends StatelessWidget {
   const HpWidgetLarge({super.key});
@@ -21,7 +21,7 @@ class HpWidgetLarge extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Positioned.fill(child: ScanlineOverlay()),
+          const Positioned.fill(child: ScanlineOverlay()),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -34,7 +34,7 @@ class HpWidgetLarge extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'MONITORING_UNIT_01',
                           style: TextStyle(
                             color: AppColors.lifeSignal,
@@ -116,7 +116,7 @@ class HpWidgetLarge extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         bottom: 4,
                         right: 4,
                         child: Text(
@@ -133,7 +133,7 @@ class HpWidgetLarge extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 // Metrics Grid
-                Row(
+                const Row(
                   children: [
                     Expanded(
                       child: _MetricCard(
@@ -144,7 +144,7 @@ class HpWidgetLarge extends StatelessWidget {
                         progressColor: AppColors.nuclearWarning,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Expanded(
                       child: _MetricCard(
                         title: 'RECOVERY RATE',
@@ -161,8 +161,8 @@ class HpWidgetLarge extends StatelessWidget {
                 Center(
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: const TextStyle(
+                    text: const TextSpan(
+                      style: TextStyle(
                         fontFamily: 'Space Grotesk',
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
@@ -172,12 +172,12 @@ class HpWidgetLarge extends StatelessWidget {
                         letterSpacing: -0.5,
                       ),
                       children: [
-                        const TextSpan(text: 'YOUR CHAIR IS '),
+                        TextSpan(text: 'YOUR CHAIR IS '),
                         TextSpan(
                           text: 'WINNING.\n',
                           style: TextStyle(color: AppColors.nuclearWarning),
                         ),
-                        const TextSpan(text: 'YOUR SPINE IS '),
+                        TextSpan(text: 'YOUR SPINE IS '),
                         TextSpan(
                           text: 'LOSING.',
                           style: TextStyle(color: AppColors.nuclearWarning),

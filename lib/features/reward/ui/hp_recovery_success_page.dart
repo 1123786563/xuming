@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
@@ -420,7 +421,7 @@ class _HpRecoverySuccessPageState extends ConsumerState<HpRecoverySuccessPage> w
             const SizedBox(width: 8),
             Text(
               text.toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'ZpixFont', // Or Space Grotesk if we mapped it, but designs use ZPixel or similar for emphasis usually
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

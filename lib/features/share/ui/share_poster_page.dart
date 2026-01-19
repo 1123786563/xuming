@@ -80,7 +80,7 @@ class SharePosterPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 协议版本号
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -108,7 +108,7 @@ class SharePosterPage extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               // 主标题
-              Text(
+              const Text(
                 '续命\n保单',
                 style: TextStyle(
                   fontFamily: 'ZpixFont',
@@ -136,7 +136,7 @@ class SharePosterPage extends StatelessWidget {
                           width: 4,
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'CONFIDENTIAL',
                         style: TextStyle(
                           fontFamily: 'ZpixFont',
@@ -220,7 +220,7 @@ class SharePosterPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                child: Center(
+                child: const Center(
                   child: Opacity(
                     opacity: 0.4,
                     child: Icon(
@@ -334,7 +334,7 @@ class SharePosterPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'REPAIR LEVEL',
                 style: TextStyle(
                   fontFamily: 'ZpixFont',
@@ -346,7 +346,7 @@ class SharePosterPage extends StatelessWidget {
               ),
               Text(
                 '$repairLevel%',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'ZpixFont',
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
@@ -537,13 +537,13 @@ class SharePosterPage extends StatelessWidget {
           // 主卡片
           Container(
             padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.lifeSignal,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   '"恭喜，你又成功躲过了一次脊椎结构的崩塌。现在，回去当你的数字工蜂吧。"',
                   style: TextStyle(
                     fontFamily: 'ZpixFont',
@@ -590,7 +590,7 @@ class SharePosterPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               color: AppColors.nuclearWarning,
-              child: Text(
+              child: const Text(
                 'WARNING: TRUTH',
                 style: TextStyle(
                   fontFamily: 'ZpixFont',
@@ -634,7 +634,7 @@ class SharePosterPage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
                     color: AppColors.lifeSignal,
-                    child: Text(
+                    child: const Text(
                       'EXP_DATE',
                       style: TextStyle(
                         fontFamily: 'ZpixFont',
@@ -647,7 +647,7 @@ class SharePosterPage extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     expiryDate,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'ZpixFont',
                       fontSize: 10,
                       color: AppColors.lifeSignal,
@@ -664,7 +664,7 @@ class SharePosterPage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
                     color: AppColors.lifeSignal.withOpacity(0.2),
-                    child: Text(
+                    child: const Text(
                       'SYS_SEC',
                       style: TextStyle(
                         fontFamily: 'ZpixFont',
@@ -755,7 +755,7 @@ class SharePosterPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        Text(
+        const Text(
           'SCAN_TO_REPAIR',
           style: TextStyle(
             fontFamily: 'ZpixFont',

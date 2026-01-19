@@ -147,7 +147,7 @@ class _StealthSurvivalPageState extends ConsumerState<StealthSurvivalPage> with 
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
+                  const Text(
                     "当前状态：隐蔽中",
                     style: TextStyle(
                       fontFamily: 'DotGothic16', // Fallback to a standard font if not loaded, used custom logic via TextStyle
@@ -226,7 +226,7 @@ class _StealthSurvivalPageState extends ConsumerState<StealthSurvivalPage> with 
                   decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: stealthPrimary.withOpacity(0.1))),
                 ),
                 // Center
-                Container(width: 6, height: 6, decoration: BoxDecoration(color: stealthGreen, shape: BoxShape.circle, boxShadow: [BoxShadow(color: stealthGreen, blurRadius: 6)])),
+                Container(width: 6, height: 6, decoration: const BoxDecoration(color: stealthGreen, shape: BoxShape.circle, boxShadow: [BoxShadow(color: stealthGreen, blurRadius: 6)])),
                 // Sweep
                 RotationTransition(
                   turns: _radarController,

@@ -49,7 +49,7 @@ class MedalHexagon extends StatelessWidget {
     
     return MouseRegion(
       cursor: isLocked ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
-      child: Container(
+      child: SizedBox(
         width: size,
         height: size * 1.15, // Hexagon aspect ratio adjustment
         child: Stack(

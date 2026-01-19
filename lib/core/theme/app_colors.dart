@@ -93,4 +93,26 @@ class AppColors {
   
   /// 玻璃态背景 (70% 透明度)
   static const Color glassBackground = Color(0xB31C1C1E);
+
+  // ============================================
+  // 语义化颜色别名 (用于主题切换)
+  // ============================================
+  
+  /// 主发光效果 - 成功/生命信号
+  static const Color primaryGlow = lifeSignal;
+  
+  /// 危险脉冲 - 紧急警报/低血量
+  static const Color dangerPulse = nuclearWarning;
+  
+  /// 成功反馈 - 完成动作/奖励
+  static const Color successFeedback = lifeSignal;
+  
+  /// 警告反馈 - 中度提示
+  static const Color warningFeedback = cautionYellow;
+  
+  /// 升级/解锁 - 高级功能
+  static const Color upgradeGlow = bioUpgrade;
+  
+  /// 信息提示 - 辅助信息
+  static const Color infoGlow = secondary;
 }

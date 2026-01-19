@@ -1,21 +1,22 @@
 import 'package:go_router/go_router.dart';
-import 'app_router.dart';
-import '../../features/exercise/ui/exercise_execution_page.dart';
+
 import '../../features/exercise/ui/bone_reset_page.dart';
-import '../../features/exercise/ui/pressure_report_page.dart';
 import '../../features/exercise/ui/boss_mode_page.dart';
-import '../../features/exercise/ui/spinal_spiral_alignment_page.dart';
+import '../../features/exercise/ui/exercise_execution_page.dart';
+import '../../features/exercise/ui/feature_ready_welcome_page.dart';
+import '../../features/exercise/ui/glute_activation_page.dart';
+import '../../features/exercise/ui/metacarpal_pressure_flush_page.dart';
 import '../../features/exercise/ui/neck_first_aid_page.dart';
 import '../../features/exercise/ui/neck_stretch_page.dart';
-import '../../features/exercise/ui/visual_neural_reset_page.dart';
-import '../../features/exercise/ui/metacarpal_pressure_flush_page.dart';
-import '../../features/exercise/ui/wrist_restructure_page.dart';
-import '../../features/exercise/ui/glute_activation_page.dart';
-import '../../features/exercise/ui/stealth_stomach_vacuum_page.dart';
 import '../../features/exercise/ui/plugin_injection_loading_page.dart';
-import '../../features/exercise/ui/feature_ready_welcome_page.dart';
+import '../../features/exercise/ui/pressure_report_page.dart';
+import '../../features/exercise/ui/spinal_spiral_alignment_page.dart';
+import '../../features/exercise/ui/stealth_stomach_vacuum_page.dart';
+import '../../features/exercise/ui/visual_neural_reset_page.dart';
+import '../../features/exercise/ui/wrist_restructure_page.dart';
 import '../../features/recovery/ui/recovery_recommendation_page.dart';
 import '../../features/stealth/ui/stealth_survival_page.dart';
+import 'app_router.dart';
 
 /// 运动动作相关路由
 /// 

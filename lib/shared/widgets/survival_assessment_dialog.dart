@@ -329,7 +329,7 @@ class _SurvivalAssessmentDialogState extends State<SurvivalAssessmentDialog>
                     ),
                     child: Text(
                       widget.healthScore.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'ZpixFont',
                         fontSize: 56,
                         fontWeight: FontWeight.bold,
@@ -358,7 +358,7 @@ class _SurvivalAssessmentDialogState extends State<SurvivalAssessmentDialog>
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.warning_amber_rounded,
                 color: AppColors.nuclearWarning,
                 size: 16,
@@ -476,7 +476,7 @@ class _SurvivalAssessmentDialogState extends State<SurvivalAssessmentDialog>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
+          const Icon(
             Icons.report_problem_rounded,
             color: AppColors.nuclearWarning,
             size: 20,
@@ -536,7 +536,7 @@ class _SurvivalAssessmentDialogState extends State<SurvivalAssessmentDialog>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.bolt,
                         color: Colors.black,
                         size: 24,
@@ -551,7 +551,7 @@ class _SurvivalAssessmentDialogState extends State<SurvivalAssessmentDialog>
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Icon(
+                      const Icon(
                         Icons.bolt,
                         color: Colors.black,
                         size: 24,

@@ -157,18 +157,18 @@ class OscilloscopePainter extends CustomPainter {
       ..strokeWidth = 2;
 
     final path = Path();
-    double midY = size.height / 2;
+    final double midY = size.height / 2;
     
     path.moveTo(0, midY);
     for (double i = 0; i < size.width; i++) {
-      double angle = (i / size.width * 2 * math.pi * 4) + (animationValue * 2 * math.pi);
-      double distFromCenter = (i - size.width/2).abs();
-      double multiplier = math.max(0, 1 - distFromCenter / (size.width * 0.4));
+      final double angle = (i / size.width * 2 * math.pi * 4) + (animationValue * 2 * math.pi);
+      final double distFromCenter = (i - size.width/2).abs();
+      final double multiplier = math.max(0, 1 - distFromCenter / (size.width * 0.4));
       
       double y = midY + math.sin(angle) * 15 * multiplier;
       
       if (i > size.width * 0.45 && i < size.width * 0.55) {
-        double pulseAngle = (i - size.width * 0.45) / (size.width * 0.1) * math.pi;
+        final double pulseAngle = (i - size.width * 0.45) / (size.width * 0.1) * math.pi;
         y -= math.sin(pulseAngle) * 40 * math.sin(animationValue * 5);
       }
       

@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/router/app_router.dart';
 import '../../../shared/providers/user_state_provider.dart';
+import '../../../shared/widgets/digital_rain_background.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
+import '../../../shared/widgets/hexagon_coin.dart';
 
 class CoinInjectionPage extends ConsumerStatefulWidget {
   const CoinInjectionPage({super.key});
@@ -138,7 +141,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -151,8 +154,8 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                   fontFamily: 'Zpix',
                 ),
               ),
-              const SizedBox(height: 4),
-              const Text(
+              SizedBox(height: 4),
+              Text(
                 '0x4FF2',
                 style: TextStyle(
                   color: Colors.white,
@@ -189,7 +192,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                     },
                   ),
                   const SizedBox(width: 8),
-                  Text(
+                  const Text(
                     'ENCRYPTION_ACTIVE',
                     style: TextStyle(
                       color: _primaryColor,
@@ -284,7 +287,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Text(
+                  const Text(
                     'XC',
                     style: TextStyle(
                       color: _primaryColor,
@@ -359,7 +362,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                     Container(
                       width: 2,
                       height: 64,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -418,7 +421,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                           Container(
                             width: 2,
                             height: 20,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -445,7 +448,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           color: _primaryColor,
-          child: Text(
+          child: const Text(
             'SUCCESS INJECTION',
             style: TextStyle(
               color: _bgColor,
@@ -459,8 +462,8 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
         const SizedBox(height: 16),
         RichText(
           textAlign: TextAlign.center,
-          text: TextSpan(
-            style: const TextStyle(
+          text: const TextSpan(
+            style: TextStyle(
               fontSize: 24,
               fontFamily: 'Zpix',
               color: Colors.white,
@@ -477,7 +480,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
               ],
             ),
             children: [
-              const TextSpan(text: '获取生物能量: '),
+              TextSpan(text: '获取生物能量: '),
               TextSpan(
                 text: '+100',
                 style: TextStyle(
@@ -485,7 +488,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const TextSpan(text: ' 续命币'),
+              TextSpan(text: ' 续命币'),
             ],
           ),
         ),
@@ -499,8 +502,8 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
               color: Colors.white.withOpacity(0.6),
               letterSpacing: 1,
             ),
-            children: [
-              const TextSpan(text: 'SYSTEM_STATUS: '),
+            children: const [
+              TextSpan(text: 'SYSTEM_STATUS: '),
               TextSpan(
                 text: 'INJECTION_COMPLETE',
                 style: TextStyle(
@@ -574,7 +577,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                     ),
                   ],
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -587,7 +590,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                         fontFamily: 'Zpix',
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Icon(
                       Icons.arrow_forward_ios,
                       size: 14,

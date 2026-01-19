@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../core/router/app_router.dart';
+import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/widgets/cyber_button.dart';
 import '../../../shared/widgets/survival_assessment_dialog.dart';
-import '../../../shared/providers/user_state_provider.dart';
 
 /// 身体系统初始化诊断页
 /// 

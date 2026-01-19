@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cyber_button.dart';
+import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/radar_chart.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/stat_card.dart';
 import '../../../shared/widgets/warning_panel.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
-import '../../../shared/widgets/grid_background.dart';
 import '../models/weekly_report_data.dart';
 
 /// 上周生存周报弹窗

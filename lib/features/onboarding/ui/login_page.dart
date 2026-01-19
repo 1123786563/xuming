@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
-import '../../../core/theme/app_typography.dart';
 import '../../../core/router/app_router.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/cyber_button.dart';
 import '../../../shared/widgets/cyber_input.dart';
 import '../../../shared/widgets/glitch_text.dart';

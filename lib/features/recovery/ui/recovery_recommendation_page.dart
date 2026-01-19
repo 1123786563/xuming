@@ -1,13 +1,15 @@
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math' as math;
+
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
-import '../../../shared/widgets/glitch_text.dart';
-import '../../../core/router/app_router.dart';
-import '../../../shared/providers/exercise_provider.dart';
 import '../../../shared/models/exercise_model.dart';
+import '../../../shared/providers/exercise_provider.dart';
+import '../../../shared/widgets/glitch_text.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 /// 极高压力针对性动作推荐页面
 /// 

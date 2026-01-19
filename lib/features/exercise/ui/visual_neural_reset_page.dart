@@ -104,25 +104,25 @@ class _VisualNeuralVisualsState extends State<_VisualNeuralVisuals> with SingleT
               child: const Icon(Icons.keyboard_double_arrow_up, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 20,
             child: Opacity(
               opacity: 0.4,
-              child: const Icon(Icons.keyboard_double_arrow_down, size: 48, color: AppColors.visualResetGreen),
+              child: Icon(Icons.keyboard_double_arrow_down, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
-          Positioned(
+          const Positioned(
             left: 20,
             child: Opacity(
               opacity: 0.4,
-              child: const Icon(Icons.keyboard_double_arrow_left, size: 48, color: AppColors.visualResetGreen),
+              child: Icon(Icons.keyboard_double_arrow_left, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
-          Positioned(
+          const Positioned(
             right: 20,
             child: Opacity(
               opacity: 0.4,
-              child: const Icon(Icons.keyboard_double_arrow_right, size: 48, color: AppColors.visualResetGreen),
+              child: Icon(Icons.keyboard_double_arrow_right, size: 48, color: AppColors.visualResetGreen),
             ),
           ),
 
