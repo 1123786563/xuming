@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/widgets/glitch_text.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 
@@ -123,7 +125,7 @@ class ClaimFailedPage extends ConsumerWidget {
                         const SizedBox(height: 48),
                         
                         // CTA 按钮
-                        _buildCTAButton(),
+                        _buildCTAButton(context, ref),
                         
                         const SizedBox(height: 120), // Extra space for bottom nav
                       ],
@@ -382,7 +384,7 @@ class ClaimFailedPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildCTAButton() {
+  Widget _buildCTAButton(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         Stack(
@@ -413,7 +415,7 @@ class ClaimFailedPage extends ConsumerWidget {
                 child: InkWell(
                   onTap: () {
                     // 惩罚重置逻辑：恢复至 20 HP，扣除所有金币作为罚金
-                    final notifier = ref.read(userStateProvider.notifier);
+                    final notifier = ref.read(userStateNotifierProvider.notifier);
                     notifier.setInitialHp(hp: 20, sittingHours: 0, painLevel: 0, selectedPosture: 0);
                     // notifier.spendCoins(userState.coins); // Optional: clear coins
                     context.go(AppRoutes.dashboard);

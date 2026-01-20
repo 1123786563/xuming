@@ -1,11 +1,11 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:math' as math;
-import 'base_exercise_page.dart';
-import '../../../core/theme/app_colors.dart';
+
 import '../../../core/constants/app_strings.dart';
-import '../../../core/theme/app_typography.dart';
 import '../../../shared/services/audio_service.dart';
+import 'base_exercise_page.dart';
 
 /// 音效同步-骨骼复位执行页 - 使用基类重构
 class BoneResetPage extends ConsumerWidget {
@@ -25,14 +25,14 @@ class BoneResetPage extends ConsumerWidget {
   }
 }
 
-class _BoneVisuals extends StatefulWidget {
+class _BoneVisuals extends ConsumerStatefulWidget {
   const _BoneVisuals();
 
   @override
-  State<_BoneVisuals> createState() => _BoneVisualsState();
+  ConsumerState<_BoneVisuals> createState() => _BoneVisualsState();
 }
 
-class _BoneVisualsState extends State<_BoneVisuals> with SingleTickerProviderStateMixin {
+class _BoneVisualsState extends ConsumerState<_BoneVisuals> with SingleTickerProviderStateMixin {
   late AnimationController _oscController;
 
   @override
@@ -141,6 +141,7 @@ class _BoneVisualsState extends State<_BoneVisuals> with SingleTickerProviderSta
           ],
         ),
       ],
+    ),
     );
   }
 }

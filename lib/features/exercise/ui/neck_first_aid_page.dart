@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/cyber_decorations.dart'; // New import
-import 'base_exercise_page.dart'; // New import
+import '../../../shared/widgets/cyber_decorations.dart';
+import 'base_exercise_page.dart';
 
 /// 颈椎急救指引 (男) - 使用基类重构
 class NeckFirstAidPage extends StatelessWidget {
@@ -252,4 +252,3 @@ class _NeckVisualsState extends State<_NeckVisuals> with SingleTickerProviderSta
     );
   }
 }
-```

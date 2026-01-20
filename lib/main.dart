@@ -7,7 +7,7 @@ import 'app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // TODO: 初始化 Isar 数据库
+  // TODO: 初始化 Isar 数据库 (通过 Provider 懒加载)
   // TODO: 初始化 Supabase
   
   runApp(

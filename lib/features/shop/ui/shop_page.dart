@@ -1,13 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:ui';
 import 'package:go_router/go_router.dart';
+
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
-import '../../../shared/widgets/glitch_text.dart';
-import '../../../core/router/app_router.dart';
 import '../../../shared/providers/user_state_provider.dart';
+import '../../../shared/widgets/glitch_text.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 /// 续命商店 - 资源解锁页
 /// 
@@ -17,7 +19,8 @@ class ShopPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userState = ref.watch(userStateProvider);
+    final userStateAsync = ref.watch(userStateNotifierProvider);
+    final userState = userStateAsync.valueOrNull ?? const UserState();
     return Scaffold(
       backgroundColor: AppColors.void_,
       body: Stack(
@@ -406,7 +409,7 @@ class ShopPage extends ConsumerWidget {
       child: InkWell(
         onTap: isOwned ? null : () {
           if (price != null) {
-            final success = ref.read(userStateProvider.notifier).spendCoins(price, unlockId: scenarioId);
+            final success = ref.read(userStateNotifierProvider.notifier).spendCoins(price, unlockId: scenarioId);
             if (!success) {
               // TODO: 显示额度不足提示
             }

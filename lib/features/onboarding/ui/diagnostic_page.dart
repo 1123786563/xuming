@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,7 +35,7 @@ class _DiagnosticPageState extends ConsumerState<DiagnosticPage> {
     final calculatedHp = (100 - (_sittingHours * 3) - (_painLevel * 10)).clamp(5.0, 100.0);
     
     // 2. 更新全局状态
-    ref.read(userStateProvider.notifier).setInitialHp(
+    ref.read(userStateNotifierProvider.notifier).setInitialHp(
       hp: calculatedHp,
       sittingHours: _sittingHours,
       painLevel: _painLevel,

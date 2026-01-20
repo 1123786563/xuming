@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'base_exercise_page.dart';
-import '../../../core/theme/app_colors.dart';
+
 import '../../../core/constants/app_strings.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cyber_decorations.dart';
+import 'base_exercise_page.dart';
 
 /// 视觉神经重置指引页 (Variant 1) - 使用基类重构
 class VisualNeuralResetPage extends ConsumerWidget {

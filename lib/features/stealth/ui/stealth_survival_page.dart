@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math' as math;
-import '../../../core/theme/app_colors.dart';
+
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
-import '../../../shared/providers/user_state_provider.dart';
-import '../../../core/router/app_router.dart';
 
 class StealthSurvivalPage extends ConsumerStatefulWidget {
   const StealthSurvivalPage({super.key});
@@ -164,7 +163,7 @@ class _StealthSurvivalPageState extends ConsumerState<StealthSurvivalPage> with 
           // Right Icon (Sync Button)
           GestureDetector(
             onTap: () {
-              final notifier = ref.read(userStateProvider.notifier);
+              final notifier = ref.read(userStateNotifierProvider.notifier);
               notifier.addHp(5);
               notifier.addCoins(100);
               context.push(AppRoutes.hpRecoverySuccess);

@@ -10,11 +10,13 @@ import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/services/audio_service.dart';
 import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
+import '../widgets/animated_progress_bar.dart';
 import '../widgets/timer_display.dart';
 
 /// 动作执行基类
 /// 
 /// 统一处理计时器、奖励逻辑和基础赛博朋克 UI 框架
+/// 使用 ValueNotifier 优化进度更新，避免整个页面重建
 class BaseExercisePage extends ConsumerStatefulWidget {
   final String title;
   final String taskName;
@@ -25,9 +27,9 @@ class BaseExercisePage extends ConsumerStatefulWidget {
   final Widget visualFeedback;
   final String quote;
   final Color themeColor;
-  final Widget? headerActions; // 新增：自定义顶部区域右侧
-  final Widget? statusActions; // 新增：自定义状态区域
-  final Widget? rightStats; // 新增：自定义右侧区域
+  final Widget? headerActions; // 自定义顶部区域右侧
+  final Widget? statusActions; // 自定义状态区域
+  final Widget? rightStats; // 自定义右侧区域
 
   const BaseExercisePage({
     super.key,
@@ -51,7 +53,10 @@ class BaseExercisePage extends ConsumerStatefulWidget {
 
 class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with TickerProviderStateMixin {
   late AnimationController _pulseController;
-  double _progress = 0.0;
+  
+  // 使用 ValueNotifier 替代 setState 进行进度更新
+  final ValueNotifier<double> _progressNotifier = ValueNotifier(0.0);
+  
   final GlobalKey<TimerDisplayState> _timerKey = GlobalKey<TimerDisplayState>();
 
   @override
@@ -69,22 +74,20 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
   @override
   void dispose() {
     _pulseController.dispose();
+    _progressNotifier.dispose();
     // 停止背景音
     ref.read(audioServiceProvider).stopAmbience();
     super.dispose();
   }
 
   void _onProgress(double progress) {
-    if (mounted) {
-      setState(() {
-        _progress = progress;
-      });
-    }
+    // 直接更新 ValueNotifier，不触发 setState
+    _progressNotifier.value = progress;
   }
 
   void _onComplete() {
     // 更新全局状态：奖励 HP 和金币
-    final notifier = ref.read(userStateProvider.notifier);
+    final notifier = ref.read(userStateNotifierProvider.notifier);
     notifier.addHp(widget.hpReward.toDouble());
     notifier.addCoins(widget.coinReward);
     
@@ -100,16 +103,25 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
       backgroundColor: AppColors.void_,
       body: Stack(
         children: [
+          // 背景层 - 使用 const 确保不会重建
           const GridBackground(),
           const ScanlineOverlay(opacity: 0.1),
+          
+          // 顶部栏 - 静态内容
           _buildTopBar(),
+          
+          // 侧边进度条 - 使用 ValueNotifier 隔离更新
           _buildPressureSidebar(),
+          
+          // 右侧自定义区域
           if (widget.rightStats != null)
             Positioned(
               right: 16,
               top: 120,
               child: widget.rightStats!,
             ),
+          
+          // 主内容区
           SafeArea(
             child: Column(
               children: [
@@ -193,31 +205,12 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
             ),
           ),
           const SizedBox(height: 8),
+          // 使用 ValueNotifier 驱动的进度条
           Expanded(
-            child: Container(
-              width: 8,
-              decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  FractionallySizedBox(
-                    heightFactor: _progress.clamp(0.01, 1.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          colors: [widget.themeColor, AppColors.cautionYellow],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            child: VerticalAnimatedProgressBar(
+              progressNotifier: _progressNotifier,
+              themeColor: widget.themeColor,
+              secondaryColor: AppColors.cautionYellow,
             ),
           ),
         ],
@@ -253,11 +246,11 @@ class _BaseExercisePageState extends ConsumerState<BaseExercisePage> with Ticker
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       child: Column(
         children: [
-          LinearProgressIndicator(
-            value: _progress,
-            backgroundColor: Colors.white.withOpacity(0.1),
-            color: widget.themeColor,
-            minHeight: 4,
+          // 使用 ValueNotifier 驱动的水平进度条
+          AnimatedProgressBar(
+            progressNotifier: _progressNotifier,
+            themeColor: widget.themeColor,
+            height: 4,
           ),
         ],
       ),

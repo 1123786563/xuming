@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/grid_background.dart';
 import 'hp_widget_large.dart';
 import 'hp_widget_medium.dart';
 import 'hp_widget_small.dart';
-import '../../../shared/widgets/grid_background.dart';
 
 class WidgetsPage extends StatelessWidget {
   const WidgetsPage({super.key});

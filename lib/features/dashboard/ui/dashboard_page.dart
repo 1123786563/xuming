@@ -73,7 +73,8 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
     // 启动久坐监测服务
     ref.read(sedentaryMonitorProvider);
     
-    final userState = ref.watch(userStateProvider);
+    final userStateAsync = ref.watch(userStateNotifierProvider);
+    final userState = userStateAsync.valueOrNull ?? const UserState();
     final currentHP = userState.hp;
 
     return Scaffold(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/theme/app_colors.dart';
 
 /// Boss Mode 伪装界面
 class BossModePage extends StatefulWidget {

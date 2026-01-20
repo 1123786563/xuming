@@ -1,11 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:async';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/glitch_text.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 /// 限时特惠 - 高级动作包详情页
 class SpecialOfferDetailPage extends StatefulWidget {

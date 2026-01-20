@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cyber_button.dart';
@@ -6,8 +9,6 @@ import '../../../shared/widgets/glitch_text.dart';
 import '../../../shared/widgets/grid_background.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/stat_card.dart';
-import 'package:go_router/go_router.dart';
-import '../../../core/router/app_router.dart';
 
 /// 核打击级久坐提醒页
 /// 

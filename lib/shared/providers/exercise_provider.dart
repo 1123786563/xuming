@@ -6,7 +6,8 @@ import 'user_state_provider.dart';
 /// 
 /// 根据 UserState 中的诊断细节筛选最合适的动作
 final exerciseRecommendationProvider = Provider<List<ExerciseProtocol>>((ref) {
-  final userState = ref.watch(userStateProvider);
+  final userStateAsync = ref.watch(userStateNotifierProvider);
+  final userState = userStateAsync.valueOrNull ?? const UserState();
   
   if (userState.lastDiagnosis == null) {
     return allProtocols.take(3).toList();

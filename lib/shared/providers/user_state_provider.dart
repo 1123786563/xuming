@@ -1,10 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
 import '../models/user_data.dart';
-import 'isar_service.dart';
+import '../services/isar_service.dart';
 
-/// 用户全局状态模型
+part 'user_state_provider.g.dart';
+
+/// 用户全局状态模型 (Immutable)
 class UserState {
   final double hp;          // 0-100
   final int coins;          // 续命币
@@ -17,7 +19,7 @@ class UserState {
   final int selectedPosture;
   final List<String> ownedIds; // 已解锁的动作 ID 或资源 ID
 
-  UserState({
+  const UserState({
     this.hp = 100,
     this.coins = 0,
     this.level = 1,
@@ -78,96 +80,109 @@ class UserState {
   }
 }
 
-/// 用户状态管理类
-class UserStateNotifier extends StateNotifier<UserState> {
-  final IsarService? _isarService;
+/// 用户状态管理 Provider (使用 riverpod_generator)
+/// 
+/// 异步初始化，从 Isar 加载数据
+@Riverpod(keepAlive: true)
+class UserStateNotifier extends _$UserStateNotifier {
+  IsarService? _isarService;
 
-  UserStateNotifier(this._isarService) : super(UserState()) {
-    _loadFromDb();
+  @override
+  Future<UserState> build() async {
+    _isarService = ref.watch(isarServiceProvider);
+    return _loadFromDb();
   }
 
-  Future<void> _loadFromDb() async {
-    if (_isarService == null) return;
-    final data = await _isarService.getUserData();
+  Future<UserState> _loadFromDb() async {
+    if (_isarService == null) return const UserState();
+    final data = await _isarService!.getUserData();
     if (data != null) {
-      state = UserState.fromData(data);
+      return UserState.fromData(data);
     }
+    return const UserState();
   }
 
-  Future<void> _saveToDb() async {
-    await _isarService?.saveUserData(state.toData());
+  Future<void> _saveToDb(UserState newState) async {
+    await _isarService?.saveUserData(newState.toData());
   }
 
   /// 设置初始 HP (基于诊断结果)
-  void setInitialHp({
+  Future<void> setInitialHp({
     required double hp,
     required double sittingHours,
     required double painLevel,
     required int selectedPosture,
-  }) {
-    state = state.copyWith(
+  }) async {
+    final currentState = state.valueOrNull ?? const UserState();
+    final newState = currentState.copyWith(
       hp: hp.clamp(0.0, 100.0),
       lastDiagnosis: DateTime.now(),
       sittingHours: sittingHours,
       painLevel: painLevel,
       selectedPosture: selectedPosture,
     );
-    _saveToDb();
+    state = AsyncData(newState);
+    await _saveToDb(newState);
   }
 
   /// 增加 HP
-  void addHp(double amount) {
-    state = state.copyWith(hp: (state.hp + amount).clamp(0.0, 100.0));
-    _saveToDb();
+  Future<void> addHp(double amount) async {
+    final currentState = state.valueOrNull ?? const UserState();
+    final newState = currentState.copyWith(hp: (currentState.hp + amount).clamp(0.0, 100.0));
+    state = AsyncData(newState);
+    await _saveToDb(newState);
   }
 
   /// 扣减 HP
-  void reduceHp(double amount) {
-    state = state.copyWith(hp: (state.hp - amount).clamp(0.0, 100.0));
-    _saveToDb();
+  Future<void> reduceHp(double amount) async {
+    final currentState = state.valueOrNull ?? const UserState();
+    final newState = currentState.copyWith(hp: (currentState.hp - amount).clamp(0.0, 100.0));
+    state = AsyncData(newState);
+    await _saveToDb(newState);
   }
 
   /// 增加金币
-  void addCoins(int amount) {
-    state = state.copyWith(coins: state.coins + amount);
-    _saveToDb();
+  Future<void> addCoins(int amount) async {
+    final currentState = state.valueOrNull ?? const UserState();
+    final newState = currentState.copyWith(coins: currentState.coins + amount);
+    state = AsyncData(newState);
+    await _saveToDb(newState);
   }
 
   /// 消耗金币
-  bool spendCoins(int amount, {String? unlockId}) {
-    if (state.coins >= amount) {
+  Future<bool> spendCoins(int amount, {String? unlockId}) async {
+    final currentState = state.valueOrNull ?? const UserState();
+    if (currentState.coins >= amount) {
       final newOwnedIds = unlockId != null 
-          ? [...state.ownedIds, unlockId]
-          : state.ownedIds;
+          ? [...currentState.ownedIds, unlockId]
+          : currentState.ownedIds;
           
-      state = state.copyWith(
-        coins: state.coins - amount,
+      final newState = currentState.copyWith(
+        coins: currentState.coins - amount,
         ownedIds: newOwnedIds,
       );
-      _saveToDb();
+      state = AsyncData(newState);
+      await _saveToDb(newState);
       return true;
     }
     return false;
   }
 
   /// 等级提升
-  void levelUp() {
-    state = state.copyWith(level: state.level + 1);
-    _saveToDb();
+  Future<void> levelUp() async {
+    final currentState = state.valueOrNull ?? const UserState();
+    final newState = currentState.copyWith(level: currentState.level + 1);
+    state = AsyncData(newState);
+    await _saveToDb(newState);
   }
 }
-
-/// 全局 Provider
-final userStateProvider = StateNotifierProvider<UserStateNotifier, UserState>((ref) {
-  final isarService = ref.watch(isarServiceProvider).valueOrNull;
-  return UserStateNotifier(isarService);
-});
 
 /// 久坐监测服务
 /// 
 /// 监听加速计数据，如果 10 秒内位移变化极小，则视为久坐并扣除 HP
-final sedentaryMonitorProvider = Provider<void>((ref) {
-  final notifier = ref.read(userStateProvider.notifier);
+@riverpod
+void sedentaryMonitor(SedentaryMonitorRef ref) {
+  final notifier = ref.read(userStateNotifierProvider.notifier);
   
   DateTime lastMovement = DateTime.now();
   const double moveThreshold = 0.5; // 位移判定阈值
@@ -175,7 +190,7 @@ final sedentaryMonitorProvider = Provider<void>((ref) {
   const Duration sedentaryLimit = Duration(minutes: 30); // 暂定 30 分钟无位移触发扣减
 
   // 监听加速计
-  final subscription = userAccelerometerEvents.listen((event) {
+  final subscription = userAccelerometerEventStream().listen((event) {
     // 计算位移矢量模长
     final double magnitude = (event.x.abs() + event.y.abs() + event.z.abs());
     
@@ -199,4 +214,4 @@ final sedentaryMonitorProvider = Provider<void>((ref) {
     subscription.cancel();
     timer.cancel();
   });
-});
+}

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
-import '../../profile/ui/widgets/medal_hexagon.dart';
 import '../../../shared/widgets/scanline_overlay.dart';
+import '../../profile/ui/widgets/medal_hexagon.dart';
 
 /// 生存成就 - 勋章墙界面
 class MedalWallPage extends StatefulWidget {
@@ -124,10 +124,10 @@ class _MedalWallPageState extends State<MedalWallPage> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 40,
             height: 40,
-            child: const Icon(
+            child: Icon(
               Icons.share,
               color: AppColors.lifeSignal,
               size: 20,

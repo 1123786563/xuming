@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
-import '../../../shared/widgets/cyber_button.dart';
 import '../../../shared/providers/user_state_provider.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 class SocialViralPage extends ConsumerStatefulWidget {
   const SocialViralPage({super.key});
@@ -596,7 +596,7 @@ class _SocialViralPageState extends ConsumerState<SocialViralPage> with TickerPr
           ElevatedButton(
             onPressed: () {
               // 触发投放逻辑
-              ref.read(userStateProvider.notifier).addCoins(50);
+              ref.read(userStateNotifierProvider.notifier).addCoins(50);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: AppColors.lifeSignal,

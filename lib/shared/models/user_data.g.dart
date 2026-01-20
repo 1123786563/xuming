@@ -15,7 +15,7 @@ extension GetUserDataCollection on Isar {
 
 const UserDataSchema = CollectionSchema(
   name: r'UserData',
-  id: 4284092529070872654,
+  id: 1,
   properties: {
     r'coins': PropertySchema(
       id: 0,
@@ -75,7 +75,7 @@ const UserDataSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'userId': IndexSchema(
-      id: -2005826577402374815,
+      id: 2,
       name: r'userId',
       unique: true,
       replace: false,

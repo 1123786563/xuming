@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
-import '../../../core/router/app_router.dart';
 import '../../../shared/providers/user_state_provider.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 class HpRecoverySuccessPage extends ConsumerStatefulWidget {
   const HpRecoverySuccessPage({super.key});
@@ -177,7 +178,7 @@ class _HpRecoverySuccessPageState extends ConsumerState<HpRecoverySuccessPage> w
           ),
           const SizedBox(height: 8),
           Text(
-            'Current HP: ${ref.watch(userStateProvider).hp.toInt()}%',
+            'Current HP: ${(ref.watch(userStateNotifierProvider).valueOrNull ?? const UserState()).hp.toInt()}%',
             style: AppTypography.monoLabel.copyWith(
               color: AppColors.lifeSignal.withOpacity(0.8),
               letterSpacing: 4,

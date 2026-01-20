@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/router/app_router.dart';
 import '../../../shared/providers/user_state_provider.dart';
 import '../../../shared/widgets/digital_rain_background.dart';
-import '../../../shared/widgets/scanline_overlay.dart';
 import '../../../shared/widgets/hexagon_coin.dart';
+import '../../../shared/widgets/scanline_overlay.dart';
 
 class CoinInjectionPage extends ConsumerStatefulWidget {
   const CoinInjectionPage({super.key});
@@ -268,7 +269,7 @@ class _CoinInjectionPageState extends ConsumerState<CoinInjectionPage>
                 textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    '${ref.watch(userStateProvider).coins}',
+                    '${(ref.watch(userStateNotifierProvider).valueOrNull ?? const UserState()).coins}',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 32,
